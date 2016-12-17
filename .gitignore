@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1b78210393b3bcbb4bae44650951a3acd508adbb
 =======
 # Built application files
 *.apk
@@ -66,4 +70,8 @@ $RECYCLE.BIN/
 .classpath
 .project
 .settings
+<<<<<<< HEAD
 .metadata
+=======
+.metadata
+>>>>>>> 1b78210393b3bcbb4bae44650951a3acd508adbb
