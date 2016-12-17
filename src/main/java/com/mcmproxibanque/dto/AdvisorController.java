@@ -15,9 +15,8 @@ import com.mcmproxibanque.service.AdvisorService;
 public class AdvisorController {
 
 	private Advisor advisor;
-	// TEST a voir si fonctionne sans interface
 	@Autowired
-	private AdvisorService advisorService;
+	private IService advisorService;
 
 	public void addCustomer(Customer customer) {
 		getAdvisor().getCustomers().add(customer);
