@@ -40,7 +40,7 @@ public class AdvisorService implements IService<Advisor> {
 	@Override
 	public List<Advisor> findAll() throws Exception {
 		List<Advisor> listAdvisor = advisorDaoImpl.findAll();
-		return null;
+		return listAdvisor;
 	}
 
 }

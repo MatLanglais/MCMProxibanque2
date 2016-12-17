@@ -1,5 +1,6 @@
 package com.mcmproxibanque.dto;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.faces.bean.ManagedBean;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.mcmproxibanque.model.Advisor;
 import com.mcmproxibanque.model.Customer;
+import com.mcmproxibanque.service.AdvisorService;
 import com.mcmproxibanque.service.EmployeeService;
 import com.mcmproxibanque.service.IService;
 
@@ -16,9 +18,9 @@ import com.mcmproxibanque.service.IService;
 public class AdvisorController {
 
 	private Advisor advisor;
-	// TEST a voir si fonctionne avec interface untyped
+	// TEST a voir si fonctionne sans interface
 	@Autowired
-	private IService advisorService;
+	private AdvisorService advisorService;
 
 	public void addCustomer(Customer customer) {
 		getAdvisor().getCustomersMap().put(customer.getId(), customer);
@@ -41,7 +43,13 @@ public class AdvisorController {
 	}
 	
 	public Collection<Advisor> getAllAdvisors() {
-		Collection<Advisor> advisors = advisorService.findAll();
+		Collection<Advisor> advisors = new ArrayList<>();
+		try {
+			advisors = advisorService.findAll();
+		} catch (Exception e) {
+			// TODO Afficher message qui indique que la liste n'a pas pu etre recup
+		
+		}
 		return advisors;
 	}
 
