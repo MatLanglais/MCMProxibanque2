@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mcmproxibanque.dao.interfaces.IAdvisorDao;
 import com.mcmproxibanque.dao.interfaces.IEmployeeDao;
 import com.mcmproxibanque.model.Advisor;
 import com.mcmproxibanque.model.Employee;
@@ -13,32 +14,32 @@ import com.mcmproxibanque.model.Employee;
 public class AdvisorService implements IService<Advisor> {
 
 	@Autowired
-	IEmployeeDao employeeDaoImpl;
+	IAdvisorDao advisorDaoImpl;
 	
 	@Override
 	public void persist(Advisor e) throws Exception {
-		employeeDaoImpl.persist(e);
+		advisorDaoImpl.persist(e);
 	}
 
 	@Override
 	public void merge(Advisor e) throws Exception {
-		employeeDaoImpl.merge(e);
+		advisorDaoImpl.merge(e);
 	}
 
 	@Override
 	public void remove(Object id) throws Exception {
-		employeeDaoImpl.remove(id);
+		advisorDaoImpl.remove(id);
 	}
 
 	@Override
 	public Advisor findById(Object id) throws Exception {
-		Advisor advisor = (Advisor) employeeDaoImpl.findById(id);
+		Advisor advisor = (Advisor) advisorDaoImpl.findById(id);
 		return advisor;
 	}
 
 	@Override
 	public List<Advisor> findAll() throws Exception {
-		List<Employee> listAdvisor = employeeDaoImpl.findAll();
+		List<Advisor> listAdvisor = advisorDaoImpl.findAll();
 		return null;
 	}
 
