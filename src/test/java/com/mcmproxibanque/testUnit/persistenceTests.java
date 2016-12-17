@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mcmproxibanque.dao.impl.CustomerDaoImpl;
 import com.mcmproxibanque.dao.impl.EmployeeDaoImpl;
+import com.mcmproxibanque.dao.interfaces.ICustomerDao;
 import com.mcmproxibanque.model.Advisor;
 import com.mcmproxibanque.model.CurrentAccount;
 import com.mcmproxibanque.model.Customer;
@@ -26,7 +27,7 @@ public class persistenceTests {
 	private EntityManager entityManager;
 
 	@Autowired
-	CustomerDaoImpl customerDao;
+	ICustomerDao customerDaoImpl;
 
 	@Autowired
 	EmployeeDaoImpl employeeDao;
