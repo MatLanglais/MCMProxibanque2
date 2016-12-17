@@ -10,11 +10,11 @@ public class Transfer  {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+	long id;
 	
 	String date;
-	Long fromAccount;
-	Long toAccount;
+	long fromAccount;
+	long toAccount;
 	
 	public Transfer(){}
 	

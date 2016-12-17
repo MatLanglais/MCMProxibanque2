@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 @Entity
 public class SavingAccount extends Account {
 
-	Double rate;
+	double rate;
 	
 	public SavingAccount(){}
 
