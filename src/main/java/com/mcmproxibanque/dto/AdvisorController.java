@@ -18,7 +18,7 @@ public class AdvisorController {
 	private Advisor advisor;
 	// TEST a voir si fonctionne avec interface untyped
 	@Autowired
-	private IService advisorService;
+	private IService<Advisor> advisorService;
 
 	public void addCustomer(Customer customer) {
 //		getAdvisor().getCustomersMap().put(customer.getId(), customer);
