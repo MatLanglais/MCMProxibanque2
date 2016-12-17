@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+
+	<ui:composition>
+
+		<div class="navbar_header">
+			<img src="img/Logo.png" /> <br />
+			<div class="welcome_user">Bienvenue ###AdvisorForename####
+				###AdvisorName###</div>
+		</div>
+
+		<div class="navbar">
+			<p:megaMenu orientation="horizontal" style="margin-top:20px">
+
+				<p:submenu label="Vos Clients" icon="ui-icon-contact" url="#" />
+
+				<p:submenu label="Opérations Bancaires" icon="ui-icon-pencil">
+					<p:column>
+						<p:submenu label="Virement" url="#" >
+						<p:menuitem value = "Effectuer un virement" url = "#"></p:menuitem>
+						</p:submenu>
+
+						<p:submenu label="Administration des comptes">
+							<p:menuitem value="Ajouter un compte" url="#" />
+							<p:menuitem value="Supprimer un compte" url="#" />
+						</p:submenu>
+					</p:column>
+				</p:submenu>
+				<p:submenu label="Ajouter un client" icon="ui-icon-contact" url="#" />
+
+				<p:menuitem value="Déconnexion" url="#" icon="ui-icon-close" />
+			</p:megaMenu>
+		</div>
+	</ui:composition>
+</body>
+</html>
