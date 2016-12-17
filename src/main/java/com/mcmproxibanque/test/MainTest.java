@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.mcmproxibanque.dao.impl.CustomerDaoImpl;
 import com.mcmproxibanque.model.Customer;
 
+
 public class MainTest {
 	
 	public static void main(String[] args) throws Exception {

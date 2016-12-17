@@ -12,7 +12,7 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+	long id;
 	String name;
 	String forename;
 	@Embedded

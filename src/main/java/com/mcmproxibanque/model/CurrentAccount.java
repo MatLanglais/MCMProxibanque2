@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 @Entity
 public class CurrentAccount extends Account {
 	
-	Double overdraft;
+	double overdraft;
 	
 	public CurrentAccount(){}
 

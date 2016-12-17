@@ -13,8 +13,8 @@ public class Account {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
-	Double amount;
+	long id;
+	double amount;
 	
 	// Getters & Setters
 	public Long getId() {

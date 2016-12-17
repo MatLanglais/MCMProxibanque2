@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mcmproxibanque.dao.interfaces.ICustomerDao;
 import com.mcmproxibanque.model.Customer;
 
-@Component(value = "customerdaoimpl")
+@Component
 @Transactional
 public class CustomerDaoImpl extends DaoImpl<Customer> implements ICustomerDao {
 

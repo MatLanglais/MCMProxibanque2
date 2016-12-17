@@ -13,7 +13,7 @@ public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+	long id;
 	
 	String name;
 	String Forename;
