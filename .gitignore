@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 =======
 # Built application files
 *.apk
@@ -68,5 +68,3 @@ $RECYCLE.BIN/
 .project
 .settings
 .metadata
->>>>>>> d244e74081e403f559e57e9aa2d930b254b3e800
-/target/

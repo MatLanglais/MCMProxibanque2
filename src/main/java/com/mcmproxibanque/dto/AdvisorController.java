@@ -6,13 +6,10 @@ import java.util.Collection;
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.mcmproxibanque.model.Advisor;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.service.AdvisorService;
-import com.mcmproxibanque.service.EmployeeService;
-import com.mcmproxibanque.service.IService;
 
 @ManagedBean
 public class AdvisorController {
@@ -23,7 +20,6 @@ public class AdvisorController {
 	private AdvisorService advisorService;
 
 	public void addCustomer(Customer customer) {
-//		getAdvisor().getCustomersMap().put(customer.getId(), customer);
 		getAdvisor().getCustomers().add(customer);
 		try {
 			advisorService.merge(getAdvisor());
@@ -34,7 +30,6 @@ public class AdvisorController {
 	}
 
 	public void removeCustomer(Customer customer) {
-//		getAdvisor().getCustomersMap().remove(customer.getId());
 		getAdvisor().getCustomers().remove(customer);
 		try {
 			advisorService.merge(getAdvisor());
@@ -56,7 +51,6 @@ public class AdvisorController {
 	}
 
 	public Collection<Customer> getCustomers() {
-//		Collection<Customer> customers = getAdvisor().getCustomersMap().values();
 		Collection<Customer> customers = getAdvisor().getCustomers();
 		return customers;
 	}
