@@ -1,5 +1,7 @@
 package com.mcmproxibanque.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 import javax.persistence.Entity;
@@ -9,17 +11,18 @@ import javax.persistence.OneToMany;
 public class Manager extends Employee {
 
 	@OneToMany
-	HashMap<Long, Advisor> advisorsMap = new HashMap<>();
-	
-	public Manager(){}
-	
-	// Getters & Setters
-	public HashMap<Long, Advisor> getAdvisorsMap() {
-		return advisorsMap;
+	Collection<Advisor> advisors = new ArrayList<>();
+
+	public Manager() {
 	}
 
-	public void setAdvisorsMap(HashMap<Long, Advisor> advisorsMap) {
-		this.advisorsMap = advisorsMap;
+	// Getters & Setters
+	public Collection<Advisor> getAdvisors() {
+		return advisors;
+	}
+
+	public void setAdvisors(Collection<Advisor> advisors) {
+		this.advisors = advisors;
 	}
 
 }

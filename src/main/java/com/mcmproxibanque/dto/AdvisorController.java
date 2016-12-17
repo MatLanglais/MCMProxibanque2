@@ -23,7 +23,8 @@ public class AdvisorController {
 	private AdvisorService advisorService;
 
 	public void addCustomer(Customer customer) {
-		getAdvisor().getCustomersMap().put(customer.getId(), customer);
+//		getAdvisor().getCustomersMap().put(customer.getId(), customer);
+		getAdvisor().getCustomers().add(customer);
 		try {
 			advisorService.merge(getAdvisor());
 		} catch (Exception e) {
@@ -33,7 +34,8 @@ public class AdvisorController {
 	}
 
 	public void removeCustomer(Customer customer) {
-		getAdvisor().getCustomersMap().remove(customer.getId());
+//		getAdvisor().getCustomersMap().remove(customer.getId());
+		getAdvisor().getCustomers().remove(customer);
 		try {
 			advisorService.merge(getAdvisor());
 		} catch (Exception e) {
@@ -54,7 +56,8 @@ public class AdvisorController {
 	}
 
 	public Collection<Customer> getCustomers() {
-		Collection<Customer> customers = getAdvisor().getCustomersMap().values();
+//		Collection<Customer> customers = getAdvisor().getCustomersMap().values();
+		Collection<Customer> customers = getAdvisor().getCustomers();
 		return customers;
 	}
 
