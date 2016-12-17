@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+
+	<ui:composition>
+		<div class="navbar_header">
+			<img src="img/Logo.png" /> <br />
+			<div class="welcome_user" align="center">Bienvenue ###ManagerForename####
+				###ManagerName###</div>
+		</div>
+
+		<div class="navbar">
+			<p:megaMenu orientation="horizontal" style="margin-top:20px">
+
+				<p:submenu label="Vos Conseillers" icon="ui-icon-contact" url="#" />
+
+				<p:submenu label="Statistiques" icon="ui-icon-pencil">
+					<p:column>
+						<p:submenu label="Bilan hebdomadaire" url="#" />
+						<p:submenu label="Bilan mensuel" url="#"></p:submenu>
+					</p:column>
+				</p:submenu>
+
+				<p:menuitem value="Déconnexion" url="#" icon="ui-icon-close" />
+			</p:megaMenu>
+		</div>
+	</ui:composition>
+</body>
+</html>
