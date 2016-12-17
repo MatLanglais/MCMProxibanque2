@@ -18,11 +18,7 @@
 		<class>com.mcmproxibanque.model.Address</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
-<<<<<<< HEAD
 			<property name="hibernate.hbm2ddl.auto" value="update" />
-=======
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
->>>>>>> 1b78210393b3bcbb4bae44650951a3acd508adbb
 		</properties>
 	</persistence-unit>
 
