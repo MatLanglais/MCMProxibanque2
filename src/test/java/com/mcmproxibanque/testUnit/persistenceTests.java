@@ -19,15 +19,15 @@ import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.SavingAccount;
 
 @ContextConfiguration
-//@RunWith(SpringJUnit4ClassRunner.class)
+// @RunWith(SpringJUnit4ClassRunner.class)
 public class persistenceTests {
 
-	@PersistenceContext
+	@PersistenceContext(unitName = "persitenceUnit")
 	private EntityManager entityManager;
 
 	@Autowired
 	CustomerDaoImpl customerDao;
-	
+
 	@Autowired
 	EmployeeDaoImpl employeeDao;
 

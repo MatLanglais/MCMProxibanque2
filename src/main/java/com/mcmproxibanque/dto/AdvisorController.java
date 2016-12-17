@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mcmproxibanque.model.Advisor;
 import com.mcmproxibanque.model.Customer;
-import com.mcmproxibanque.service.AdvisorService;
+import com.mcmproxibanque.service.IService;
 
 @ManagedBean
 public class AdvisorController {
 
 	private Advisor advisor;
 	@Autowired
-	private IService advisorService;
+	private IService<Advisor> advisorService;
 
 	public void addCustomer(Customer customer) {
 		getAdvisor().getCustomers().add(customer);

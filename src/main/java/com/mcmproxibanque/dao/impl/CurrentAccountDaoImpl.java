@@ -1,5 +1,10 @@
 package com.mcmproxibanque.dao.impl;
 
-public class CurrentAccountDaoImpl extends DaoImpl<CurrentAccountDaoImpl> {
+import org.springframework.stereotype.Component;
+
+import com.mcmproxibanque.model.CurrentAccount;
+
+@Component
+public class CurrentAccountDaoImpl extends DaoImpl<CurrentAccount> {
 
 }

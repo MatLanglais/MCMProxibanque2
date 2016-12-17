@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mcmproxibanque.model.Account;
-import com.mcmproxibanque.service.AccountService;
 import com.mcmproxibanque.service.IService;
 
 @ManagedBean
