@@ -13,13 +13,13 @@ public class MainTest {
 	
 	public static void main(String[] args) throws Exception {
 
+		ApplicationContext context = new AnnotationConfigApplicationContext(com.mcmproxibanque.config.MCMConfig.class);
 		
 		
 // Customer c = new Customer();
-//		ApplicationContext context = new AnnotationConfigApplicationContext(com.mcmproxibanque.config.MCMConfig.class);
-//		CustomerDaoImpl customerDao = context.getBean("cdaoimpl", CustomerDaoImpl.class);
+//		CustomerDaoImpl customerDao = context.getBean("customerDaoImpl", CustomerDaoImpl.class);
 //		System.out.println(c);
-		
+//		
 //		customerDao.persist(c);
 		
 
