@@ -30,11 +30,6 @@ public class CustomerController {
 	@Autowired
 	private IService<Customer> customerService;
 
-	// ApplicationContext context = new
-	// ClassPathXmlApplicationContext("/META-INF/spring/applicationContext-db-mysql.xml");
-	// IService<Customer> customerService = context.getBean("customerService",
-	// CustomerService.class);
-
 	public Collection<Customer> getAllCustomers() throws Exception {
 		Collection<Customer> customers = new ArrayList<>();
 		System.out.println(customerService);
@@ -105,10 +100,6 @@ public class CustomerController {
 		this.customer = customer;
 	}
 
-	public CustomerController() {
-
-	}
-
 	// Methode pour afficher la liste des comptes d'un client
 	public String listAccountByCustomer(String id) {
 		System.out.println("Dans le controller Account");
@@ -136,5 +127,38 @@ public class CustomerController {
 		if (customer.getCurrentAccount() != null)
 			return true;
 		return false;
+	}
+	
+	// Methode pour rediriger l'utilisateur vers la page de création d'un client
+	public String customerCreationPage(){
+		customer = new Customer();
+		return "creationClient.xhtml";
+	}
+	// Methode pour rediriger l'utilisateur vers la page d'édition d'un client
+	public String customerEditionPage(String id){
+		Long idCustomer = Long.parseLong(id);
+		try {
+			customer = customerService.findById(idCustomer);
+			return "editionClient.xhtml";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+		
+	}
+	
+	// Méthode pour ajouter un customer à la base de données
+	public String addCustomer(){
+		System.out.println(customer);
+		try {
+			customerService.persist(customer);
+			return "accueil.xhtml";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error.xhtml";
+		}
+		
 	}
 }

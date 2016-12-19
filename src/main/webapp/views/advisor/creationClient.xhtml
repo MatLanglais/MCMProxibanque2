@@ -12,7 +12,7 @@
 
 
 
-			<h:form id="formAjoutClient" style="">
+			<h:form id="formAjoutClient">
 				<p:messages autoUpdate="true" />
 				<p:growl id="messages" showDetail="true" />
 				<p:panel id="panel" header="Ajouter un nouveau client">
@@ -100,9 +100,9 @@
 							<br />
 
 							<!-- 							!!!!! TODO: Mettre à jour les boutons !!!!!  -->
-							<p:commandButton value="Annuler"></p:commandButton>
+							<p:commandButton value="Annuler" />
 							<p:commandButton value="Valider" icon="ui-icon-check"
-								validateClient="true" style="margin-right:10px" />
+								validateClient="true" style="margin-right:10px" action="#{customerController.addCustomer()}" />
 						</p:outputPanel>
 
 
