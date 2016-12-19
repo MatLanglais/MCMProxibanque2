@@ -4,14 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.mcmproxibanque.dao.interfaces.ICustomerDao;
 import com.mcmproxibanque.model.Customer;
 
-
-@Service
-public class CustomerService implements IService<Customer> {
+@Component
+public class CustomerService extends ServiceImpl<Customer> implements IService<Customer> {
 
 	@Autowired
 	ICustomerDao customerDaoImpl;
@@ -34,11 +32,11 @@ public class CustomerService implements IService<Customer> {
 	@Override
 	public Customer findById(Object id) throws Exception {
 		return customerDaoImpl.findById(id);
-		}
+	}
 
 	@Override
 	public List<Customer> findAll() throws Exception {
 		return customerDaoImpl.findAll();
-		}
+	}
 
 }
