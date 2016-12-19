@@ -65,6 +65,7 @@ public class MainTest {
 
 		Customer c3 = new Customer();
 		c3.setForename("Claire");
+		c3.setName("SSSS");
 		c3.setAddress(new Address(street, city, zipCode));
 		c3.setEmail(email);
 		c3.setPhone(phone);
@@ -74,6 +75,7 @@ public class MainTest {
 
 		Customer c4 = new Customer();
 		c4.setForename("Mathieu");
+		c4.setName("hhhe");
 		c4.setAddress(new Address(street, city, zipCode));
 		c4.setEmail(email);
 		c4.setPhone(phone);
