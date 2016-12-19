@@ -11,7 +11,7 @@ import com.mcmproxibanque.model.Employee;
 @Component
 public class EmployeeService implements IService<Employee> {
 
-	@Autowired
+	//@Autowired
 	IEmployeeDao employeeDaoImpl;
 	
 	@Override
