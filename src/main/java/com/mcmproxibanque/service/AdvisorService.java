@@ -7,41 +7,39 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.dao.interfaces.IAdvisorDao;
-import com.mcmproxibanque.dao.interfaces.IEmployeeDao;
 import com.mcmproxibanque.model.Advisor;
-import com.mcmproxibanque.model.Employee;
 
-@Component("advisorService")
+@Component
 public class AdvisorService implements IService<Advisor> {
 
-//	@Autowired
+	@Autowired
 //	@Qualifier("advisorDaoImpl")
-	IAdvisorDao advisorDaoImpl;
+	IAdvisorDao advisorDao;
 	
 	@Override
 	public void persist(Advisor e) throws Exception {
-		advisorDaoImpl.persist(e);
+		advisorDao.persist(e);
 	}
 
 	@Override
 	public void merge(Advisor e) throws Exception {
-		advisorDaoImpl.merge(e);
+		advisorDao.merge(e);
 	}
 
 	@Override
 	public void remove(Object id) throws Exception {
-		advisorDaoImpl.remove(id);
+		advisorDao.remove(id);
 	}
 
 	@Override
 	public Advisor findById(Object id) throws Exception {
-		Advisor advisor = (Advisor) advisorDaoImpl.findById(id);
+		Advisor advisor = (Advisor) advisorDao.findById(id);
 		return advisor;
 	}
 
 	@Override
 	public List<Advisor> findAll() throws Exception {
-		List<Advisor> listAdvisor = advisorDaoImpl.findAll();
+		List<Advisor> listAdvisor = advisorDao.findAll();
 		return listAdvisor;
 	}
 

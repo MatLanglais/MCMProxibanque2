@@ -3,10 +3,12 @@ package com.mcmproxibanque.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.dao.interfaces.IEmployeeDao;
 import com.mcmproxibanque.model.Employee;
 
+@Component
 public class EmployeeService implements IService<Employee> {
 
 //	@Autowired
@@ -31,11 +33,11 @@ public class EmployeeService implements IService<Employee> {
 	public Employee findById(Object id) throws Exception {
 		Employee employee = employeeDaoImpl.findById(id);
 		return employee;
-	}
+		}
 
 	@Override
 	public List<Employee> findAll() throws Exception {
 		List<Employee> listEmployee = employeeDaoImpl.findAll();
 		return listEmployee;
-	}
+		}
 }

@@ -12,10 +12,13 @@ import com.mcmproxibanque.model.Customer;
 public class MainTest {
 	
 	public static void main(String[] args) throws Exception {
-		Customer c = new Customer();
-		ApplicationContext context = new AnnotationConfigApplicationContext(com.mcmproxibanque.config.MCMConfig.class);
+
+		
+		
+// Customer c = new Customer();
+//		ApplicationContext context = new AnnotationConfigApplicationContext(com.mcmproxibanque.config.MCMConfig.class);
 //		CustomerDaoImpl customerDao = context.getBean("cdaoimpl", CustomerDaoImpl.class);
-		System.out.println(c);
+//		System.out.println(c);
 		
 //		customerDao.persist(c);
 		
