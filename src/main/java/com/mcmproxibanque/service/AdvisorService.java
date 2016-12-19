@@ -13,7 +13,6 @@ import com.mcmproxibanque.model.Advisor;
 public class AdvisorService implements IService<Advisor> {
 
 	@Autowired
-//	@Qualifier("advisorDaoImpl")
 	IAdvisorDao advisorDao;
 	
 	@Override

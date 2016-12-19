@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Manager extends Employee {
 
-	@OneToMany
+	@OneToMany(cascade={CascadeType.ALL})
 	Collection<Advisor> advisors = new ArrayList<>();
 
 	public Manager() {

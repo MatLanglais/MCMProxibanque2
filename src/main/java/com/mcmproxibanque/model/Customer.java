@@ -1,5 +1,6 @@
 package com.mcmproxibanque.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,9 +21,9 @@ public class Customer {
 	String email;
 	String phone;
 
-	@OneToOne
+	@OneToOne(cascade={CascadeType.ALL})
 	SavingAccount savingAccount;
-	@OneToOne
+	@OneToOne(cascade={CascadeType.ALL})
 	CurrentAccount currentAccount;
 
 	public Customer() {
