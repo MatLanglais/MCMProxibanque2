@@ -30,7 +30,7 @@ public class persistenceTests {
 	private EntityManager entityManager;
 
 	@Autowired
-	ICustomerDao customerDao;
+	CustomerDaoImpl customerDao;
 
 	@Autowired
 	EmployeeDaoImpl employeeDao;

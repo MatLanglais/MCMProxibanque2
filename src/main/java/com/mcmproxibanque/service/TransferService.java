@@ -10,9 +10,9 @@ import com.mcmproxibanque.model.Account;
 import com.mcmproxibanque.model.Transfer;
 
 @Component
-public class TransferService implements IService<Transfer> {
+public class TransferService extends ServiceImpl<Transfer> implements IService<Transfer> {
 
-	//@Autowired
+	@Autowired
 	ITransferDao transferDaoImpl;
 	
 	@Autowired

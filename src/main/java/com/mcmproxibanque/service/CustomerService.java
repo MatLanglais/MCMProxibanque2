@@ -10,9 +10,9 @@ import com.mcmproxibanque.model.Customer;
 
 
 @Component
-public class CustomerService implements IService<Customer> {
+public class CustomerService extends ServiceImpl<Customer> implements IService<Customer> {
 
-	//@Autowired
+	@Autowired
 	ICustomerDao customerDaoImpl;
 
 	@Override
