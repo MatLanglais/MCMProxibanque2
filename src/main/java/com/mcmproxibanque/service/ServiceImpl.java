@@ -2,6 +2,7 @@ package com.mcmproxibanque.service;
 
 import java.util.List;
 
+
 public class ServiceImpl<E> implements IService<E> {
 
 	@Override
