@@ -11,7 +11,7 @@
 	<ui:composition>
 
 		<div class="navbar_header">
-			<img src="img/Logo.png" /> <br />
+			<img src="../../WEB-INF/resources/img/Logo.png" /> <br />
 			<div class="welcome_user">Bienvenue ###AdvisorForename####
 				###AdvisorName###</div>
 		</div>
@@ -19,7 +19,10 @@
 		<div class="navbar">
 			<p:megaMenu orientation="horizontal" style="margin-top:20px">
 
-				<p:submenu label="Vos Clients" icon="ui-icon-contact" url="accueil.xhtml" />
+
+				<p:menuitem value="Vos Clients" icon="ui-icon-contact"
+					url="accueil.xhtml" />
+
 
 				<p:submenu label="Opérations Bancaires"
 					icon="ui-icon-triangle-2-e-w">
