@@ -2,14 +2,18 @@ package com.mcmproxibanque.dao.impl;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.hibernate.Hibernate;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mcmproxibanque.dao.interfaces.IDao;
+import com.mcmproxibanque.model.Advisor;
+import com.mcmproxibanque.model.Customer;
 
 import javassist.bytecode.SignatureAttribute.TypeVariable;
 
@@ -94,5 +98,5 @@ public class DaoImpl<E> implements IDao<E> {
 		return (Long) getEntityManager().createQuery("Select count(t) from " + getEntityClass().getSimpleName() + " t")
 				.getSingleResult();
 	}
-
+	
 }
