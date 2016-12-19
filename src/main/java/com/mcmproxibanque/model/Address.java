@@ -11,6 +11,13 @@ public class Address {
 	
 	public Address(){}
 	
+	public Address(String street, String city, String zipCode) {
+		super();
+		this.street = street;
+		this.city = city;
+		this.zipCode = zipCode;
+	}
+
 	// Getters & Setters
 	public String getStreet() {
 		return street;
