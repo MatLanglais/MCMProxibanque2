@@ -20,8 +20,10 @@ import com.mcmproxibanque.service.IService;
 public class AccountController {
 
 	private Account account;
-	// @Autowired
+	@Autowired
 	private IService<Account> accountService;
+	@Autowired
+	private IService<Customer> customerService;
 
 	public Collection<Account> getAllAccounts() {
 		Collection<Account> accounts = new ArrayList<>();
@@ -44,14 +46,6 @@ public class AccountController {
 	}
 
 	public AccountController() {
-	}
-
-	public String listAccountByCustomer(Customer customer) {
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
-				.getRequest();
-		request.setAttribute("customer", customer);
-		return "listeComptes";
 	}
 
 }
