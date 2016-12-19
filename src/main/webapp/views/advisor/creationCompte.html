@@ -10,7 +10,7 @@
 	<ui:composition template="/WEB-INF/tags/layoutAdvisor.xhtml">
 		<ui:define name="content">
 
-			<h1 class="formTitle">Ajouter un nouveau client</h1>
+			<p:panel id="Ajouter un nouveau client" />
 
 			<h:form id="formAjoutClient" style="">
 				<p:messages autoUpdate="true" />
@@ -20,10 +20,12 @@
 
 					<h:panelGrid id="display" columns="3" cellpadding="4">
 
-						<h:outputText for="fromClient" value="Client débité* :"
-							style="font-weight:bold" ></h:outputText>
-							<p:inputText id="fromClient">
-							</p:inputText>
+						<h:outputText for="usedClient" value="Client débité* :"
+							style="font-weight:bold"></h:outputText>
+						<p:inputText id="fromClient" value="#{}" required="true"
+							requiredMessage="a saisie de ce champ est obligatoire">
+							
+						</p:inputText>
 
 
 
