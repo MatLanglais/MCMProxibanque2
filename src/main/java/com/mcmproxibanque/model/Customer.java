@@ -18,6 +18,7 @@ public class Customer {
 	@Embedded
 	Address address;
 	String email;
+	String phone;
 
 	@OneToOne
 	SavingAccount savingAccount;
@@ -82,6 +83,14 @@ public class Customer {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	@Override

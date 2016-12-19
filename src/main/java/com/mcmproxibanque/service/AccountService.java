@@ -11,7 +11,7 @@ import com.mcmproxibanque.model.Account;
 @Component
 public class AccountService implements IService<Account> {
 	
-//	@Autowired
+	@Autowired
 	IAccountDao accountDaoImpl;
 
 	@Override
