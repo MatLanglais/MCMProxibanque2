@@ -25,14 +25,13 @@ import com.mcmproxibanque.service.IService;
 @ManagedBean
 @Component
 public class CustomerController {
-	private Customer customer;
+	Customer customer;
 
 	@Autowired
 	private IService<Customer> customerService;
 
 	public Collection<Customer> getAllCustomers() throws Exception {
 		Collection<Customer> customers = new ArrayList<>();
-		System.out.println(customerService);
 		try {
 			customers = customerService.findAll();
 		} catch (Exception e) {
@@ -102,11 +101,10 @@ public class CustomerController {
 
 	// Methode pour afficher la liste des comptes d'un client
 	public String listAccountByCustomer(String id) {
-		System.out.println("Dans le controller Account");
 		Long idCustomer = Long.parseLong(id);
 		try {
 			customer = customerService.findById(Long.valueOf(idCustomer));
-			System.out.println("customer : " + customer);
+			System.out.println(customer);
 			return "listeComptes";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -125,6 +123,20 @@ public class CustomerController {
 	// Methode pour vérifier si le compte courant du client existe
 	public boolean isCurrentAccountExist(){
 		if (customer.getCurrentAccount() != null)
+			return true;
+		return false;
+	}
+	// Methode pour vérifier si l'attribut customer est rempli
+	public boolean isCustomerExist(){
+		System.out.println(customer);
+		if (customer != null && customer.getId() != 0)
+			return true;
+		return false;
+	}
+	// Methode pour vérifier si l'attribut customer n'est pas rempli (oui, c'est un peu stupide, mais c'est comme ça)
+	public boolean isCustomerNotExist(){
+		System.out.println(customer);
+		if (customer == null || customer.getId() == 0)
 			return true;
 		return false;
 	}

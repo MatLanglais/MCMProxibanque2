@@ -18,7 +18,7 @@ public class Employee {
 	String login;
 	String password;
 	String name;
-	String Forename;
+	String forename;
 	
 	// Getters & Setters
 	public Long getId() {
@@ -34,10 +34,10 @@ public class Employee {
 		this.name = name;
 	}
 	public String getForename() {
-		return Forename;
+		return forename;
 	}
 	public void setForename(String forename) {
-		Forename = forename;
+		forename = forename;
 	}
 	public String getLogin() {
 		return login;
