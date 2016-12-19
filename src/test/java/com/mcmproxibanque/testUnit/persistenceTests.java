@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mcmproxibanque.config.MCMConfig;
 import com.mcmproxibanque.dao.impl.CustomerDaoImpl;
 import com.mcmproxibanque.dao.impl.EmployeeDaoImpl;
 import com.mcmproxibanque.dao.interfaces.ICustomerDao;
@@ -21,15 +22,15 @@ import com.mcmproxibanque.model.CurrentAccount;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.SavingAccount;
 
-@ContextConfiguration
+@ContextConfiguration(classes=MCMConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 public class persistenceTests {
 
-	@PersistenceContext(unitName = "persitenceUnit")
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Autowired
-	ICustomerDao customerDaoImpl;
+	ICustomerDao customerDao;
 
 	@Autowired
 	EmployeeDaoImpl employeeDao;
@@ -38,9 +39,9 @@ public class persistenceTests {
 	@Transactional
 	public void testDaoCustomerImpl() throws Exception {
 		Customer customer = new Customer();
-//		long countn1 = customerDao.count();
-//		customerDao.persist(customer);
-//		assertEquals(countn1 + 1, customerDao.count());
+		long countn1 = customerDao.count();
+		customerDao.persist(customer);
+		assertEquals(countn1 + 1, customerDao.count());
 	}
 
 	@Test

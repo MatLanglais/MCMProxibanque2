@@ -14,7 +14,7 @@ import com.mcmproxibanque.service.IService;
 public class AccountController {
 
 	private Account account;
-	@Autowired
+	//@Autowired
 	private IService<Account> accountService;
 
 	public Collection<Account> getAllAccounts() {

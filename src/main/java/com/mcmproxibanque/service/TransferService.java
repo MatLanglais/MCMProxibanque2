@@ -12,7 +12,7 @@ import com.mcmproxibanque.model.Transfer;
 @Component
 public class TransferService implements IService<Transfer> {
 
-	@Autowired
+	//@Autowired
 	ITransferDao transferDaoImpl;
 	
 	@Autowired
