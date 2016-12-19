@@ -5,98 +5,81 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
 	<ui:composition template="/WEB-INF/tags/layoutAdvisor.xhtml">
 		<ui:define name="content">
 
-			<p:panel id="Ajouter un nouveau client" />
-
-			<h:form id="formAjoutClient" style="">
+			<h:form id="formCreationCompte">
 				<p:messages autoUpdate="true" />
 				<p:growl id="messages" showDetail="true" />
-				<p:panel id="panel">
-					<br />
 
+				<p:panel id="Créer un compte">
+					<br />
+					<h3>Sélection du client</h3>
+					<br />
 					<h:panelGrid id="display" columns="3" cellpadding="4">
 
-						<h:outputText for="usedClient" value="Client débité* :"
+						<p:outputLabel for="customers" value="Client* :" />
+						<p:selectOneListbox id="customers"
+							value="#{customerController.customer}" converter="customer"
+							var="c" filter="true" filterMatchMode="contains">
+							<f:selectItems value="#{advisorController.customers}"
+								var="customer" itemLabel="#{customer.name}"
+								itemValue="#{customer}" />
+							<p:column>
+								<h:outputText value="#{customer.name} - #{customer.forename}" />
+							</p:column>
+						</p:selectOneListbox>
+
+
+						<h3>Type de compte</h3>
+						<br />
+
+						<h:panelGrid columns="2" style="margin-bottom:10px"
+							cellpadding="5">
+							<p:outputLabel for="account" value="" />
+							<p:selectOneRadio id="account"
+								value="#{customerController.addAccount}">
+								<c:if test="${is empty customer.currentAccount}">
+									<f:selectItem itemLabel="Compte Courant"
+										itemValue="#{customer.currentAccount}" />
+								</c:if>
+								<c:if test="${is empty customer.savingAccount}">
+									<f:selectItem itemLabel="Compte Épargne"
+										itemValue="#{customer.savingAccount}"></f:selectItem>
+								</c:if>
+							</p:selectOneRadio>
+						</h:panelGrid>
+
+
+						<h3>Solde initial</h3>
+						<br />
+						<h:outputText for="initialAmount" value="" />
 							style="font-weight:bold"></h:outputText>
-						<p:inputText id="fromClient" value="#{}" required="true"
-							requiredMessage="a saisie de ce champ est obligatoire">
-							
-						</p:inputText>
+						<h:inputText id="initialAmount" value="#{}" required="true"
+							requiredMessage="La saisie de ce champ est obligatoire"
+							validatorMessage="Le solde initial doit être positif">
+							<f:validateDoubleRange minimum="0"></f:validateDoubleRange>
+						</h:inputText>
+						<p:message for="initialAmount"></p:message>
 
 
 
-						<!-- 						<h:outputText value="Nom* :" style="font-weight:bold"></h:outputText> -->
-						<!-- 						<p:inputText id="name" value="#{customerController.customer.name}" -->
-						<!-- 							required="true" -->
-						<!-- 							requiredMessage="La saisie de ce champ est obligatoire" -->
-						<!-- 							validatorMessage="Attention : ce champ doit comporter au moins 2 lettres, et ne pas contenir de chiffres ou de caractères spéciaux"> -->
-						<!-- 							<f:validateRegex pattern="((?=.*[a-z][A-Z][^0-9]).{2,})"></f:validateRegex> -->
-						<!-- 						</p:inputText> -->
-						<!-- 						<p:message for="name"></p:message> -->
 
-						<!-- 						<h:outputText value="Prénom* :" style="font-weight:bold"></h:outputText> -->
-						<!-- 						<p:inputText id="forename" -->
-						<!-- 							value="#{customerController.customer.forename}" required="true" -->
-						<!-- 							requiredMessage="La saisie de ce champ est obligatoire" -->
-						<!-- 							validatorMessage="Attention : ce champ doit comporter au moins 2 lettres, et ne pas contenir de chiffres ou de caractères spéciaux"> -->
-						<!-- 							<f:validateRegex pattern="((?=.*[a-z][A-Z][^0-9]).{2,})"></f:validateRegex> -->
-						<!-- 						</p:inputText> -->
-						<!-- 						<p:message for="forename"></p:message> -->
-
-						<!-- 						<h:outputText value="Rue* :" style="font-weight:bold"></h:outputText> -->
-						<!-- 						<h:inputText id="street" -->
-						<!-- 							value="#{customerController.customer.address.street}" -->
-						<!-- 							required="true" -->
-						<!-- 							requiredMessage="La saisie de ce champ est obligatoire" -->
-						<!-- 							validatorMessage="Attention : ce champ doit comporter au moins deux lettres"> -->
-						<!-- 							<f:validateRegex pattern="((?=.*[a-z][A-Z]).{2,})"></f:validateRegex> -->
-						<!-- 						</h:inputText> -->
-						<!-- 						<p:message for="street"></p:message> -->
-
-						<!-- 						<h:outputText value="Code Postal* :" style="font-weight:bold"></h:outputText> -->
-						<!-- 						<h:inputText id="zipCode" -->
-						<!-- 							value="#{customerController.customer.address.zipCode}" -->
-						<!-- 							required="true" -->
-						<!-- 							requiredMessage="La saisie de ce champ est obligatoire" -->
-						<!-- 							validatorMessage="Attention : ce champ doit comporter exactement 5 chiffres"> -->
-						<!-- 							<f:validateRegex pattern="(?=.*[0-5].{5})"></f:validateRegex> -->
-						<!-- 						</h:inputText> -->
-						<!-- 						<p:message for="zipCode"></p:message> -->
-
-
-						<!-- 						<h:outputText value="Ville* :" style="font-weight:bold"></h:outputText> -->
-						<!-- 						<h:inputText id="city" -->
-						<!-- 							value="#{customerController.customer.address.city}" -->
-						<!-- 							required="true" -->
-						<!-- 							requiredMessage="La saisie de ce champ est obligatoire" -->
-						<!-- 							validatorMessage="Ce champ doit comporter au moins une lettre, et aucun caractère spécial"> -->
-						<!-- 							<f:validateRegex pattern="(?=.*[a-z][A-Z][^0-9].{1,})"></f:validateRegex> -->
-						<!-- 						</h:inputText> -->
-						<!-- 						<p:message for="city"></p:message> -->
-
-						<!-- 						<h:outputText value="Adresse mail :" style="font-weight:bold"></h:outputText> -->
-						<!-- 						<h:inputText id="email" -->
-						<!-- 							value="#{customerController.customer.email}"> -->
-						<!-- 							<f:validateRegex -->
-						<!-- 								pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.(com|net|‌​org|fr)"></f:validateRegex> -->
-						<!-- 						</h:inputText> -->
-						<!-- 						<p:message for="email"></p:message> -->
 
 
 						<div class="notaBene">* Champ obligatoire</div>
 
 
-						<p:outputPanel layout="block" style="text-align:center">
-							<br />
-							<br />
-							<!-- 							!!!!! TODO: Mettre à jour les boutons !!!!!  -->
-							<p:commandButton value="Annuler"></p:commandButton>
-							<p:commandButton value="Valider" icon="ui-icon-check"
-								validateClient="true" style="margin-right:10px" />
+
+						<br />
+						<br />
+						<!-- !!!!! TODO: Mettre à jour les boutons !!!!!  -->
+						<p:commandButton value="Annuler"></p:commandButton>
+						<p:commandButton value="Valider" icon="ui-icon-check"
+							validateClient="true" style="margin-right:10px" />
 						</p:outputPanel>
 
 
