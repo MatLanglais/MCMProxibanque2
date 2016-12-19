@@ -11,7 +11,7 @@ import com.mcmproxibanque.model.Manager;
 @Component
 public class ManagerService implements IService<Manager> {
 
-	@Autowired
+	//@Autowired
 	IManagerDao managerDaoImpl;
 	
 	@Override

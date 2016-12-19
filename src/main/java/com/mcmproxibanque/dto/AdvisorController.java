@@ -15,7 +15,7 @@ import com.mcmproxibanque.service.IService;
 public class AdvisorController {
 
 	private Advisor advisor;
-	@Autowired
+	//@Autowired
 	private IService<Advisor> advisorService;
 
 	public void addCustomer(Customer customer) {

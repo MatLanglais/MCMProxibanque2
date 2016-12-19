@@ -9,7 +9,7 @@ import com.mcmproxibanque.model.Employee;
 
 public class EmployeeService implements IService<Employee> {
 
-	@Autowired
+	//@Autowired
 	IEmployeeDao employeeDaoImpl;
 	
 	@Override
