@@ -17,32 +17,36 @@
 		</div>
 
 		<div class="navbar">
-			<p:megaMenu orientation="horizontal" style="margin-top:20px">
+			<h:form>
+				<p:megaMenu orientation="horizontal" style="margin-top:20px">
 
 
-				<p:menuitem value="Vos Clients" icon="ui-icon-contact"
-					url="accueil.xhtml" />
+					<p:menuitem value="Vos Clients" icon="ui-icon-contact"
+						url="accueil.xhtml" />
 
 
-				<p:submenu label="Opérations Bancaires"
-					icon="ui-icon-triangle-2-e-w">
-					<p:column>
-						<p:submenu label="Virement" url="#">
-							<p:menuitem value="Effectuer un virement"
-								icon="ui-icon-arrowthick-1-e" url="#"></p:menuitem>
-						</p:submenu>
+					<p:submenu label="Opérations Bancaires"
+						icon="ui-icon-triangle-2-e-w">
+						<p:column>
+							<p:submenu label="Virement" url="#">
+								<p:menuitem value="Effectuer un virement"
+									icon="ui-icon-arrowthick-1-e" url="virement.xhtml"></p:menuitem>
+							</p:submenu>
 
-						<p:submenu label="Administration des comptes">
-							<p:menuitem value="Ajouter un compte" icon="ui-icon-plus" url="#" />
-							<p:menuitem value="Supprimer un compte" icon="ui-icon-closethick"
-								url="#" />
-						</p:submenu>
-					</p:column>
-				</p:submenu>
-				<p:menuitem value="Ajouter un client" icon="ui-icon-plus" url="#{customerController.customerCreationPage()}" />
+							<p:submenu label="Administration des comptes">
+								<p:menuitem value="Ajouter un compte" icon="ui-icon-plus"
+									url="#" />
+								<p:menuitem value="Supprimer un compte"
+									icon="ui-icon-closethick" url="#" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:menuitem value="Ajouter un client" icon="ui-icon-plus"
+						action="#{customerController.customerCreationPage()}" />
 
-				<p:menuitem value="Déconnexion" url="#" icon="ui-icon-close" />
-			</p:megaMenu>
+					<p:menuitem value="Déconnexion" url="#" icon="ui-icon-close" />
+				</p:megaMenu>
+			</h:form>
 		</div>
 	</ui:composition>
 </body>

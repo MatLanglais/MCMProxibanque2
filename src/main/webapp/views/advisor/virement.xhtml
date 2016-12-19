@@ -1,0 +1,100 @@
+<ui:composition template="/WEB-INF/tags/layoutAdvisor.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	<ui:define name="content">
+
+		<h1>Virement</h1>
+
+
+		<c:if test="#{customerController.isCustomerExist()}">
+			<div class="row">
+				<div class="col-md-offset-1 col-md-4">Propriétaire du compte à
+					débiter :</div>
+				<div class="col-md-offset-1 col-md-4">Compte à débiter :</div>
+				<div class="col-md-offset-1 col-md-4">
+					<p:selectOneMenu id="fromAccountOwner" value="#"
+						style="width:300px;">
+						<f:selectItem
+							itemLabel="#{customerController.customer.name} #{customerController.customer.forename}"
+							itemValue="#{customerController.customer.id}" />
+					</p:selectOneMenu>
+				</div>
+				<div class="col-md-offset-1 col-md-4">
+					<p:selectOneMenu id="fromAccount" value="#" style="width:300px;">
+						<c:if test="#{customerController.isSavingAccountExist()}">
+							<f:selectItem
+								itemLabel="Compte Courant N° #{customerController.customer.savingAccount.id} | Solde : #{customerController.customer.savingAccount.amount}"
+								itemValue="#{customerController.customer.savingAccount.id}" />
+						</c:if>
+						<c:if test="#{customerController.isCurrentAccountExist()}">
+							<f:selectItem
+								itemLabel="Compte Epargne N° #{customerController.customer.currentAccount.id} | Solde : #{customerController.customer.currentAccount.amount}"
+								itemValue="#{customerController.customer.currentAccount.id}" />
+						</c:if>
+
+					</p:selectOneMenu>
+				</div>
+			</div>
+
+		</c:if>
+		<c:if test="#{customerController.isCustomerNotExist()}">
+		 Le client n'existe pas
+		 		<div class="row">
+
+
+
+				<div class="col-md-offset-1 col-md-4">Propriétaire du compte à
+					débiter :</div>
+				<div class="col-md-offset-1 col-md-4">Compte à débiter :</div>
+				<h:form>
+					<div class="col-md-offset-1 col-md-4">
+
+						<p:selectOneMenu id="fromAccountOwner"
+							value="#{transferController.fromCustomer}" style="width:300px;">
+							<!-- 							<p:ajax " listener="#{transferController.onOwnerChange}" -->
+							<!-- 								update="fromAccount" /> -->
+							<f:ajax render="fromAccount" event="change" execute="fromAccountOwner" />
+							<f:selectItem itemLabel="Choisir un débiteur" itemValue=""
+								noSelectionOption="true" />
+							<c:forEach var="customer"
+								items="#{customerController.getAllCustomers()}">
+
+								<f:selectItem itemLabel="#{customer.name} #{customer.forename}"
+									itemValue="#{customer}" />
+							</c:forEach>
+						</p:selectOneMenu>
+
+					</div>
+
+
+
+					<div class="col-md-offset-1 col-md-4">
+						<p:selectOneMenu id="fromAccount"
+							value="#{transferController.transfer.fromAccount}"
+							style="width:300px;">
+							<f:selectItem itemLabel="Choisir un compte à débiter"
+								itemValue="" noSelectionOption="true" />
+							<!-- 							<c:if test="#{transferController.isFromSavingAccountExist()}"> -->
+							<f:selectItem
+								itemLabel="Compte Courant N° #{transferController.fromCustomer.savingAccount.id} | Solde : #{customerController.customer.savingAccount.amount}"
+								itemValue="#{transferController.fromCustomer.savingAccount.id}" />
+							<!-- 							</c:if> -->
+							<!-- 							<c:if test="#{transferController.isFromCurrentAccountExist()}"> -->
+							<f:selectItem
+								itemLabel="Compte Epargne N° #{transferController.fromCustomer.currentAccount.id} | Solde : #{customerController.customer.currentAccount.amount}"
+								itemValue="#{transferController.fromCustomer.currentAccount.id}" />
+							<!-- 							</c:if> -->
+						</p:selectOneMenu>
+
+					</div>
+				</h:form>
+			</div>
+		</c:if>
+
+
+	</ui:define>
+</ui:composition>
