@@ -57,7 +57,7 @@
 							required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Attention : ce champ doit comporter exactement 5 chiffres">
-							<f:validateRegex pattern="(?=.*[0-5].{5})"></f:validateRegex>
+							<f:validateRegex pattern="(?=.*[0-9].{5})"></f:validateRegex>
 						</h:inputText>
 						<p:message for="zipCode"></p:message>
 
@@ -74,11 +74,11 @@
 
 						<h:outputText for="phone" value="Numéro de téléphone* :"
 							style="font-weight:bold"></h:outputText>
-						<h:inputText id="phone"
+						<h:inputText id="phone" 
 							value="#{customerController.customer.phone}" required="true"
 							requiredMessage="La saisie de ce champ est obligatoire">
 
-							<f:validateRegex pattern="[0-9].{10, 12}"></f:validateRegex>
+							<f:validateRegex pattern="[0-9].{10}"></f:validateRegex>
 						</h:inputText>
 						<p:message for="phone"></p:message>
 

@@ -20,49 +20,53 @@
 
 
 
-					<h:panelGrid id="display" columns="4" cellpadding="4">
+					<h:panelGrid id="display" columns="2" cellpadding="4">
 
 						<h3>Sélection du client</h3>
 						<br />
-						<p:outputLabel for="customers" value="Client* :" />
-						<p:selectOneListbox id="customers" filter="true"
-							filterMatchMode="contains" required="true"
+						<br />
+						<h:outputText for="customers" value=" " />
+						<p:selectOneListbox id="customers"
+							value="#{customerController.customer}" var="customer"
+							filter="true" filterMatchMode="startsWith" required="true"
 							requiredMessage="Le choix du client est obligatoire">
-							<f:selectItems value="#{advisorController.customers}"
-								var="customer" itemValue="#{customer}" />
+							<f:selectItems value="#{customerController.allCustomers}"
+								var="customer" itemLabel="#{customer.name}"
+								itemValue="#{customer}" />
 							<p:column>
-								<h:outputText value="#{customer.name} - #{customer.forename}" />
+								#{customer.name}  #{customer.forename}
 							</p:column>
+
 						</p:selectOneListbox>
 
 
 
-						<h3>Type de compte</h3>
-						<br />
-						<p:selectOneRadio id="account"
-							value="#{customerController.}" required="true"
-							requiredMessage="Le choix du type de compte à créer est obligatoire">
-							<c:if test="${is empty customer.currentAccount}">
-								<f:selectItem itemLabel="Compte Courant"
-									itemValue="#{customer.currentAccount}" />
-							</c:if>
-							<c:if test="${is empty customer.savingAccount}">
-								<f:selectItem itemLabel="Compte Épargne"
-									itemValue="#{customer.savingAccount}"></f:selectItem>
-							</c:if>
-						</p:selectOneRadio>
+						<!-- 						<h3>Type de compte</h3> -->
+						<!-- 						<br /> -->
+						<!-- 						<p:selectOneRadio id="account" value="#{customerController.}" -->
+						<!-- 							required="true" -->
+						<!-- 							requiredMessage="Le choix du type de compte à créer est obligatoire"> -->
+						<!-- 							<c:if test="${is empty customer.currentAccount}"> -->
+						<!-- 								<f:selectItem itemLabel="Compte Courant" -->
+						<!-- 									itemValue="#{customer.currentAccount}" /> -->
+						<!-- 							</c:if> -->
+						<!-- 							<c:if test="${is empty customer.savingAccount}"> -->
+						<!-- 								<f:selectItem itemLabel="Compte Épargne" -->
+						<!-- 									itemValue="#{customer.savingAccount}"></f:selectItem> -->
+						<!-- 							</c:if> -->
+						<!-- 						</p:selectOneRadio> -->
 
 
 
-						<h3>Solde initial</h3>
-						<br />
-						<h:outputText for="initialAmount" value="" />
-						<h:inputText id="initialAmount" value="#######" required="true"
-							requiredMessage="La saisie de ce champ est obligatoire"
-							validatorMessage="Le solde initial doit être positif">
-							<f:validateDoubleRange minimum="0"></f:validateDoubleRange>
-						</h:inputText>
-						<p:message for="initialAmount"></p:message>
+						<!-- 						<h3>Solde initial</h3> -->
+						<!-- 						<br /> -->
+						<!-- 						<h:outputText for="initialAmount" value="" /> -->
+						<!-- 						<h:inputText id="initialAmount" value="#######" required="true" -->
+						<!-- 							requiredMessage="La saisie de ce champ est obligatoire" -->
+						<!-- 							validatorMessage="Le solde initial doit être positif"> -->
+						<!-- 							<f:validateDoubleRange minimum="0"></f:validateDoubleRange> -->
+						<!-- 						</h:inputText> -->
+						<!-- 						<p:message for="initialAmount"></p:message> -->
 
 
 

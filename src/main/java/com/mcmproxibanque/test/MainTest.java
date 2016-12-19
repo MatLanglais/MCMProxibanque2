@@ -23,6 +23,7 @@ public class MainTest {
 
 		Customer c = new Customer();
 		c.setForename("Quentin");
+		c.setName("LeBrun");
 		SavingAccount savingAccount = new SavingAccount();
 		savingAccount.setAmount(savingAmount);
 		c.setSavingAccount(savingAccount);
@@ -32,6 +33,7 @@ public class MainTest {
 		
 		Customer c2 = new Customer();
 		c2.setForename("Marc-Antoine");
+		c2.setName("LeBlond");
 		SavingAccount savingAccount2 =new SavingAccount();
 		savingAccount2.setAmount(savingAmount);
 		c2.setSavingAccount(savingAccount2);
