@@ -17,9 +17,9 @@ public class MainTest {
 		
 // Customer c = new Customer();
 //		ApplicationContext context = new AnnotationConfigApplicationContext(com.mcmproxibanque.config.MCMConfig.class);
-//		CustomerDaoImpl customerDao = context.getBean("cdaoimpl", CustomerDaoImpl.class);
+//		CustomerDaoImpl customerDao = context.getBean("customerDaoImpl", CustomerDaoImpl.class);
 //		System.out.println(c);
-		
+//		
 //		customerDao.persist(c);
 		
 
