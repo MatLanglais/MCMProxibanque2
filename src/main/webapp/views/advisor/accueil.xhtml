@@ -14,10 +14,10 @@
 
 			<h1>Vos Clients</h1>
 			<!--   -->
-			<p:accordionPanel value="#{customerController.getAllCustomers()}" var="customer" activeIndex="null">
+			<p:accordionPanel  value="#{customerController.getAllCustomers()}" var="customer" activeIndex="null">
 				<p:tab title="ID: #{customer.id} - #{customer.name} #{customer.forename}">
 					<div class="row">
-						<div class="col-md-offset-1 col-md-8">Adresse : #{customer.street} #{customer.zipcode} #{customer.city}</div>
+						<div class="col-md-offset-1 col-md-8">Adresse : #{customer.address.street} #{customer.address.zipCode} #{customer.address.city}</div>
 						<div class="col-md-3 text-right">
 							<p:commandButton icon="ui-icon-pencil" value="Editer" action="e"
 								style="width:200px;margin-top:1px;margin-bottom:1px" />

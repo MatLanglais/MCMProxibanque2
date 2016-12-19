@@ -49,7 +49,7 @@ public class DaoImpl<E> implements IDao<E> {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<E> findAll() throws Exception {
-		return getEntityManager().createQuery("Select t from " + getEntityClass().getSimpleName() + "t")
+		return getEntityManager().createQuery("Select t from " + getEntityClass().getSimpleName() + " t")
 				.getResultList();
 	}
 

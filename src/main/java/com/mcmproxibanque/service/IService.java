@@ -2,6 +2,9 @@ package com.mcmproxibanque.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public interface IService<E> {
 	
 	void persist(E e) throws Exception;

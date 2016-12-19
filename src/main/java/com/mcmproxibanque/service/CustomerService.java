@@ -4,15 +4,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mcmproxibanque.dao.interfaces.ICustomerDao;
 import com.mcmproxibanque.model.Customer;
 
 
-@Component
+@Service
 public class CustomerService implements IService<Customer> {
 
-	//@Autowired
+	@Autowired
 	ICustomerDao customerDaoImpl;
 
 	@Override

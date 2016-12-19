@@ -6,11 +6,13 @@ import java.util.Collection;
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.model.Account;
 import com.mcmproxibanque.service.IService;
 
 @ManagedBean
+@Component
 public class AccountController {
 
 	private Account account;
