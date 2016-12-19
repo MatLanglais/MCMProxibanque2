@@ -9,7 +9,7 @@ import com.mcmproxibanque.model.Customer;
 
 public class CustomerService implements IService<Customer> {
 
-	@Autowired
+//	@Autowired
 	ICustomerDao customerDaoImpl;
 
 	@Override

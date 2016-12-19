@@ -14,8 +14,8 @@ import com.mcmproxibanque.model.Employee;
 @Component("advisorService")
 public class AdvisorService implements IService<Advisor> {
 
-	@Autowired
-	@Qualifier("advisorDaoImpl")
+//	@Autowired
+//	@Qualifier("advisorDaoImpl")
 	IAdvisorDao advisorDaoImpl;
 	
 	@Override
