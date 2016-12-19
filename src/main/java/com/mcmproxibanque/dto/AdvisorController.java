@@ -6,16 +6,18 @@ import java.util.Collection;
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.model.Advisor;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.service.IService;
 
 @ManagedBean
+@Component
 public class AdvisorController {
 
 	private Advisor advisor;
-	//@Autowired
+	@Autowired
 	private IService<Advisor> advisorService;
 
 	public void addCustomer(Customer customer) {

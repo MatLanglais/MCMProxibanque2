@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import com.mcmproxibanque.dao.interfaces.ICustomerDao;
 import com.mcmproxibanque.model.Customer;
 
-
 @Component
 public class CustomerService extends ServiceImpl<Customer> implements IService<Customer> {
 
@@ -33,11 +32,11 @@ public class CustomerService extends ServiceImpl<Customer> implements IService<C
 	@Override
 	public Customer findById(Object id) throws Exception {
 		return customerDaoImpl.findById(id);
-		}
+	}
 
 	@Override
 	public List<Customer> findAll() throws Exception {
 		return customerDaoImpl.findAll();
-		}
+	}
 
 }
