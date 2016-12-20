@@ -10,10 +10,10 @@
 
 	<ui:composition>
 		<div class="navbar_header">
-		<img src="../../WEB-INF/resources/img/Logo.png" />
-			 <br />
+			<img src="../../WEB-INF/resources/img/Logo.png" /> <br />
 			<div class="welcome_user" align="center">Bienvenue
-				#{managerController.manager.forename} #{managerController.manager.name}</div>
+				#{managerController.manager.forename}
+				#{managerController.manager.name}</div>
 		</div>
 
 		<div class="navbar">
@@ -23,9 +23,10 @@
 
 				<p:submenu label="Statistiques" icon="ui-icon-pencil" value="">
 					<p:column>
-						<p:submenu label="Bilan hebdomadaire" icon="ui-icon-note" url="bilanHebdomadaire.xhtml" />
-						<p:menuitem value="Bilan hebdomadaire" icon="ui-icon-arrowthick-1-e" url="virement.xhtml"/>
-						<p:submenu label="Bilan mensuel" icon="ui-icon-note" url="bilanMensuel.xhtml"></p:submenu>
+						<p:menuitem value="Bilan hebdomadaire"
+							icon="ui-icon-arrowthick-1-e" url="bilanHebdomadaire.xhtml" />
+						<p:menuitem value="Bilan mensuel" icon="ui-icon-arrowthick-1-e"
+							url="bilanMensuel.xhtml" />
 					</p:column>
 				</p:submenu>
 
