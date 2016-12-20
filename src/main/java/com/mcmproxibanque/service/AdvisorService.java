@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.dao.interfaces.IAdvisorDao;
@@ -16,7 +15,7 @@ public class AdvisorService implements IService<Advisor> {
 
 	@Autowired
 	IAdvisorDao advisorDao;
-	
+
 	@Override
 	public void persist(Advisor e) throws Exception {
 		advisorDao.persist(e);
@@ -44,9 +43,10 @@ public class AdvisorService implements IService<Advisor> {
 		return listAdvisor;
 	}
 
-	public Collection<Customer> getCustomersOfAdvisor(Advisor advisor){
-		//TODO: à implémenter
-		return null;
+	public Collection<Customer> getCustomersOfAdvisor(long id) {
+		Advisor advisor = advisorDao.findAdvisorByIdwithFetchedCustomers(id);
+		Collection<Customer> customers = advisor.getCustomers();
+		return customers;
 	}
 
 }

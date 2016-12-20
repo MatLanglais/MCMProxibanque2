@@ -24,7 +24,7 @@ public class AdvisorController {
 	private CustomerService customerService;
 
 	public void addCustomer(Customer customer) {
-		getCustomersOfAdvisor(advisor).add(customer);
+		getCustomersOfAdvisor(advisor.getId()).add(customer);
 		try {
 			advisorService.merge(getAdvisor());
 
@@ -35,7 +35,7 @@ public class AdvisorController {
 	}
 
 	public String removeCustomer(Customer customer) {
-		getCustomersOfAdvisor(advisor).remove(customer);
+		getCustomersOfAdvisor(advisor.getId()).remove(customer);
 		try {
 			advisorService.merge(getAdvisor());
 			customerService.remove(customer.getId());
@@ -59,9 +59,10 @@ public class AdvisorController {
 		return advisors;
 	}
 
-	public Collection<Customer> getCustomersOfAdvisor(Advisor advisor) {
-		Collection<Customer> customers = advisorService.getCustomersOfAdvisor(advisor);
+	public Collection<Customer> getCustomersOfAdvisor(long id) {
+		Collection<Customer> customers = advisorService.getCustomersOfAdvisor(id);
 		// Collection<Customer> customers = getAdvisor().getCustomers();
+
 		return customers;
 	}
 

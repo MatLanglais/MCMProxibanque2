@@ -1,5 +1,6 @@
 package com.mcmproxibanque.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,10 +12,10 @@ public class Transfer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
-
-	String date;
-	long fromAccount;
-	long toAccount;
+	@Embedded
+	TransferDate date = new TransferDate();
+	Long fromAccount;
+	Long toAccount;
 	double amount;
 	
 	// Constructors
@@ -38,19 +39,11 @@ public class Transfer {
 		this.amount = amount;
 	}
 
-	public void setFromAccount(long fromAccount) {
-		this.fromAccount = fromAccount;
-	}
-
-	public void setToAccount(long toAccount) {
-		this.toAccount = toAccount;
-	}
-
-	public String getDate() {
+	public TransferDate getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(TransferDate date) {
 		this.date = date;
 	}
 
@@ -68,6 +61,12 @@ public class Transfer {
 
 	public void setToAccount(Long toAccount) {
 		this.toAccount = toAccount;
+	}
+
+	@Override
+	public String toString() {
+		return "Transfer [id=" + id + ", date=" + date + ", fromAccount=" + fromAccount + ", toAccount=" + toAccount
+				+ ", amount=" + amount + "]";
 	}
 
 }

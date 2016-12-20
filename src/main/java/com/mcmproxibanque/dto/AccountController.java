@@ -4,15 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.model.Account;
-import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.service.IService;
 
 @ManagedBean
@@ -23,9 +19,7 @@ public class AccountController {
 
 	@Autowired
 	private IService<Account> accountService;
-	@Autowired
-	private IService<Customer> customerService;
-
+	
 	public Collection<Account> getAllAccounts() {
 		Collection<Account> accounts = new ArrayList<>();
 		try {
@@ -37,9 +31,20 @@ public class AccountController {
 		}
 		return accounts;
 	}
-
-	public Account getAccount(Long idclient) {
+	
+	public Account getAccount() {
 		return account;
+	}
+
+	public Account getAccountById(String id) {
+		Long accountId = Long.parseLong(id);
+		try {
+			return accountService.findById(accountId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public void setAccount(Account account) {
