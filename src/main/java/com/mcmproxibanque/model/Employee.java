@@ -37,7 +37,9 @@ public class Employee {
 		return forename;
 	}
 	public void setForename(String forename) {
+
 		this.forename = forename;
+
 	}
 	public String getLogin() {
 		return login;

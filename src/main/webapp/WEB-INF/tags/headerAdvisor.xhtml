@@ -29,8 +29,8 @@
 						icon="ui-icon-triangle-2-e-w">
 						<p:column>
 							<p:submenu label="Virement" url="#">
-								<p:menuitem value="Effectuer un virement"
-									icon="ui-icon-arrowthick-1-e" url="#"></p:menuitem>
+								<p:menuitem value="Effectuer un virement" icon="ui-icon-arrowthick-1-e" url="virement.xhtml"></p:menuitem>
+
 							</p:submenu>
 
 							<p:submenu label="Administration des comptes">
@@ -41,10 +41,12 @@
 							</p:submenu>
 						</p:column>
 					</p:submenu>
-					<p:menuitem value="Ajouter un client" icon="ui-icon-plus" 
-						action="#{customerController.customerCreationPage()}" /> 
+
+					<p:menuitem value="Ajouter un client" icon="ui-icon-plus"
+						action="#{customerController.customerCreationPage()}" />
 
 					<p:menuitem value="Déconnexion" url="#" icon="ui-icon-close" />
+
 
 				</p:megaMenu>
 			</h:form>

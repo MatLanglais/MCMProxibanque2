@@ -1,6 +1,10 @@
 package com.mcmproxibanque.dao.interfaces;
 
+import java.util.Collection;
 import java.util.List;
+
+import com.mcmproxibanque.model.Advisor;
+import com.mcmproxibanque.model.Customer;
 
 public interface IDao<E> {
 
@@ -16,4 +20,5 @@ public interface IDao<E> {
 	
 	long count() throws Exception;
 
+	
 }
