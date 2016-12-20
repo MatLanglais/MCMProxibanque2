@@ -37,9 +37,20 @@ public class AccountController {
 		}
 		return accounts;
 	}
-
-	public Account getAccount(Long idclient) {
+	
+	public Account getAccount() {
 		return account;
+	}
+
+	public Account getAccountById(String id) {
+		Long accountId = Long.parseLong(id);
+		try {
+			return accountService.findById(accountId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public void setAccount(Account account) {

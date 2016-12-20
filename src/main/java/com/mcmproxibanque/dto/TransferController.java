@@ -129,6 +129,6 @@ public class TransferController {
 		transfer.setDate(shortDateFormat.format(now));
 		System.out.println(transfer);
 		transferService.doTransfer(transfer);
-		return "accueil";
+		return "cvir";
 	}
 }
