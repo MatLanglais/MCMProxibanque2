@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.Transfer;
 
-import antlr.build.Tool;
-
 @ManagedBean
 @Component
 public class TransferController {

@@ -16,7 +16,7 @@
 				title="ID: #{advisor.id} - #{advisor.name} #{advisor.forename}">
 				<div class="row">
 					<div class="col-md-offset-1 col-md-8">
-						<p:dataTable value="#{advisorController.getCustomersOfAdvisor(advisor)}" var="customer">
+						<p:dataTable value="#{advisorController.getCustomersOfAdvisor(advisor.id)}" var="customer">
 							<p:column headerText="Id">
 								<h:outputText value="#{customer.id}" />
 							</p:column>

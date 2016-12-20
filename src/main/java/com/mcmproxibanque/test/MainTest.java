@@ -13,6 +13,7 @@ import com.mcmproxibanque.service.ManagerService;
 
 public class MainTest {
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) throws Exception {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext(
@@ -28,15 +29,15 @@ public class MainTest {
 
 		Customer c = new Customer();
 		c.setForename("Quentin");
-
 		c.setName("LeBrun");
-		SavingAccount savingAccount = new SavingAccount();
-		savingAccount.setAmount(savingAmount);
-		c.setSavingAccount(savingAccount);
-
 		c.setAddress(new Address(street, city, zipCode));
 		c.setEmail(email);
 		c.setPhone(phone);
+
+		SavingAccount savingAccount = new SavingAccount();
+		savingAccount.setAmount(savingAmount);
+		c.setSavingAccount(savingAccount);
+		
 
 		CurrentAccount currentAccount = new CurrentAccount();
 		currentAccount.setAmount(currentAmount);
@@ -44,18 +45,15 @@ public class MainTest {
 
 		Customer c2 = new Customer();
 		c2.setForename("Marc-Antoine");
-
 		c2.setName("LeBlond");
-		SavingAccount savingAccount2 =new SavingAccount();
-
 		c2.setAddress(new Address(street, city, zipCode));
 		c2.setEmail(email);
 		c2.setPhone(phone);
-	
 
+		SavingAccount savingAccount2 =new SavingAccount();
 		savingAccount2.setAmount(savingAmount);
 		c2.setSavingAccount(savingAccount2);
-		
+
 		Advisor a = new Advisor();
 		a.setForename("Nabila");
 		a.setLogin("admin");

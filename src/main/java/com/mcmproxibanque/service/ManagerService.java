@@ -1,14 +1,11 @@
 package com.mcmproxibanque.service;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.dao.interfaces.IManagerDao;
-import com.mcmproxibanque.model.Advisor;
-import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.Manager;
 
 @Component
