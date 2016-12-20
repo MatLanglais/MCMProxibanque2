@@ -22,6 +22,13 @@ public class Advisor extends Employee {
 	public void setCustomers(Collection<Customer> customers) {
 		this.customers = customers;
 	}
+
+	@Override
+	public String toString() {
+		return "Advisor id=" + id + ", login=" + login + ", password=" + password
+				+ ", name=" + name + ", forename=" + forename + "]";
+	}
+	
 	
 
 

@@ -12,9 +12,9 @@
 
 		<h:graphicImage library="images" name="logo.png" />
 		<br />
-		<div class="welcome_user" align="center" style="font-weight: bold">Bienvenue
-			###AdvisorForename#### ###AdvisorName###</div>
 
+			<div class="welcome_user">Bienvenue #{advisorController.advisor.name}
+				#{advisorController.advisor.forename}</div>
 
 		<div class="navbar">
 			<h:form>
@@ -22,15 +22,16 @@
 
 
 					<p:menuitem value="Vos Clients" icon="ui-icon-contact"
-						url="listeClients.xhtml" />
+						url="/views/advisor/listeClients.xhtml" />
 
 
 					<p:submenu label="Opérations Bancaires"
 						icon="ui-icon-triangle-2-e-w">
 						<p:column>
 							<p:submenu label="Virement" url="#">
-								<p:menuitem value="Effectuer un virement"
-									icon="ui-icon-arrowthick-1-e" url="virement.xhtml"></p:menuitem>
+
+								<p:menuitem value="Effectuer un virement" icon="ui-icon-arrowthick-1-e" url="/views/advisor/virement.xhtml"></p:menuitem>
+
 
 							</p:submenu>
 

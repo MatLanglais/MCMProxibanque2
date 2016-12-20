@@ -174,7 +174,6 @@ public class CustomerController {
 
 	// Méthode pour ajouter un customer à la base de données
 	public String addCustomer() {
-		System.out.println(customer);
 		try {
 			customerService.persist(customer);
 			return "listeClients";
