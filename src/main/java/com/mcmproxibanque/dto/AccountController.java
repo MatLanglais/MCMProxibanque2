@@ -26,7 +26,7 @@ public class AccountController {
 	@Autowired
 	private IService<Account> accountService;
 	@Autowired
-	private ICustomerService customerService;
+	private IService<Customer> customerService;
 	
 	public Collection<Account> getAllAccounts() {
 		Collection<Account> accounts = new ArrayList<>();

@@ -2,8 +2,12 @@ package com.mcmproxibanque.dto;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,11 +18,15 @@ import com.mcmproxibanque.service.AdvisorService;
 
 @ManagedBean
 @Component
+@SessionScoped
 public class AdvisorController {
 
 	private Advisor advisor;
+	private String login;
+	private String password;
 	@Autowired
 	private AdvisorService advisorService;
+	
 
 	public void addCustomer(Customer customer) {
 		getAdvisor().getCustomers().add(customer);
@@ -67,7 +75,46 @@ public class AdvisorController {
 		this.advisor = advisor;
 	}
 
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public AdvisorController() {
+	}
+	
+	// Méthode pour s'authentifier
+	public String loginVerif() {
+		System.out.println("login : " + login + ", mdp = " + password);
+		List<Advisor> advisorList = new ArrayList<>();
+		try {
+			advisorList = advisorService.findAll();
+			for (Advisor advisorl : advisorList) {
+				if (login.equals(advisorl.getLogin()) && password.equals(advisorl.getPassword()))
+					advisor = advisorl;
+				System.out.println(advisor);
+				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+				session.setAttribute("advisorsession", advisor);
+				return "/views/advisor/listeClients.xhtml";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+
+		return "error";
 	}
 
 }
