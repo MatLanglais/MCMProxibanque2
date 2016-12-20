@@ -11,10 +11,10 @@
 		<ui:define name="content">
 
 
-			<h:form id="formAjoutClient">
+			<h:form id="formEditionClient">
 
 
-				<p:panel id="panel" header="Ajouter un nouveau client">
+				<p:panel id="panel" header="Modifier un client">
 					<p:growl id="messages" showDetail="true" />
 					<p:messages autoUpdate="true" />
 					<br />
@@ -28,7 +28,6 @@
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Attention : ce champ doit comporter au moins 2 lettres, et ne pas contenir de chiffres ou de caractères spéciaux">
 							<f:validateRegex pattern="(^[A-Za-z]{2,})"></f:validateRegex>
-
 						</p:inputText>
 						<p:message for="name"></p:message>
 
@@ -48,9 +47,7 @@
 						<p:inputText id="street"
 							value="#{customerController.customer.address.street}"
 							required="true"
-							requiredMessage="La saisie de ce champ est obligatoire"
-							validatorMessage="Attention : ce champ doit comporter au moins deux lettres">
-							<f:validateRegex pattern="(^([a-z][A-Z]) {2,})"></f:validateRegex>
+							requiredMessage="La saisie de ce champ est obligatoire">
 						</p:inputText>
 						<p:message for="street"></p:message>
 
@@ -65,7 +62,6 @@
 							validatorMessage="Attention : ce champ doit comporter exactement 5 chiffres">
 							<f:validateRegex pattern="(^[0-9]{5})"></f:validateRegex>
 						</p:inputText>
-
 						<p:message for="zipCode"></p:message>
 
 
@@ -75,10 +71,8 @@
 							required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Ce champ doit comporter au moins une lettre, et aucun caractère spécial">
-
 							<f:validateRegex pattern="(^[A-Za-z]{2,})"></f:validateRegex>
 						</p:inputText>
-
 						<p:message for="city"></p:message>
 
 						<h:outputText for="phone" value="Numéro de téléphone* :"
@@ -86,12 +80,10 @@
 						<p:inputText id="phone"
 							value="#{customerController.customer.phone}" required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
-							validatorMessage="Ce champ doit comporter dix chiffres">
-							<f:validateRegex pattern="(^[0-9]{10})"></f:validateRegex>
+							validatorMessage="Le numéro de téléphone doit être au format 0123456789">
+							<f:validateRegex pattern="^[0-9]{10}"></f:validateRegex>
 						</p:inputText>
-						<p:message for="telephone"></p:message>
-
-
+						<p:message for="phone"></p:message>
 						<h:outputText for="email" value="Adresse mail :"
 							style="font-weight:bold"></h:outputText>
 						<p:inputText id="email"
@@ -117,6 +109,8 @@
 								validateClient="true" style="margin-right:10px"
 								action="#{customerController.modifyCustomer}" />
 						</p:outputPanel>
+
+
 					</h:panelGrid>
 
 				</p:panel>

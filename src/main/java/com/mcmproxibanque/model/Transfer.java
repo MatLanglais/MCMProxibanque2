@@ -13,8 +13,8 @@ public class Transfer {
 	long id;
 
 	String date;
-	long fromAccount;
-	long toAccount;
+	Long fromAccount;
+	Long toAccount;
 	double amount;
 	
 	// Constructors
@@ -36,14 +36,6 @@ public class Transfer {
 
 	public void setAmount(double amount) {
 		this.amount = amount;
-	}
-
-	public void setFromAccount(long fromAccount) {
-		this.fromAccount = fromAccount;
-	}
-
-	public void setToAccount(long toAccount) {
-		this.toAccount = toAccount;
 	}
 
 	public String getDate() {
@@ -68,6 +60,12 @@ public class Transfer {
 
 	public void setToAccount(Long toAccount) {
 		this.toAccount = toAccount;
+	}
+
+	@Override
+	public String toString() {
+		return "Transfer [id=" + id + ", date=" + date + ", fromAccount=" + fromAccount + ", toAccount=" + toAccount
+				+ ", amount=" + amount + "]";
 	}
 
 }
