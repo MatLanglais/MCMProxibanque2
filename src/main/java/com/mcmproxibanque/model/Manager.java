@@ -2,7 +2,6 @@ package com.mcmproxibanque.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

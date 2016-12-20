@@ -71,4 +71,16 @@ public class TransferService extends ServiceImpl<Transfer> implements ITransferS
 		}
 	}
 
+	@Override
+	public List<Transfer> getTransfersOfCurrentWeek() {
+		List<Transfer> transfersOfCurrentWeek = transferDaoImpl.findTransferOfCurrentWeek();
+		return transfersOfCurrentWeek;
+	}
+
+	@Override
+	public List<Transfer> getTransfersOfCurrentMonth() {
+		List<Transfer> transfersOfCurrentMonth = transferDaoImpl.findTransferOfCurrentMonth();
+		return transfersOfCurrentMonth;
+	}
+
 }
