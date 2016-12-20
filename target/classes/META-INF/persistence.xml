@@ -16,6 +16,7 @@
 		<class>com.mcmproxibanque.model.CurrentAccount</class>
 		<class>com.mcmproxibanque.model.Transfer</class>
 		<class>com.mcmproxibanque.model.Address</class>
+		<class>com.mcmproxibanque.model.TransferDate</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />

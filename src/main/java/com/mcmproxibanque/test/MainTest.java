@@ -9,7 +9,10 @@ import com.mcmproxibanque.model.CurrentAccount;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.Manager;
 import com.mcmproxibanque.model.SavingAccount;
+import com.mcmproxibanque.model.Transfer;
+import com.mcmproxibanque.model.TransferDate;
 import com.mcmproxibanque.service.ManagerService;
+import com.mcmproxibanque.service.TransferService;
 
 public class MainTest {
 
@@ -97,7 +100,34 @@ public class MainTest {
 
 		ManagerService service = context.getBean("managerService", ManagerService.class);
 		service.persist(m);
-
+		
+		TransferService tservice = context.getBean("transferService", TransferService.class);
+		Transfer t = new Transfer();
+		t.setAmount(50);
+		t.setDate(new TransferDate(2,51,12,2016));
+		tservice.persist(t);
+		Transfer t2 = new Transfer();
+		t2.setAmount(2000);
+		t2.setDate(new TransferDate(2,51,12,2016));
+		tservice.persist(t2);
+		Transfer t3 = new Transfer();
+		t3.setAmount(20);
+		t3.setDate(new TransferDate(2,1,12,2016));
+		tservice.persist(t3);
+		Transfer t4 = new Transfer();
+		t4.setAmount(2000);
+		t4.setDate(new TransferDate(2,2,12,2016));
+		tservice.persist(t4);
+		Transfer t5 = new Transfer();
+		t5.setAmount(20000);
+		t5.setDate(new TransferDate(2,3,12,2016));
+		tservice.persist(t5);
+		Transfer t6 = new Transfer();
+		t6.setAmount(20000);
+		t6.setDate(new TransferDate(2,5,12,2016));
+		tservice.persist(t6);
+		
+		
 	}
 
 }

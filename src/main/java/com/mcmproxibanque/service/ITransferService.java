@@ -1,5 +1,7 @@
 package com.mcmproxibanque.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.model.Transfer;
@@ -13,5 +15,7 @@ public interface ITransferService extends IService<Transfer>{
 	 * @return - boolean renvoyant si le virement à été effectué ou non
 	 */
 	boolean doTransfer(Transfer t);
+	List<Transfer> getTransfersOfCurrentWeek();
+	List<Transfer> getTransfersOfCurrentMonth();
 
 }

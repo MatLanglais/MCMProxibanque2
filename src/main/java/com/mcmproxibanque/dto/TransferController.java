@@ -1,7 +1,6 @@
 package com.mcmproxibanque.dto;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.faces.bean.ManagedBean;
 
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.Transfer;
+import com.mcmproxibanque.model.TransferDate;
 import com.mcmproxibanque.service.ITransferService;
 
 @ManagedBean
@@ -119,15 +119,20 @@ public class TransferController {
 
 	// MÈthode pour faire le transfer ÙO
 	public String doTransfer() {
-		Date now = new Date();
-		DateFormat shortDateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
-		transfer = new Transfer();
-		transfer.setAmount(amount);
+		Calendar now = Calendar.getInstance();
+		int day = now.get(Calendar.DAY_OF_MONTH);
+		int month = now.get(Calendar.MONTH) + 1;
+		int year = now.get(Calendar.YEAR);
+		int week = now.get(Calendar.WEEK_OF_YEAR);
+		transfer.setDate(new TransferDate(day, week, month, year));
 		transfer.setFromAccount(fromAccountId);
 		transfer.setToAccount(toAccountId);
-		transfer.setDate(shortDateFormat.format(now));
+		transfer.setAmount(amount);
+
 		System.out.println(transfer);
+
 		transferService.doTransfer(transfer);
+
 		return "cvir";
 	}
 }
