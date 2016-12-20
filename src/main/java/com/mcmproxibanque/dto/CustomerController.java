@@ -100,7 +100,6 @@ public class CustomerController {
 		Long idCustomer = Long.parseLong(id);
 		try {
 			customer = customerService.findById(Long.valueOf(idCustomer));
-			System.out.println(customer);
 			return "listeComptes";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -108,6 +107,19 @@ public class CustomerController {
 			return "error";
 		}
 
+	}
+	
+	// Méthode pour aller vers la page d'ajout de compte
+	public String customerAccountCreationPage(String id) {
+		Long idCustomer = Long.parseLong(id);
+		try {
+			customer = customerService.findById(Long.valueOf(idCustomer));
+			return "creationCompte";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
 	}
 
 	// Methode pour vérifier si le compte épargne du client existe
@@ -166,7 +178,7 @@ public class CustomerController {
 		System.out.println(customer);
 		try {
 			customerService.persist(customer);
-			return "accueil.xhtml";
+			return "listeClients";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -201,6 +213,47 @@ public class CustomerController {
 		}
 	}
 
-	// Ajouter un compte à un client et redirri
+	// Verifier si un client est a decouvert
+	public boolean isOverdraft(Customer c) {
+		System.out.println("Customer : " + c);
+		if (c != null) {
+			if (c.getSavingAccount() != null && c.getSavingAccount().getAmount() < 0)
+				return true;
+			if (c.getCurrentAccount() != null
+					&& c.getCurrentAccount().getAmount() < -1 * c.getCurrentAccount().getOverdraft())
+				return true;
+		} else {
+			return false;
+		}
+		return false;
+	}
+
+	public boolean isSavingAccountOverdraft(SavingAccount c) {
+		System.out.println("SavingAccount : " + c);
+		if (c != null && c.getAmount() < 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean isCurrentAccountOverdraft(CurrentAccount c) {
+		System.out.println("CurrentAccount : " + c);
+		if (c != null && c.getAmount() < -1 * c.getOverdraft()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	// Méthode MAJ du customer dans le controller
+	public void updateCustomerInController(){
+		try {
+			customer = customerService.findById(customer.getId());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

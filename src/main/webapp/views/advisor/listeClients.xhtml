@@ -12,15 +12,28 @@
 		<!--   -->
 		<p:accordionPanel value="#{customerController.getAllCustomers()}"
 			var="customer" activeIndex="null">
-			<p:tab
-				title="ID: #{customer.id} - #{customer.name} #{customer.forename}">
+			<p:tab>
+				<f:facet name="title">
+					<c:choose>
+						<c:when test="#{controllerCustomer.isOverdraft(customer)}">
+							<h:outputText
+								value="ID: #{customer.id} - #{customer.name} #{customer.forename}"
+								style="color:red" />
+						</c:when>
+						<c:otherwise>
+							<h:outputText
+								value="ID: #{customer.id} - #{customer.name} #{customer.forename}" />
+						</c:otherwise>
+					</c:choose>
+				</f:facet>
 				<div class="row">
 					<div class="col-md-offset-1 col-md-8">Adresse :
 						#{customer.address.street} #{customer.address.zipCode}
 						#{customer.address.city}</div>
 					<div class="col-md-3 text-right">
 						<h:form>
-							<p:commandButton icon="ui-icon-pencil" value="Editer" action="#{customerController.customerEditionPage(customer.id)}"
+							<p:commandButton icon="ui-icon-pencil" value="Editer"
+								action="#{customerController.customerEditionPage(customer.id)}"
 								style="width:200px;margin-top:1px;margin-bottom:1px" />
 						</h:form>
 					</div>
