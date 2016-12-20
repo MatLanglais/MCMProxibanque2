@@ -43,7 +43,7 @@ public class AdvisorController {
 	public String removeCustomer(Customer customer) {
 		getCustomersOfAdvisor(advisor.getId()).remove(customer);
 		try {
-			advisorService.merge(getAdvisor());
+			 advisorService.merge(getAdvisor());
 			customerService.remove(customer.getId());
 			return "accueil.xhtml";
 		} catch (Exception e) {
@@ -51,6 +51,11 @@ public class AdvisorController {
 			// TODO afficher un message au conseiller lui indiquant que la
 			// suppression n'a pas fonctionné
 		}
+	}
+
+	// Méthode pour retourner à l'accueil
+	public String goAccueil() {
+		return "accueil.xhtml";
 	}
 
 	public Collection<Advisor> getAllAdvisors() {
