@@ -40,7 +40,9 @@
 					<div class="col-md-offset-1 col-md-8">Compte à débiter :</div>
 					<div class="col-md-offset-1 col-md-8">
 						<p:selectOneMenu id="fromAccount"
-							value="#{transferController.fromAccountId}" style="width:500px;" filter="true" filterMatchMode="contains">
+							value="#{transferController.fromAccountId}" style="width:500px;"
+							filter="true" filterMatchMode="contains">
+
 							<f:selectItem itemLabel="Choisir un compte à débiter"
 								itemValue="" noSelectionOption="true" />
 							<c:forEach var="customer"

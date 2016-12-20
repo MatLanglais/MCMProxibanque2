@@ -11,6 +11,8 @@ import com.mcmproxibanque.model.Manager;
 import com.mcmproxibanque.model.SavingAccount;
 import com.mcmproxibanque.model.Transfer;
 import com.mcmproxibanque.model.TransferDate;
+import com.mcmproxibanque.service.AdvisorService;
+import com.mcmproxibanque.service.CustomerService;
 import com.mcmproxibanque.service.ManagerService;
 import com.mcmproxibanque.service.TransferService;
 
@@ -27,7 +29,7 @@ public class MainTest {
 		String street = "3 rue Stephenson";
 		String city = "Montigny";
 		String zipCode = "78180";
-		String email="client@gtm.fr";
+		String email = "client@gtm.fr";
 		String phone = "0123456789";
 
 		Customer c = new Customer();
@@ -37,10 +39,23 @@ public class MainTest {
 		c.setEmail(email);
 		c.setPhone(phone);
 
+		Customer c6 = new Customer();
+		c6.setForename("JE NE SUIS PLUS LA");
+
+		c6.setName("JE NE SUIS PLUS LA");
+		SavingAccount savingAccount6 = new SavingAccount();
+		savingAccount6.setAmount(savingAmount);
+		c6.setSavingAccount(savingAccount6);
+
+		c6.setAddress(new Address(street, city, zipCode));
+		c6.setEmail(email);
+		c6.setPhone(phone);
+
+		CustomerService custService = new CustomerService();
+		// custService.remove(c6.getId());
 		SavingAccount savingAccount = new SavingAccount();
 		savingAccount.setAmount(savingAmount);
 		c.setSavingAccount(savingAccount);
-		
 
 		CurrentAccount currentAccount = new CurrentAccount();
 		currentAccount.setAmount(currentAmount);
@@ -49,11 +64,12 @@ public class MainTest {
 		Customer c2 = new Customer();
 		c2.setForename("Marc-Antoine");
 		c2.setName("LeBlond");
+
 		c2.setAddress(new Address(street, city, zipCode));
 		c2.setEmail(email);
 		c2.setPhone(phone);
 
-		SavingAccount savingAccount2 =new SavingAccount();
+		SavingAccount savingAccount2 = new SavingAccount();
 		savingAccount2.setAmount(savingAmount);
 		c2.setSavingAccount(savingAccount2);
 
@@ -83,13 +99,14 @@ public class MainTest {
 		SavingAccount savingAccount4 = new SavingAccount();
 		savingAccount4.setAmount(savingAmount);
 		c4.setSavingAccount(savingAccount4);
-		
+
 		Advisor a2 = new Advisor();
 		a2.setForename("Mathilde");
 		a2.setLogin("123");
 		a2.setPassword("123");
 		a2.getCustomers().add(c3);
 		a2.getCustomers().add(c4);
+		a2.getCustomers().add(c6);
 
 		Manager m = new Manager();
 		m.setForename("Yann");
@@ -100,34 +117,36 @@ public class MainTest {
 
 		ManagerService service = context.getBean("managerService", ManagerService.class);
 		service.persist(m);
-		
+
+		AdvisorService aservice = new AdvisorService();
+		aservice.remove(c6.getId());
+
 		TransferService tservice = context.getBean("transferService", TransferService.class);
 		Transfer t = new Transfer();
 		t.setAmount(50);
-		t.setDate(new TransferDate(2,51,12,2016));
+		t.setDate(new TransferDate(2, 51, 12, 2016));
 		tservice.persist(t);
 		Transfer t2 = new Transfer();
 		t2.setAmount(2000);
-		t2.setDate(new TransferDate(2,51,12,2016));
+		t2.setDate(new TransferDate(2, 51, 12, 2016));
 		tservice.persist(t2);
 		Transfer t3 = new Transfer();
 		t3.setAmount(20);
-		t3.setDate(new TransferDate(2,1,12,2016));
+		t3.setDate(new TransferDate(2, 1, 12, 2016));
 		tservice.persist(t3);
 		Transfer t4 = new Transfer();
 		t4.setAmount(2000);
-		t4.setDate(new TransferDate(2,2,12,2016));
+		t4.setDate(new TransferDate(2, 2, 12, 2016));
 		tservice.persist(t4);
 		Transfer t5 = new Transfer();
 		t5.setAmount(20000);
-		t5.setDate(new TransferDate(2,3,12,2016));
+		t5.setDate(new TransferDate(2, 3, 12, 2016));
 		tservice.persist(t5);
 		Transfer t6 = new Transfer();
 		t6.setAmount(20000);
-		t6.setDate(new TransferDate(2,5,12,2016));
+		t6.setDate(new TransferDate(2, 5, 12, 2016));
 		tservice.persist(t6);
-		
-		
+
 	}
 
 }
