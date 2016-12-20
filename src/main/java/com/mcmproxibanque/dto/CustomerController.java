@@ -20,6 +20,7 @@ import com.mcmproxibanque.service.IService;
 @Component
 public class CustomerController {
 	Customer customer;
+	Account account = new Account();
 
 	@Autowired
 	private IService<Customer> customerService;
@@ -56,7 +57,7 @@ public class CustomerController {
 
 	}
 
-	public void removeAccount(Account account) {
+	public void removeAccount() {
 		if (account.equals(getCustomer().getCurrentAccount())) {
 			getCustomer().setCurrentAccount(null);
 		} else if (account.equals(getCustomer().getSavingAccount())) {
@@ -91,7 +92,7 @@ public class CustomerController {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-		
+
 	}
 
 	// Methode pour afficher la liste des comptes d'un client
@@ -124,20 +125,21 @@ public class CustomerController {
 	}
 
 	// Methode pour vérifier si l'attribut customer est rempli
-	public boolean isCustomerExist(){
+	public boolean isCustomerExist() {
 		System.out.println(customer);
 		if (customer != null && customer.getId() != 0)
 			return true;
 		return false;
 	}
-	// Methode pour vérifier si l'attribut customer n'est pas rempli (oui, c'est un peu stupide, mais c'est comme ça)
-	public boolean isCustomerNotExist(){
+
+	// Methode pour vérifier si l'attribut customer n'est pas rempli (oui, c'est
+	// un peu stupide, mais c'est comme ça)
+	public boolean isCustomerNotExist() {
 		System.out.println(customer);
 		if (customer == null || customer.getId() == 0)
 			return true;
 		return false;
 	}
-	
 
 	// Methode pour rediriger l'utilisateur vers la page de création d'un client
 	public String customerCreationPage() {
@@ -177,8 +179,8 @@ public class CustomerController {
 		this.customer = new Customer();
 		this.customer.setAddress(new Address());
 	}
-	
-	public void resetCustomer(){
+
+	public void resetCustomer() {
 		refreshCustomerForm();
 		RequestContext.getCurrentInstance().reset("formAjoutClient:panel");
 	}
@@ -198,4 +200,7 @@ public class CustomerController {
 			}
 		}
 	}
+
+	// Ajouter un compte à un client et redirri
+
 }

@@ -22,38 +22,46 @@
 					<h:panelGrid id="display" columns="3" cellpadding="4">
 
 
-						<p:outputLabel for="customers" value="Sélection du client : " />
-						<p:selectOneListbox id="customers" filter="true"
-							filterMatchMode="contains" required="true"
-							requiredMessage="La sélection du client est obligatoire">
-							<f:selectItems value="#{advisorController.customers}"
-								var="customer" itemValue="#{customer}" />
-							<p:column>
-								<h:outputText value="#{customer.name}" />
-							</p:column>
-							<p:column>
-								<h:outputText value="#{customer.forename}" />
-							</p:column>
-						</p:selectOneListbox>
+						<h:form>
+							<h3>Sélection du client</h3>
+							<br />
+							<br />
+							<h:outputText for="customers" value=" " />
+							<p:outputLabel for="customers" value="Sélection du client : " />
+							<p:selectOneListbox id="customers" filter="true"
+								filterMatchMode="contains">
+								<f:selectItems value="#{customerController.allCustomers}"
+									var="customer"
+									itemLabel="#{customer.name} #{customer.forename}"
+									itemValue="#{customer}">
+								</f:selectItems>
+
+							</p:selectOneListbox>
+
+							<p:commandButton value="Sélectionner ce client"
+								icon="ui-icon-check" validateClient="true"
+								action="#{customerController.customer}"></p:commandButton>
+						</h:form>
 
 
-						<h3>Type de compte</h3>
-						<br />
-						<p:selectOneRadio id="account"
-							value="#{customerController.removeAccount(##)}" required="true"
-							requiredMessage="Le choix du type de compte à supprimer est obligatoire">
-							<c:if test="#{customerController.currentAccountExist}">
-								<f:selectItem itemLabel="Compte Courant"
-									itemValue="#{customer.currentAccount}" />
-							</c:if>
-							<c:if test="#{customerController.savingAccountExist}">
-								<f:selectItem itemLabel="Compte Épargne"
-									itemValue="#{customer.savingAccount}"></f:selectItem>
-							</c:if>
-						</p:selectOneRadio>
+
+						<h3>Sélection du compte à supprimer</h3>
+						<h:form id="toDeleteAccounts">
+							<p:selectManyCheckbox id="accounts">
+								<f:selectItem
+									value="#{customerController.customer.currentAccount}"></f:selectItem>
+								<f:selectItem
+									value="#{customerController.customer.savingAccount}"></f:selectItem>
+							</p:selectManyCheckbox>
+							<p:commandButton value="Créer le compte courant"
+								icon="ui-icon-check" validateClient="true"
+								action="#{customerController.removeAccount()}"></p:commandButton>
+
+						</h:form>
 
 
-						
+
+
 
 
 						<div class="notaBene">* Champ obligatoire</div>

@@ -11,7 +11,7 @@
 	<ui:composition template="/WEB-INF/tags/layoutAdvisor.xhtml">
 		<ui:define name="content">
 
-			<h:form id="formCreationCompte">
+			<h:form id="formAccountCreation">
 				<p:messages autoUpdate="true" />
 				<p:growl id="messages" showDetail="true" />
 
@@ -21,72 +21,51 @@
 
 
 					<h:panelGrid id="display" columns="2" cellpadding="4">
+						<h:form>
+							<h3>Sélection du client</h3>
+							<br />
+							<br />
+							<h:outputText for="customers" value=" " />
+							<p:outputLabel for="customers" value="Sélection du client : " />
+							<p:selectOneListbox id="customers" filter="true"
+								filterMatchMode="contains" required="true"
+								requiredMessage="La sélection du client est obligatoire">
+								<f:selectItems value="#{customerController.allCustomers}"
+									var="customer"
+									itemLabel="#{customer.name} #{customer.forename}"
+									itemValue="#{customer}">
+								</f:selectItems>
 
-						<h3>Sélection du client</h3>
-						<br />
-						<br />
-						<h:outputText for="customers" value=" " />
-						<p:selectOneListbox id="customers"
-							value="#{customerController.customer}" var="customer"
-							filter="true" filterMatchMode="startsWith" required="true"
-							requiredMessage="Le choix du client est obligatoire">
-							<f:selectItems value="#{customerController.allCustomers}"
-								var="customer" itemLabel="#{customer.name}"
-								itemValue="#{customer}" />
-							<p:column>
-								#{customer.name}  #{customer.forename}
-							</p:column>
+							</p:selectOneListbox>
 
-						</p:selectOneListbox>
+							<p:commandButton value="Sélectionner ce client"
+								icon="ui-icon-check" validateClient="true"
+								action="#{customerController.customer}"></p:commandButton>
+						</h:form>
 
+						<h:form>
+							<h3>Type de compte</h3>
+							<br />
 
-
-						<h3>Type de compte</h3>
-						<br />
-						<c:if test="!#{customerController.currentAccountExist}">
-							<p:selectOneRadio id="account"
-								value="#{customerController.customer.currentAccount}"
-								required="true"
-								requiredMessage="Le choix du type de compte à créer est obligatoire">
-								<f:selectItem itemLabel="Compte Courant"
+							<p:selectManyCheckbox id="currentAccountCreation">
+								<f:selectItem itemLabel="Compte Courant : "
 									itemValue="#{customerController.customer.currentAccount}" />
-							</p:selectOneRadio>
-						</c:if>
+								<f:selectItem itemLabel="Compte épargne : "
+									itemValue="#{customerController.customer.savingAccount}"></f:selectItem>
+							</p:selectManyCheckbox>
 
-
-
-						<!-- 						<c:if test="${is empty customer.savingAccount}"> -->
-						<!-- 							<f:selectItem itemLabel="Compte Épargne" -->
-						<!-- 								itemValue="#{customer.savingAccount}"></f:selectItem> -->
-						<!-- 						</c:if> -->
-						</p:selectOneRadio>
-
-
-
-						<!-- 						<h3>Solde initial</h3> -->
-						<!-- 						<br /> -->
-						<!-- 						<h:outputText for="initialAmount" value="" /> -->
-						<!-- 						<h:inputText id="initialAmount" value="#######" required="true" -->
-						<!-- 							requiredMessage="La saisie de ce champ est obligatoire" -->
-						<!-- 							validatorMessage="Le solde initial doit être positif"> -->
-						<!-- 							<f:validateDoubleRange minimum="0"></f:validateDoubleRange> -->
-						<!-- 						</h:inputText> -->
-						<!-- 						<p:message for="initialAmount"></p:message> -->
-
-
-
-
-						<p:outputPanel layout="block" style="text-align:center">
-							<div class="notaBene">* Champ obligatoire</div>
-
-							<br />
-							<br />
-							<!-- !!!!! TODO: Mettre à jour les boutons !!!!!  -->
-							<p:commandButton value="Annuler" icon="ui-icon-close"
-								action="#{customerController.refreshAccountForm()}"></p:commandButton>
 							<p:commandButton value="Valider" icon="ui-icon-check"
-								validateClient="true" style="margin-right:10px" />
-						</p:outputPanel>
+								action="#{customerController.addAccount('current')}"
+								style="margin-right:10px" />
+
+							<!-- 							</c:if> -->
+						</h:form>
+
+
+
+
+
+
 
 					</h:panelGrid>
 
