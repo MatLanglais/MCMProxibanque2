@@ -10,7 +10,7 @@ import com.mcmproxibanque.model.Account;
 import com.mcmproxibanque.model.Transfer;
 
 @Component
-public class TransferService extends ServiceImpl<Transfer> implements IService<Transfer> {
+public class TransferService extends ServiceImpl<Transfer> implements ITransferService {
 
 	@Autowired
 	ITransferDao transferDaoImpl;
@@ -43,11 +43,10 @@ public class TransferService extends ServiceImpl<Transfer> implements IService<T
 		return transferDaoImpl.findAll();
 	}
 	
-	/**
-	 * @param toAccountId - Id du Compte à débiter
-	 * @param fromAccountId - Id du Compte à créditer
-	 * @return - boolean renvoyant si le virement à été effectué ou non
+	/* (non-Javadoc)
+	 * @see com.mcmproxibanque.service.ITransferService#doTransfer(com.mcmproxibanque.model.Transfer)
 	 */
+	@Override
 	public boolean doTransfer(Transfer t){
 		
 		try {
