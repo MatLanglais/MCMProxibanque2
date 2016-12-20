@@ -13,15 +13,22 @@
 
 
 
-			<h:form id="formDeleteCustomer">
+			<h:form id="formDeleteAccount">
 
-				<h3>Voulez vous supprimer le client :
-					#{customerController.customer.name}
-					#{customerController.customer.forename}</h3>
+
+
+				<h3>Voulez vous supprimer le compte suivant :
+					ID: #{customerController.customer.currentAccount.id} -- Solde : 
+					#{customerController.customer.currentAccount.amount}</h3>
 				<p:commandButton value="Oui" icon="ui-icon-validate"
-					action="#{advisorController.removeCustomer(customerController.customer)}"></p:commandButton>
+					action="#{advisorController.}"></p:commandButton>
 				<p:commandButton value="Non" icon="ui-icon-close"
 					action="#{advisorController.goAccueil()}"></p:commandButton>
+
+
+				</h:panelGrid>
+
+				</p:panel>
 
 			</h:form>
 

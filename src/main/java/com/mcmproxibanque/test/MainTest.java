@@ -3,6 +3,7 @@ package com.mcmproxibanque.test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.mcmproxibanque.dto.AdvisorController;
 import com.mcmproxibanque.model.Address;
 import com.mcmproxibanque.model.Advisor;
 import com.mcmproxibanque.model.CurrentAccount;
@@ -40,9 +41,9 @@ public class MainTest {
 		c.setPhone(phone);
 
 		Customer c6 = new Customer();
-		c6.setForename("JE NE SUIS PLUS LA");
+		c6.setForename("JE NE SUIS PLUS LA2");
 
-		c6.setName("JE NE SUIS PLUS LA");
+		
 		SavingAccount savingAccount6 = new SavingAccount();
 		savingAccount6.setAmount(savingAmount);
 		c6.setSavingAccount(savingAccount6);
@@ -115,37 +116,38 @@ public class MainTest {
 		m.getAdvisors().add(a);
 		m.getAdvisors().add(a2);
 
-		ManagerService service = context.getBean("managerService", ManagerService.class);
-		service.persist(m);
+//		ManagerService service = context.getBean("managerService", ManagerService.class);
+//		service.persist(m);
+//
+//		AdvisorService aservice = context.getBean("advisorService", AdvisorService.class);
+		AdvisorController adContr = new AdvisorController();
+		adContr.removeCustomer(c6);
 
-		AdvisorService aservice = new AdvisorService();
-		aservice.remove(c6.getId());
-
-		TransferService tservice = context.getBean("transferService", TransferService.class);
-		Transfer t = new Transfer();
-		t.setAmount(50);
-		t.setDate(new TransferDate(2, 51, 12, 2016));
-		tservice.persist(t);
-		Transfer t2 = new Transfer();
-		t2.setAmount(2000);
-		t2.setDate(new TransferDate(2, 51, 12, 2016));
-		tservice.persist(t2);
-		Transfer t3 = new Transfer();
-		t3.setAmount(20);
-		t3.setDate(new TransferDate(2, 1, 12, 2016));
-		tservice.persist(t3);
-		Transfer t4 = new Transfer();
-		t4.setAmount(2000);
-		t4.setDate(new TransferDate(2, 2, 12, 2016));
-		tservice.persist(t4);
-		Transfer t5 = new Transfer();
-		t5.setAmount(20000);
-		t5.setDate(new TransferDate(2, 3, 12, 2016));
-		tservice.persist(t5);
-		Transfer t6 = new Transfer();
-		t6.setAmount(20000);
-		t6.setDate(new TransferDate(2, 5, 12, 2016));
-		tservice.persist(t6);
+//		TransferService tservice = context.getBean("transferService", TransferService.class);
+//		Transfer t = new Transfer();
+//		t.setAmount(50);
+//		t.setDate(new TransferDate(2, 51, 12, 2016));
+//		tservice.persist(t);
+//		Transfer t2 = new Transfer();
+//		t2.setAmount(2000);
+//		t2.setDate(new TransferDate(2, 51, 12, 2016));
+//		tservice.persist(t2);
+//		Transfer t3 = new Transfer();
+//		t3.setAmount(20);
+//		t3.setDate(new TransferDate(2, 1, 12, 2016));
+//		tservice.persist(t3);
+//		Transfer t4 = new Transfer();
+//		t4.setAmount(2000);
+//		t4.setDate(new TransferDate(2, 2, 12, 2016));
+//		tservice.persist(t4);
+//		Transfer t5 = new Transfer();
+//		t5.setAmount(20000);
+//		t5.setDate(new TransferDate(2, 3, 12, 2016));
+//		tservice.persist(t5);
+//		Transfer t6 = new Transfer();
+//		t6.setAmount(20000);
+//		t6.setDate(new TransferDate(2, 5, 12, 2016));
+//		tservice.persist(t6);
 
 	}
 
