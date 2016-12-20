@@ -124,6 +124,7 @@ public class TransferController {
 		int month = now.get(Calendar.MONTH) + 1;
 		int year = now.get(Calendar.YEAR);
 		int week = now.get(Calendar.WEEK_OF_YEAR);
+		transfer = new Transfer();
 		transfer.setDate(new TransferDate(day, week, month, year));
 		transfer.setFromAccount(fromAccountId);
 		transfer.setToAccount(toAccountId);
@@ -132,6 +133,8 @@ public class TransferController {
 		System.out.println(transfer);
 
 		transferService.doTransfer(transfer);
+		
+		transfer = new Transfer();
 
 		return "cvir";
 	}
