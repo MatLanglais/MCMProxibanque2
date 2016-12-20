@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.hibernate.Hibernate;
+
 @Entity
 public class Advisor extends Employee {
 	
@@ -17,6 +19,7 @@ public class Advisor extends Employee {
 	public Advisor(){}
 
 	public Collection<Customer> getCustomers() {
+		Hibernate.initialize(this);
 		return customers;
 	}
 

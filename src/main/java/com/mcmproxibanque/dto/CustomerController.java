@@ -4,22 +4,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
+import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.model.Account;
+import com.mcmproxibanque.model.Address;
 import com.mcmproxibanque.model.CurrentAccount;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.SavingAccount;
-import com.mcmproxibanque.service.CustomerService;
-import com.mcmproxibanque.service.ICustomerService;
 import com.mcmproxibanque.service.IService;
 
 @ManagedBean
@@ -97,6 +91,7 @@ public class CustomerController {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+		
 	}
 
 	// Methode pour afficher la liste des comptes d'un client
@@ -113,19 +108,21 @@ public class CustomerController {
 		}
 
 	}
-	
+
 	// Methode pour vérifier si le compte épargne du client existe
-	public boolean isSavingAccountExist(){
+	public boolean isSavingAccountExist() {
 		if (customer.getSavingAccount() != null)
 			return true;
 		return false;
 	}
+
 	// Methode pour vérifier si le compte courant du client existe
-	public boolean isCurrentAccountExist(){
+	public boolean isCurrentAccountExist() {
 		if (customer.getCurrentAccount() != null)
 			return true;
 		return false;
 	}
+
 	// Methode pour vérifier si l'attribut customer est rempli
 	public boolean isCustomerExist(){
 		System.out.println(customer);
@@ -141,13 +138,15 @@ public class CustomerController {
 		return false;
 	}
 	
+
 	// Methode pour rediriger l'utilisateur vers la page de création d'un client
-	public String customerCreationPage(){
+	public String customerCreationPage() {
 		customer = new Customer();
 		return "creationClient.xhtml";
 	}
+
 	// Methode pour rediriger l'utilisateur vers la page d'édition d'un client
-	public String customerEditionPage(String id){
+	public String customerEditionPage(String id) {
 		Long idCustomer = Long.parseLong(id);
 		try {
 			customer = customerService.findById(idCustomer);
@@ -157,11 +156,11 @@ public class CustomerController {
 			e.printStackTrace();
 			return "error";
 		}
-		
+
 	}
-	
+
 	// Méthode pour ajouter un customer à la base de données
-	public String addCustomer(){
+	public String addCustomer() {
 		System.out.println(customer);
 		try {
 			customerService.persist(customer);
@@ -171,6 +170,32 @@ public class CustomerController {
 			e.printStackTrace();
 			return "error.xhtml";
 		}
-		
+	}
+
+	// Remettre à 0 le formulaire d'ajout du client
+	public void refreshCustomerForm() {
+		this.customer = new Customer();
+		this.customer.setAddress(new Address());
+	}
+	
+	public void resetCustomer(){
+		refreshCustomerForm();
+		RequestContext.getCurrentInstance().reset("formAjoutClient:panel");
+	}
+
+	// Remettre à 0 le formulaire de création de compte
+	public void refreshAccountForm() {
+
+		if ((this.customer.getCurrentAccount() != null) & (this.customer.getSavingAccount() != null)) {
+
+		} else {
+			if (this.customer.getCurrentAccount() != null) {
+
+				this.customer.setSavingAccount(new SavingAccount());
+
+			} else {
+				this.customer.setCurrentAccount(new CurrentAccount());
+			}
+		}
 	}
 }

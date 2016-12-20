@@ -1,5 +1,6 @@
 package com.mcmproxibanque.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.dao.interfaces.IAdvisorDao;
 import com.mcmproxibanque.model.Advisor;
+import com.mcmproxibanque.model.Customer;
 
 @Component
 public class AdvisorService implements IService<Advisor> {
@@ -40,6 +42,11 @@ public class AdvisorService implements IService<Advisor> {
 	public List<Advisor> findAll() throws Exception {
 		List<Advisor> listAdvisor = advisorDao.findAll();
 		return listAdvisor;
+	}
+
+	public Collection<Customer> getCustomersOfAdvisor(Advisor advisor){
+		//TODO: à implémenter
+		return null;
 	}
 
 }
