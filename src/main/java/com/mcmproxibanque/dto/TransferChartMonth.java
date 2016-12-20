@@ -72,7 +72,7 @@ public class TransferChartMonth implements Serializable {
 	private void createBarModelMonth() {
 		barModelMonth = initBarModelMonth();
 
-		barModelMonth.setTitle("Rapport mensuel sur les transactions");
+		barModelMonth.setTitle("Rapport mensuel sur les transactions (mois en cours)");
 		barModelMonth.setLegendPosition("ne");
 
 		Axis xAxis = barModelMonth.getAxis(AxisType.X);
