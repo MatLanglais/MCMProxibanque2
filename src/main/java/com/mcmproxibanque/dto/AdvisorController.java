@@ -22,9 +22,8 @@ import com.mcmproxibanque.service.CustomerService;
 @SessionScoped
 public class AdvisorController {
 
-	private Advisor advisor;
-	private String login;
-	private String password;
+	private Advisor advisor = new Advisor();
+
 	@Autowired
 	private AdvisorService advisorService;
 	@Autowired
@@ -85,33 +84,32 @@ public class AdvisorController {
 		this.advisor = advisor;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+//	public String getLogin() {
+//		return login;
+//	}
+//
+//	public void setLogin(String login) {
+//		this.login = login;
+//	}
+//
+//	public String getPassword() {
+//		return password;
+//	}
+//
+//	public void setPassword(String password) {
+//		this.password = password;
+//	}
 
 	public AdvisorController() {
 	}
 	
 	// Méthode pour s'authentifier
 	public String loginVerif() {
-		System.out.println("login : " + login + ", mdp = " + password);
 		List<Advisor> advisorList = new ArrayList<>();
 		try {
 			advisorList = advisorService.findAll();
 			for (Advisor advisorl : advisorList) {
-				if (login.equals(advisorl.getLogin()) && password.equals(advisorl.getPassword()))
+				if (advisor.getLogin().equals(advisorl.getLogin()) && advisor.getPassword().equals(advisorl.getPassword()))
 					advisor = advisorl;
 				System.out.println(advisor);
 				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
