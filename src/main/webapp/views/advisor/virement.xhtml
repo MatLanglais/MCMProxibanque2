@@ -114,7 +114,13 @@
 			<div class="row">
 				<div class="col-md-offset-1 col-md-8">Montant :</div>
 				<div class="col-md-offset-1 col-md-8">
-					<p:inputText id="amount" value="#{transferController.amount}" />
+					<p:inputText id="amount" value="#{transferController.amount}"
+						required="true"
+						requiredMessage="Vous devez entrer le montant du virement"
+						validatorMessage="Le montant du virment doit être un nombre positif">
+						<f:validateRegex pattern="^[0-9]}"></f:validateRegex>
+					</p:inputText>
+					<p:message for="amount"></p:message>
 				</div>
 			</div>
 
