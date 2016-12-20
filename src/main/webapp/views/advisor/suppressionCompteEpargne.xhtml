@@ -17,11 +17,11 @@
 
 
 
-				<h3>Voulez vous supprimer le compte courant suivant :
-					ID: #{customerController.customer.currentAccount.id} -- Solde : 
-					#{customerController.customer.currentAccount.amount}</h3>
+				<h3>Voulez vous supprimer le compte épargne suivant :
+					ID: #{customerController.customer.savingAccount.id} -- Solde : 
+					#{customerController.customer.savingAccount.amount}</h3>
 				<p:commandButton value="Oui" icon="ui-icon-validate"
-					action="#{advisorController.removeAccount(customerController.customer.currentAccount)}"></p:commandButton>
+					action="#{advisorController.removeAccount(customerController.customer.savingAccount)}"></p:commandButton>
 				<p:commandButton value="Non" icon="ui-icon-close"
 					action="#{customerController.goAccueil()}"></p:commandButton>
 
