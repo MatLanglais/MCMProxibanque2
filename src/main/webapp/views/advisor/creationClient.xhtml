@@ -80,7 +80,7 @@
 							style="font-weight:bold"></h:outputText>
 						<p:inputText id="phone"
 							value="#{customerController.customer.phone}" required="true"
-							requiredMessage="La saisie de ce champ est obligatoire"
+							requiredMessage="La saisie de ce champ est obligatoire" placeholder="0123456789"
 							validatorMessage="Le numéro de téléphone doit être au format 0123456789">
 							<f:validateRegex pattern="^[0-9]{10}"></f:validateRegex>
 						</p:inputText>
@@ -106,7 +106,7 @@
 
 
 							<p:commandButton value="Annuler" icon="ui-icon-close"
-								action="#{customerController.resetCustomer}" />
+								  />
 							<p:commandButton value="Valider" icon="ui-icon-check"
 								validateClient="true" style="margin-right:10px"
 								action="#{customerController.addCustomer()}" />

@@ -9,6 +9,8 @@ import com.mcmproxibanque.model.CurrentAccount;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.Manager;
 import com.mcmproxibanque.model.SavingAccount;
+import com.mcmproxibanque.service.AdvisorService;
+import com.mcmproxibanque.service.CustomerService;
 import com.mcmproxibanque.service.ManagerService;
 
 public class MainTest {
@@ -23,7 +25,7 @@ public class MainTest {
 		String street = "3 rue Stephenson";
 		String city = "Montigny";
 		String zipCode = "78180";
-		String email="client@gtm.fr";
+		String email = "client@gtm.fr";
 		String phone = "0123456789";
 
 		Customer c = new Customer();
@@ -38,6 +40,21 @@ public class MainTest {
 		c.setEmail(email);
 		c.setPhone(phone);
 
+		Customer c6 = new Customer();
+		c6.setForename("JE NE SUIS PLUS LA");
+
+		c6.setName("JE NE SUIS PLUS LA");
+		SavingAccount savingAccount6 = new SavingAccount();
+		savingAccount6.setAmount(savingAmount);
+		c6.setSavingAccount(savingAccount6);
+
+		c6.setAddress(new Address(street, city, zipCode));
+		c6.setEmail(email);
+		c6.setPhone(phone);
+
+		CustomerService custService = new CustomerService();
+		// custService.remove(c6.getId());
+
 		CurrentAccount currentAccount = new CurrentAccount();
 		currentAccount.setAmount(currentAmount);
 		c.setCurrentAccount(currentAccount);
@@ -46,16 +63,15 @@ public class MainTest {
 		c2.setForename("Marc-Antoine");
 
 		c2.setName("LeBlond");
-		SavingAccount savingAccount2 =new SavingAccount();
+		SavingAccount savingAccount2 = new SavingAccount();
 
 		c2.setAddress(new Address(street, city, zipCode));
 		c2.setEmail(email);
 		c2.setPhone(phone);
-	
 
 		savingAccount2.setAmount(savingAmount);
 		c2.setSavingAccount(savingAccount2);
-		
+
 		Advisor a = new Advisor();
 		a.setForename("Nabila");
 		a.setLogin("admin");
@@ -82,13 +98,14 @@ public class MainTest {
 		SavingAccount savingAccount4 = new SavingAccount();
 		savingAccount4.setAmount(savingAmount);
 		c4.setSavingAccount(savingAccount4);
-		
+
 		Advisor a2 = new Advisor();
 		a2.setForename("Mathilde");
 		a2.setLogin("123");
 		a2.setPassword("123");
 		a2.getCustomers().add(c3);
 		a2.getCustomers().add(c4);
+		a2.getCustomers().add(c6);
 
 		Manager m = new Manager();
 		m.setForename("Yann");
@@ -99,6 +116,9 @@ public class MainTest {
 
 		ManagerService service = context.getBean("managerService", ManagerService.class);
 		service.persist(m);
+
+		AdvisorService aservice = new AdvisorService();
+		aservice.remove(c6.getId());
 
 	}
 

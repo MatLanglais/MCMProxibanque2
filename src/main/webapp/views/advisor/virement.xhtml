@@ -57,7 +57,8 @@
 							value="#{transferController.fromCustomer}" style="width:300px;">
 							<!-- 							<p:ajax " listener="#{transferController.onOwnerChange}" -->
 							<!-- 								update="fromAccount" /> -->
-							<f:ajax render="fromAccount" event="change" execute="fromAccountOwner" />
+							<f:ajax render="fromAccount" event="change"
+								execute="fromAccountOwner" />
 							<f:selectItem itemLabel="Choisir un débiteur" itemValue=""
 								noSelectionOption="true" />
 							<c:forEach var="customer"

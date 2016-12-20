@@ -5,12 +5,10 @@ import java.util.Collection;
 
 import javax.faces.bean.ManagedBean;
 
-import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.model.Account;
-import com.mcmproxibanque.model.Address;
 import com.mcmproxibanque.model.CurrentAccount;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.SavingAccount;
@@ -20,7 +18,6 @@ import com.mcmproxibanque.service.IService;
 @Component
 public class CustomerController {
 	Customer customer;
-	Account account = new Account();
 
 	@Autowired
 	private IService<Customer> customerService;
@@ -57,8 +54,10 @@ public class CustomerController {
 
 	}
 
-	public void removeAccount() {
+	public void removeAccount(Account account) {
 		if (account.equals(getCustomer().getCurrentAccount())) {
+			account.setId(null);
+			account.setAmount(0.0);
 			getCustomer().setCurrentAccount(null);
 		} else if (account.equals(getCustomer().getSavingAccount())) {
 			getCustomer().setSavingAccount(null);
@@ -173,34 +172,51 @@ public class CustomerController {
 			return "error.xhtml";
 		}
 	}
+	
 
-	// Remettre à 0 le formulaire d'ajout du client
-	public void refreshCustomerForm() {
-		this.customer = new Customer();
-		this.customer.setAddress(new Address());
-	}
 
-	public void resetCustomer() {
-		refreshCustomerForm();
-		RequestContext.getCurrentInstance().reset("formAjoutClient:panel");
-	}
-
-	// Remettre à 0 le formulaire de création de compte
-	public void refreshAccountForm() {
-
-		if ((this.customer.getCurrentAccount() != null) & (this.customer.getSavingAccount() != null)) {
-
-		} else {
-			if (this.customer.getCurrentAccount() != null) {
-
-				this.customer.setSavingAccount(new SavingAccount());
-
-			} else {
-				this.customer.setCurrentAccount(new CurrentAccount());
-			}
+	// Méthode pour aller à la page de suppression d'un client
+	public String customerDeletionPage(String id) {
+		Long idCustomer = Long.parseLong(id);
+		try {
+			customer = customerService.findById(idCustomer);
+			return "suppressionClients.xhtml";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
 		}
+
 	}
 
-	// Ajouter un compte à un client et redirri
+	// Méthode pour retourner à l'accueil
+	public String goAccueil() {
+		return "accueil.xhtml";
+	}
+
+	// // Remettre à 0 le formulaire d'ajout du client
+	// public void refreshCustomerForm() {
+	// this.customer = new Customer();
+	// this.customer.setAddress(new Address());
+	// }
+	//
+	// public void resetCustomer() {
+	// refreshCustomerForm();
+	// RequestContext.getCurrentInstance().reset("formAjoutClient:panel");
+	// }
+	//
+	// // Remettre à 0 le formulaire de création de compte
+	// public void refreshAccountForm() {
+	//
+	// if ((this.customer.getCurrentAccount() != null) &
+	// (this.customer.getSavingAccount() != null)) {
+	//
+	// } else {
+	// if (this.customer.getCurrentAccount() != null) {
+	//
+	// this.customer.setSavingAccount(new SavingAccount());
+	//
+	// } else {
+	// this.customer.setCurrentAccount(new CurrentAccount());
+	// }
 
 }
