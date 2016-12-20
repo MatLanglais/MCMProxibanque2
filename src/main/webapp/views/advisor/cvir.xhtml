@@ -28,12 +28,48 @@
 					<div class="col-md-6">
 						<h:outputText value="#{transferController.transfer.amount}" />
 					</div>
-					<div class="col-md-4 col-md-offest-1">
-						<p:fieldset legend="Compte crédité">
-							<c:forEach var="compte"
-								items="#{accountController.getAccountById(transferController.transfer.fromAccount)}">
-							</c:forEach>
-						</p:fieldset>
+
+					<div class="col-md-10 col-md-offset-1">
+						<div class="row">
+							<!-- Box compte débité -->
+							<div
+								class="col-md-6 col-sm-6 col-xs-6">
+								<p:fieldset legend="Compte débité">
+									<c:set var="compte"
+										value="#{accountController.getAccountById(transferController.transfer.fromAccount)}">
+									</c:set>
+									<div class="row">
+										<div class="col-md-6 text-right">N° compte :</div>
+										<div class="col-md-6">
+											<h:outputText value="#{compte.id}" />
+										</div>
+										<div class="col-md-6 text-right">Solde :</div>
+										<div class="col-md-6">
+											<h:outputText value="#{compte.amount}" />
+										</div>
+									</div>
+								</p:fieldset>
+							</div>
+							<!-- Box compte crédité -->
+							<div
+								class="col-md-6 col-sm-6 col-xs-6">
+								<p:fieldset legend="Compte credité">
+									<c:set var="compte"
+										value="#{accountController.getAccountById(transferController.transfer.toAccount)}">
+									</c:set>
+									<div class="row">
+										<div class="col-md-6 text-right">N° compte :</div>
+										<div class="col-md-6">
+											<h:outputText value="#{compte.id}" />
+										</div>
+										<div class="col-md-6 text-right">Solde :</div>
+										<div class="col-md-6">
+											<h:outputText value="#{compte.amount}" />
+										</div>
+									</div>
+								</p:fieldset>
+							</div>
+						</div>
 					</div>
 				</div>
 			</p:fieldset>

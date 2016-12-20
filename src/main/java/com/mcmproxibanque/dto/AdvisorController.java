@@ -62,7 +62,6 @@ public class AdvisorController {
 	public Collection<Customer> getCustomersOfAdvisor(long id) {
 		Collection<Customer> customers = advisorService.getCustomersOfAdvisor(id);
 		// Collection<Customer> customers = getAdvisor().getCustomers();
-
 		return customers;
 	}
 

@@ -11,67 +11,63 @@
 	<ui:composition template="/WEB-INF/tags/layoutAdvisor.xhtml">
 		<ui:define name="content">
 
-			<h:form id="formAccountCreation">
-				<p:messages autoUpdate="true" />
-				<p:growl id="messages" showDetail="true" />
+			<!-- 			<h:form id="formAccountCreation"> -->
+			<p:messages autoUpdate="true" />
+			<p:growl id="messages" showDetail="true" />
 
-				<p:panel id="addAccount" header="Ajouter un compte">
-					<br />
-
-
-
-					<h:panelGrid id="display" columns="2" cellpadding="4">
-						<h:form>
-							<h3>Sélection du client</h3>
-							<br />
-							<br />
-							<h:outputText for="customers" value=" " />
-							<p:outputLabel for="customers" value="Sélection du client : " />
-							<p:selectOneListbox id="customers" filter="true"
-								filterMatchMode="contains" required="true"
-								requiredMessage="La sélection du client est obligatoire">
-								<f:selectItems value="#{customerController.allCustomers}"
-									var="customer"
-									itemLabel="#{customer.name} #{customer.forename}"
-									itemValue="#{customer}">
-								</f:selectItems>
-
-							</p:selectOneListbox>
-
-							<p:commandButton value="Sélectionner ce client"
-								icon="ui-icon-check" validateClient="true"
-								action="#{customerController.customer}"></p:commandButton>
-						</h:form>
-
-						<h:form>
-							<h3>Type de compte</h3>
-							<br />
-
-							<p:selectManyCheckbox id="currentAccountCreation">
-								<f:selectItem itemLabel="Compte Courant : "
-									itemValue="#{customerController.customer.currentAccount}" />
-								<f:selectItem itemLabel="Compte épargne : "
-									itemValue="#{customerController.customer.savingAccount}"></f:selectItem>
-							</p:selectManyCheckbox>
-
-							<p:commandButton value="Valider" icon="ui-icon-check"
-								action="#{customerController.addAccount('current')}"
-								style="margin-right:10px" />
-
-							<!-- 							</c:if> -->
-						</h:form>
+			<h1>Ajouter un compte</h1>
 
 
 
+			<!-- 					<h:panelGrid id="display" columns="2" cellpadding="4"> -->
+			<!-- 						<h:form> -->
+			<!-- 							<h3>Sélection du client</h3> -->
+			<!-- 							<br /> -->
+			<!-- 							<br /> -->
+			<!-- 							<h:outputText for="customers" value=" " /> -->
+			<!-- 							<p:outputLabel for="customers" value="Sélection du client : " /> -->
+			<!-- 							<p:selectOneListbox id="customers" filter="true" -->
+			<!-- 								filterMatchMode="contains" required="true" -->
+			<!-- 								requiredMessage="La sélection du client est obligatoire"> -->
+			<!-- 								<f:selectItems value="#{customerController.allCustomers}" -->
+			<!-- 									var="customer" -->
+			<!-- 									itemLabel="#{customer.name} #{customer.forename}" -->
+			<!-- 									itemValue="#{customer}"> -->
+			<!-- 								</f:selectItems> -->
 
+			<!-- 							</p:selectOneListbox> -->
 
-
-
+			<!-- 							<p:commandButton value="Sélectionner ce client" -->
+			<!-- 								icon="ui-icon-check" validateClient="true" -->
+			<!-- 								action="#{customerController.customer}"></p:commandButton> -->
+			<!-- 						</h:form> -->
+			<p:panel
+				header="Client : #{customerController.customer.name} #{customerController.customer.forename}">
+				<h:form>
+					<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+						<p:selectOneRadio id="currentAccountCreation"
+							value="#{accountController.accountType}" layout="grid"
+							columns="3">
+							<c:if test="#{not customerController.isCurrentAccountExist()}">
+								<f:selectItem itemLabel="Compte Courant" itemValue="ca" />
+							</c:if>
+							<c:if test="#{not customerController.isSavingAccountExist()}">
+								<f:selectItem itemLabel="Compte Epargne" itemValue="sa" />
+							</c:if>
+						</p:selectOneRadio>
 					</h:panelGrid>
 
-				</p:panel>
+					<h:panelGrid columns="2" class="table">
+						<h:outputText value="Solde Initial" />
+						<p:inputText value="#{accountController.amount}" />
+					</h:panelGrid>
 
-			</h:form>
+					<p:commandButton
+						action="#{accountController.createAccount(customerController.customer.id)}"
+						value="Créer un nouveau compte" />
+				</h:form>
+
+			</p:panel>
 
 		</ui:define>
 	</ui:composition>
