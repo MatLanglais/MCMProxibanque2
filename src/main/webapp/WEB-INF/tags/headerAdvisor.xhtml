@@ -10,11 +10,11 @@
 
 	<ui:composition>
 
-		<div class="navbar_header">
-			<img src="../../WEB-INF/resources/img/Logo.png" /> <br />
-			<div class="welcome_user">Bienvenue ###AdvisorForename####
-				###AdvisorName###</div>
-		</div>
+		<h:graphicImage library="images" name="logo.png" />
+		<br />
+		<div class="welcome_user" align="center" style="font-weight: bold">Bienvenue
+			###AdvisorForename#### ###AdvisorName###</div>
+
 
 		<div class="navbar">
 			<h:form>
@@ -29,7 +29,8 @@
 						icon="ui-icon-triangle-2-e-w">
 						<p:column>
 							<p:submenu label="Virement" url="#">
-								<p:menuitem value="Effectuer un virement" icon="ui-icon-arrowthick-1-e" url="virement.xhtml"></p:menuitem>
+								<p:menuitem value="Effectuer un virement"
+									icon="ui-icon-arrowthick-1-e" url="virement.xhtml"></p:menuitem>
 
 							</p:submenu>
 
