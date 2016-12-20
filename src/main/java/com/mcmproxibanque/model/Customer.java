@@ -17,13 +17,13 @@ public class Customer {
 	String name;
 	String forename;
 	@Embedded
-	Address address;
+	Address address =new Address();
 	String email;
 	String phone;
 
-	@OneToOne(cascade={CascadeType.ALL})
+	@OneToOne(cascade = { CascadeType.ALL })
 	SavingAccount savingAccount;
-	@OneToOne(cascade={CascadeType.ALL})
+	@OneToOne(cascade = { CascadeType.ALL })
 	CurrentAccount currentAccount;
 
 	public Customer() {
@@ -52,6 +52,7 @@ public class Customer {
 
 	public void setAddress(Address address) {
 		this.address = address;
+
 	}
 
 	public String getEmail() {

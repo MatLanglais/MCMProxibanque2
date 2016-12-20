@@ -13,7 +13,7 @@
 
 
 
-			<h:form id="formDeleteAccount" style="">
+			<h:form id="formDeleteAccount">
 				<p:messages autoUpdate="true" />
 				<p:growl id="messages" showDetail="true" />
 				<p:panel id="panel" header="Supprimer un compte">
@@ -40,13 +40,13 @@
 						<h3>Type de compte</h3>
 						<br />
 						<p:selectOneRadio id="account"
-							value="#{customerController.removeAccount(account)}" required="true"
+							value="#{customerController.removeAccount(##)}" required="true"
 							requiredMessage="Le choix du type de compte à supprimer est obligatoire">
-							<c:if test="${!empty customer.currentAccount}">
+							<c:if test="#{customerController.currentAccountExist}">
 								<f:selectItem itemLabel="Compte Courant"
 									itemValue="#{customer.currentAccount}" />
 							</c:if>
-							<c:if test="${!empty customer.savingAccount}">
+							<c:if test="#{customerController.savingAccountExist}">
 								<f:selectItem itemLabel="Compte Épargne"
 									itemValue="#{customer.savingAccount}"></f:selectItem>
 							</c:if>
