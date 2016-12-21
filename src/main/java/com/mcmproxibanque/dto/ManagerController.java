@@ -25,27 +25,31 @@ public class ManagerController {
 	ManagerService managerService;
 
 	public String loginManagerVerif() {
-
+		boolean testvar = false;
 		List<Manager> managers = new ArrayList<>();
 
 		try {
 			managers = managerService.findAll();
 			for (Manager managerl : managers) {
-				if ((manager.getLogin()).trim().equals(managerl.getLogin())
-						&& (manager.getPassword()).trim().equals(managerl.getPassword())) {
+				if ((manager.getLogin()).equals(managerl.getLogin())
+						&& (manager.getPassword()).equals(managerl.getPassword())) {
 					manager = managerl;
 					HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
 							.getSession(true);
 					session.setAttribute("managersession", manager);
+					testvar = true;
 					return "/views/manager/listeConseillers.xhtml";
 				}
+				
+			}
+			if (!testvar) {
+				return "/erreurlogin.xhtml";
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "/homeManager.xhtml";
+			return "/erreurlogin.xhtml";
 		}
-		return "/homeManager.xhtml";
+		return "/erreurlogin.xhtml";
 	}
 
 	public Manager getManager() {

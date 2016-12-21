@@ -10,7 +10,7 @@
 		<h3 align="center">Vous êtes sur le point de vous connecter en
 			tant que conseiller.</h3>
 		<br />
-		<h:message for="loginform" class="error" id="loginformerror"></h:message>
+		<h:message for="loginform" class="error" id="loginformerror" />
 		<br />
 		<h:form id="loginform">
 			<div class="row">
@@ -18,7 +18,7 @@
 					<h:outputText value="Login :" />
 				</div>
 				<div class="col-md-6 text-left">
-					<p:inputText value="#{advisorController.advisor.login}" />
+					<p:inputText id="login" value="#{advisorController.advisor.login}" />
 				</div>
 			</div>
 			<div class="row">
@@ -26,7 +26,7 @@
 					<h:outputText value="Mot de Passe :" />
 				</div>
 				<div class="col-md-6 text-left">
-					<p:password value="#{advisorController.advisor.password}" />
+					<p:password id="password" value="#{advisorController.advisor.password}" />
 				</div>
 				<br /> <br />
 				<div class="col-md-2 col-md-offset-5">

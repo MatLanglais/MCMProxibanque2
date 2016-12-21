@@ -34,33 +34,31 @@ public class AdvisorController {
 
 	// Méthode de connexion
 	public String loginVerif() {
+		boolean testvar = false;
 		List<Advisor> advisorList = new ArrayList<>();
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
 				.getRequest();
 		try {
 			advisorList = advisorService.findAll();
 			for (Advisor advisorl : advisorList) {
-				if (advisor.getLogin().trim().equals(advisorl.getLogin())
-						&& advisor.getPassword().trim().equals(advisorl.getPassword())) {
+				if (advisor.getLogin().equals(advisorl.getLogin())
+						&& advisor.getPassword().equals(advisorl.getPassword())) {
 					advisor = advisorl;
 					HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
 							.getSession(true);
 					session.setAttribute("advisorsession", advisor);
+					testvar = true;
 					return "/views/advisor/listeClients.xhtml";
-				} else {
-					System.out.println("Hahaha, erreur ici!");
-					FacesContext.getCurrentInstance().addMessage("loginform",
-							new FacesMessage("Mauvais login/password", "Mauvais login/password"));
-					return "/home.xhtml";
 				}
+			}
+			if (!testvar) {
+				return "/erreurlogin.xhtml";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorco", "Mauvais Login/Password");
-			return "/home.xhtml?error=b";
+			return "/erreurlogin.xhtml";
 		}
-		request.setAttribute("errorco", "Mauvais Login/Password");
-		return "/home.xhtml?error=b";
+		return "/erreurlogin.xhtml";
 	}
 
 	// Méthode de déconnexion
