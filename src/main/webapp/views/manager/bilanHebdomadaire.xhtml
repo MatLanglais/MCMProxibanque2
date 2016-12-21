@@ -7,7 +7,7 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	<ui:define name="content">
 
-		<h1>Bilan hebdomadaires sur les transactions</h1>
+		<h1>#{trad['manager.reportWeek']}</h1>
 		<!--   -->
 		<br />
 		<br />
@@ -20,7 +20,7 @@
 		<h:form>
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<p:commandButton value="Retour" icon="ui-icon-close"
+					<p:commandButton value="#{trad['action.retour']}" icon="ui-icon-close"
 						action="/views/manager/listeConseillers.xhtml" immediate="true" />
 				</div>
 			</div>
