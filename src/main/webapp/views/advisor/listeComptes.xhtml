@@ -36,7 +36,7 @@
 							</div>
 							<div class="text-center">
 								<p:commandButton value="Supprimer ce compte"
-									action="#{customerController.deleteAccount(customerController.customer.currentAccount.id)}" />
+									action="#{customerController.removeCurrentAccount}" />
 							</div>
 						</p:fieldset>
 					</c:when>
@@ -74,7 +74,7 @@
 							</div>
 							<div class="text-center">
 								<p:commandButton value="Supprimer ce compte"
-									action="#{customerController.deleteAccount(customerController.customer.currentAccount.id)}" />
+									action="#{customerController.removeSavingAccount)}" />
 							</div>
 						</p:fieldset>
 					</c:when>

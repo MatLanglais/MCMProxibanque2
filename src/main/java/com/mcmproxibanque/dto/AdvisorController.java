@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mcmproxibanque.model.Address;
 import com.mcmproxibanque.model.Advisor;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.service.AdvisorService;
@@ -35,42 +36,51 @@ public class AdvisorController {
 		try {
 			advisorList = advisorService.findAll();
 			for (Advisor advisorl : advisorList) {
-				if (advisor.getLogin().equals(advisorl.getLogin()) && advisor.getPassword().equals(advisorl.getPassword()))
+				if (advisor.getLogin().equals(advisorl.getLogin())
+						&& advisor.getPassword().equals(advisorl.getPassword())) {
 					advisor = advisorl;
-				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-				session.setAttribute("advisorsession", advisor);
-				return "/views/advisor/listeClients.xhtml";
+					HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
+							.getSession(true);
+					session.setAttribute("advisorsession", advisor);
+					return "/views/advisor/listeClients.xhtml";
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "error";
+			return "/home.xhtml?error=bad";
 		}
-		
-		return "error";
+
+		return "error_to_home";
 	}
-	
+
 	// Méthode de déconnexion
 	public String disconnect() {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		session.invalidate();
-		return "/home.xhtml";
+		return "/userChoice.xhtml";
 	}
 
-	public void addCustomer(Customer customer) {
+	public String addCustomer(Customer customer) {
+		customer.setName(customer.getName().trim());
+		customer.setForename(customer.getForename().trim());
+		customer.setEmail(customer.getEmail().trim());
+		customer.setAddress(new Address(customer.getAddress().getStreet().trim(),
+				customer.getAddress().getCity().trim(), customer.getAddress().getZipCode()));
 		getCustomersOfAdvisor(advisor.getId()).add(customer);
 		try {
 			advisorService.merge(getAdvisor());
-
+			customerService.persist(customer);
+			return "listeClients";
 		} catch (Exception e) {
-			// TODO afficher un message au conseiller lui indiquant que l'ajout
-			// n'a pas fonctionné
+			e.printStackTrace();
+			return "error.xhtml";
 		}
 	}
 
 	public String removeCustomer(Customer customer) {
 		getCustomersOfAdvisor(advisor.getId()).remove(customer);
 		try {
-			 advisorService.merge(getAdvisor());
+			advisorService.merge(getAdvisor());
 			customerService.remove(customer.getId());
 			return "/views/advisor/listeClients.xhtml";
 		} catch (Exception e) {
@@ -113,9 +123,7 @@ public class AdvisorController {
 		this.advisor = advisor;
 	}
 
-
 	public AdvisorController() {
 	}
-	
 
 }
