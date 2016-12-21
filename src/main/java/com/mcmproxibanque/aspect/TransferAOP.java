@@ -1,7 +1,7 @@
 package com.mcmproxibanque.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
@@ -18,15 +18,9 @@ public class TransferAOP {
 	public void wiringMoney() {
 	}
 
-	@Around("wiringMoney()")
+	@AfterThrowing("wiringMoney()")
 	public void registerMoneyWire(ProceedingJoinPoint jp) {
-		try{
-			jp.proceed();
-			LOGGER.info("internal transfer info:" + jp.getArgs().toString());
-			
-		}catch(Throwable e){
-			LOGGER.info("internal transfer: " + jp.getArgs().toString()+" failed");
-	}
-		
+		LOGGER.info("internal transfer info:" + jp.getArgs().toString());
+
 	}
 }
