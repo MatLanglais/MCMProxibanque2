@@ -59,4 +59,11 @@ public class TransferDate implements Serializable{
 		this.year = year;
 	}
 
+	@Override
+	public String toString() {
+		return day + "/" + month + "/" + year;
+	}
+
+	
+	
 }
