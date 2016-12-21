@@ -17,11 +17,15 @@ public class ManagerController {
 	}
 
 	public void setManager(Manager manager) {
+		manager.setName(manager.getName().trim());
+		manager.setForename(manager.getForename().trim());
+		manager.setLogin(manager.getLogin().trim());
+		manager.setPassword(manager.getPassword().trim());
+
 		this.manager = manager;
 	}
 
 	public ManagerController() {
 	}
-	
-		
+
 }

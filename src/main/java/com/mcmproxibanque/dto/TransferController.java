@@ -27,75 +27,6 @@ public class TransferController {
 	@Autowired
 	ITransferService transferService;
 
-	// Constructeur
-	public TransferController() {
-	}
-
-	// Getters & Setters
-	public Customer getToCustomer() {
-		return toCustomer;
-	}
-
-	public void setToCustomer(Customer toCustomer) {
-		this.toCustomer = toCustomer;
-	}
-
-	public Customer getFromCustomer() {
-		return fromCustomer;
-	}
-
-	public void setFromCustomer(Customer fromCustomer) {
-		this.fromCustomer = fromCustomer;
-	}
-
-	public Transfer getTransfer() {
-		return transfer;
-	}
-
-	public void setTransfer(Transfer transfer) {
-		this.transfer = transfer;
-	}
-
-	public Long getToAccountId() {
-		return toAccountId;
-	}
-
-	public void setToAccountId(Long toAccountId) {
-		this.toAccountId = toAccountId;
-	}
-
-	public Long getFromAccountId() {
-		return fromAccountId;
-	}
-
-	public void setFromAccountId(Long fromAccountId) {
-		this.fromAccountId = fromAccountId;
-	}
-
-	public double getAmount() {
-		return amount;
-	}
-
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-
-	public ITransferService getTransferService() {
-		return transferService;
-	}
-
-	public void setTransferService(ITransferService transferService) {
-		this.transferService = transferService;
-	}
-	
-	public Transfer getHistoTransfer() {
-		return histoTransfer;
-	}
-
-	public void setHistoTransfer(Transfer histoTransfer) {
-		this.histoTransfer = histoTransfer;
-	}
-
 	// Methode pour vérifier si le compte épargne du client existe
 	public boolean isFromSavingAccountExist() {
 		if (fromCustomer.getSavingAccount() != null)
@@ -148,6 +79,65 @@ public class TransferController {
 
 		return "cvir";
 	}
+	// Constructeur
+		public TransferController() {
+		}
 
+		// Getters & Setters
+		public Customer getToCustomer() {
+			return toCustomer;
+		}
+
+		public void setToCustomer(Customer toCustomer) {
+			this.toCustomer = toCustomer;
+		}
+
+		public Customer getFromCustomer() {
+			return fromCustomer;
+		}
+
+		public void setFromCustomer(Customer fromCustomer) {
+			this.fromCustomer = fromCustomer;
+		}
+
+		public Transfer getTransfer() {
+			return transfer;
+		}
+
+		public void setTransfer(Transfer transfer) {
+			this.transfer = transfer;
+		}
+
+		public Long getToAccountId() {
+			return toAccountId;
+		}
+
+		public void setToAccountId(Long toAccountId) {
+			this.toAccountId = toAccountId;
+		}
+
+		public Long getFromAccountId() {
+			return fromAccountId;
+		}
+
+		public void setFromAccountId(Long fromAccountId) {
+			this.fromAccountId = fromAccountId;
+		}
+
+		public double getAmount() {
+			return amount;
+		}
+
+		public void setAmount(double amount) {
+			this.amount = amount;
+		}
+
+		public Transfer getHistoTransfer() {
+			return histoTransfer;
+		}
+
+		public void setHistoTransfer(Transfer histoTransfer) {
+			this.histoTransfer = histoTransfer;
+		}
 
 }

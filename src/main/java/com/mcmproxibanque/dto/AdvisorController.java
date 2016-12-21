@@ -29,6 +29,26 @@ public class AdvisorController {
 	@Autowired
 	private CustomerService customerService;
 
+	public String loginVerif() {
+		List<Advisor> advisorList = new ArrayList<>();
+		try {
+			advisorList = advisorService.findAll();
+			for (Advisor advisorl : advisorList) {
+				if (advisor.getLogin().equals(advisorl.getLogin()) && advisor.getPassword().equals(advisorl.getPassword()))
+					advisor = advisorl;
+				System.out.println(advisor);
+				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+				session.setAttribute("advisorsession", advisor);
+				return "/views/advisor/listeClients.xhtml";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		
+		return "error";
+	}
+
 	public void addCustomer(Customer customer) {
 		getCustomersOfAdvisor(advisor.getId()).add(customer);
 		try {
@@ -53,7 +73,6 @@ public class AdvisorController {
 		}
 	}
 
-	// Méthode pour retourner à l'accueil
 	public String goAccueil() {
 		return "accueil.xhtml";
 	}
@@ -81,48 +100,16 @@ public class AdvisorController {
 	}
 
 	public void setAdvisor(Advisor advisor) {
+		advisor.setName(advisor.getName().trim());
+		advisor.setForename(advisor.getForename().trim());
+		advisor.setLogin(advisor.getLogin().trim());
+		advisor.setPassword(advisor.getPassword().trim());
 		this.advisor = advisor;
 	}
 
-//	public String getLogin() {
-//		return login;
-//	}
-//
-//	public void setLogin(String login) {
-//		this.login = login;
-//	}
-//
-//	public String getPassword() {
-//		return password;
-//	}
-//
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
 
 	public AdvisorController() {
 	}
 	
-	// Méthode pour s'authentifier
-	public String loginVerif() {
-		List<Advisor> advisorList = new ArrayList<>();
-		try {
-			advisorList = advisorService.findAll();
-			for (Advisor advisorl : advisorList) {
-				if (advisor.getLogin().equals(advisorl.getLogin()) && advisor.getPassword().equals(advisorl.getPassword()))
-					advisor = advisorl;
-				System.out.println(advisor);
-				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-				session.setAttribute("advisorsession", advisor);
-				return "/views/advisor/listeClients.xhtml";
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "error";
-		}
-
-		return "error";
-	}
 
 }

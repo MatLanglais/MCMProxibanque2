@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.model.Account;
+import com.mcmproxibanque.model.Address;
 import com.mcmproxibanque.model.CurrentAccount;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.SavingAccount;
@@ -21,6 +22,8 @@ public class CustomerController {
 
 	@Autowired
 	private IService<Customer> customerService;
+	@Autowired
+	private IService<Account> accountService;
 
 	public Collection<Customer> getAllCustomers() throws Exception {
 		Collection<Customer> customers = new ArrayList<>();
@@ -35,6 +38,11 @@ public class CustomerController {
 	}
 
 	public void modifyCustomer() {
+		customer.setName(getCustomer().getName().trim());
+		customer.setForename(getCustomer().getForename().trim());
+		customer.setEmail(getCustomer().getEmail().trim());
+		customer.setAddress(new Address(getCustomer().getAddress().getStreet().trim(),
+				getCustomer().getAddress().getCity().trim(), getCustomer().getAddress().getZipCode()));
 		try {
 			customerService.merge(getCustomer());
 		} catch (Exception e) {
@@ -42,22 +50,8 @@ public class CustomerController {
 		}
 	}
 
-	public Account getSavingAccount() {
-		Account savingAccount = getCustomer().getSavingAccount();
-		return savingAccount;
-
-	}
-
-	public Account getCurrentAccount() {
-		Account currentAccount = getCustomer().getCurrentAccount();
-		return currentAccount;
-
-	}
-
 	public void removeAccount(Account account) {
 		if (account.equals(getCustomer().getCurrentAccount())) {
-			account.setId(null);
-			account.setAmount(0.0);
 			getCustomer().setCurrentAccount(null);
 		} else if (account.equals(getCustomer().getSavingAccount())) {
 			getCustomer().setSavingAccount(null);
@@ -67,6 +61,7 @@ public class CustomerController {
 		}
 		try {
 			customerService.merge(getCustomer());
+			accountService.remove(account.getId());
 		} catch (Exception e) {
 			// TODO Afficher message d'erreur la suppression n'a pas fonctionné
 		}
@@ -85,14 +80,7 @@ public class CustomerController {
 		}
 	}
 
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-
-	}
+	
 
 	// Methode pour afficher la liste des comptes d'un client
 	public String listAccountByCustomer(String id) {
@@ -174,6 +162,11 @@ public class CustomerController {
 
 	// Méthode pour ajouter un customer à la base de données
 	public String addCustomer() {
+		customer.setName(getCustomer().getName().trim());
+		customer.setForename(getCustomer().getForename().trim());
+		customer.setEmail(getCustomer().getEmail().trim());
+		customer.setAddress(new Address(getCustomer().getAddress().getStreet().trim(),
+				getCustomer().getAddress().getCity().trim(), getCustomer().getAddress().getZipCode()));
 		try {
 			customerService.persist(customer);
 			return "listeClients";
@@ -230,8 +223,8 @@ public class CustomerController {
 
 	// Verifier si un client est a decouvert
 	public boolean isOverdraft(Customer c) {
-		System.out.println("Customer : " + c);
 		if (c != null) {
+			//TODO utiliser les methodes subalternes
 			if (c.getSavingAccount() != null && c.getSavingAccount().getAmount() < 0)
 				return true;
 			if (c.getCurrentAccount() != null
@@ -243,18 +236,16 @@ public class CustomerController {
 		return false;
 	}
 
-	public boolean isSavingAccountOverdraft(SavingAccount c) {
-		System.out.println("SavingAccount : " + c);
-		if (c != null && c.getAmount() < 0) {
+	public boolean isSavingAccountOverdraft(SavingAccount account) {
+		if (account != null && account.getAmount() < 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public boolean isCurrentAccountOverdraft(CurrentAccount c) {
-		System.out.println("CurrentAccount : " + c);
-		if (c != null && c.getAmount() < -1 * c.getOverdraft()) {
+	public boolean isCurrentAccountOverdraft(CurrentAccount account) {
+		if (account != null && account.getAmount() < -1 * account.getOverdraft()) {
 			return true;
 		} else {
 			return false;
@@ -269,6 +260,15 @@ public class CustomerController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		
+		this.customer = customer;
+
 	}
 
 }
