@@ -17,6 +17,56 @@
 
 			<h1>Ajouter un compte</h1>
 
+			<c:choose>
+				<c:when
+					test="#{not empty customerController.customer.currentAccount and not empty customerController.customer.savingAccount}">
+					<p>
+						Erreur : Le client possède déjà un compte courant et un compte
+						épargne.
+						<h:form>
+							<p:commandLink value="Retour vers la page d'accueil"
+								action="/views/advisor/listeClients.xhtml" />
+						</h:form>
+					</p>
+				</c:when>
+				<c:otherwise>
+					<p:panel
+						header="Client : #{customerController.customer.name} #{customerController.customer.forename}">
+						<h:form>
+							<h:panelGrid columns="1" style="margin-bottom:10px"
+								cellpadding="5">
+								<p:selectOneRadio id="currentAccountCreation"
+									value="#{accountController.accountType}" layout="grid"
+									columns="3">
+									<c:if test="#{not customerController.isCurrentAccountExist()}">
+										<f:selectItem itemLabel="Compte Courant" itemValue="ca" />
+									</c:if>
+									<c:if test="#{not customerController.isSavingAccountExist()}">
+										<f:selectItem itemLabel="Compte Epargne" itemValue="sa" />
+									</c:if>
+								</p:selectOneRadio>
+							</h:panelGrid>
+
+							<h:panelGrid columns="2" class="table">
+								<h:outputText value="Solde Initial" />
+								<p:inputText id="amount" value="#{accountController.amount}"
+									converterMessage="Vous devez entrer un solde initial positif"
+									required="true"
+									requiredMessage="Vous devez entrer le solde initial du compte">
+									<f:validateDoubleRange minimum="0.0" />
+								</p:inputText>
+								<p:message for="amount"></p:message>
+							</h:panelGrid>
+
+							<p:commandButton
+								action="#{accountController.createAccount(customerController.customer.id)}"
+								value="Créer un nouveau compte" />
+						</h:form>
+
+					</p:panel>
+				</c:otherwise>
+			</c:choose>
+
 
 
 			<!-- 					<h:panelGrid id="display" columns="2" cellpadding="4"> -->
@@ -41,39 +91,7 @@
 			<!-- 								icon="ui-icon-check" validateClient="true" -->
 			<!-- 								action="#{customerController.customer}"></p:commandButton> -->
 			<!-- 						</h:form> -->
-			<p:panel
-				header="Client : #{customerController.customer.name} #{customerController.customer.forename}">
-				<h:form>
-					<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
-						<p:selectOneRadio id="currentAccountCreation"
-							value="#{accountController.accountType}" layout="grid"
-							columns="3">
-							<c:if test="#{not customerController.isCurrentAccountExist()}">
-								<f:selectItem itemLabel="Compte Courant" itemValue="ca" />
-							</c:if>
-							<c:if test="#{not customerController.isSavingAccountExist()}">
-								<f:selectItem itemLabel="Compte Epargne" itemValue="sa" />
-							</c:if>
-						</p:selectOneRadio>
-					</h:panelGrid>
 
-					<h:panelGrid columns="2" class="table">
-						<h:outputText value="Solde Initial" />
-						<p:inputText id="amount" value="#{accountController.amount}"
-							converterMessage="Vous devez entrer un solde initial positif"
-							required="true"
-							requiredMessage="Vous devez entrer le solde initial du compte">
-							<f:validateDoubleRange minimum="0.0" />
-						</p:inputText>
-						<p:message for="amount"></p:message>
-					</h:panelGrid>
-
-					<p:commandButton
-						action="#{accountController.createAccount(customerController.customer.id)}"
-						value="Créer un nouveau compte" />
-				</h:form>
-
-			</p:panel>
 
 		</ui:define>
 	</ui:composition>
