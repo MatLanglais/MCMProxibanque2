@@ -8,18 +8,19 @@
 	<ui:define name="content">
 
 		<h3 align="center">Vous êtes sur le point de vous connecter en
-			tant que conseiller.</h3>
+			tant que manager.</h3>
 		<br />
 		<br />
 		<br />
 		<br />
+
 		<h:form>
 			<div class="row">
 				<div class="col-md-6 text-right">
 					<h:outputText value="Login :" />
 				</div>
 				<div class="col-md-6 text-left">
-					<p:inputText value="#{advisorController.advisor.login}" />
+					<p:inputText value="#{managerController.manager.login}" />
 				</div>
 			</div>
 			<div class="row">
@@ -27,11 +28,11 @@
 					<h:outputText value="Mot de Passe :" />
 				</div>
 				<div class="col-md-6 text-left">
-					<p:password value="#{advisorController.advisor.password}" />
+					<p:password value="#{managerController.manager.password}" />
 				</div>
 				<div class="col-md-2 col-md-offset-5">
 					<p:commandButton value="Connexion"
-						action="#{advisorController.loginVerif}" />
+						action="#{managerController.loginManagerVerif}" />
 				</div>
 			</div>
 		</h:form>
