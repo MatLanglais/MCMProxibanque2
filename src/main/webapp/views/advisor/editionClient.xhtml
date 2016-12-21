@@ -1,4 +1,4 @@
-                       <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -19,7 +19,7 @@
 					<p:messages autoUpdate="true" />
 					<br />
 
-					<h:panelGrid id="display" columns="3" cellpadding="4">
+					<h:panelGrid id="display" columns="3" cellpadding="5">
 
 
 						<h:outputText for="name" value="Nom* :" style="font-weight:bold"></h:outputText>
@@ -27,7 +27,7 @@
 							required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Attention : ce champ doit comporter au moins 2 lettres, et ne pas contenir de chiffres ou de caractères spéciaux">
-							<f:validateRegex pattern="(^[A-Za-z -]{2,})"></f:validateRegex>
+							<f:validateRegex pattern="((^[A-Za-z\\s -]{2,}))"></f:validateRegex>
 						</p:inputText>
 						<p:message for="name"></p:message>
 
@@ -39,7 +39,7 @@
 							value="#{customerController.customer.forename}" required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Attention : ce champ doit comporter au moins 2 lettres, et ne pas contenir de chiffres ou de caractères spéciaux">
-							<f:validateRegex pattern="(^[A-Za-z -]{2,})"></f:validateRegex>
+							<f:validateRegex pattern="((^[A-Za-z\\s -]{2,}))"></f:validateRegex>
 						</p:inputText>
 						<p:message for="forename"></p:message>
 
@@ -60,7 +60,7 @@
 							required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Attention : ce champ doit comporter exactement 5 chiffres">
-							<f:validateRegex pattern="(^[0-9]{5})"></f:validateRegex>
+							<f:validateRegex pattern="((^[A-Za-z\\s -]{2,}))"></f:validateRegex>
 						</p:inputText>
 						<p:message for="zipCode"></p:message>
 
@@ -71,7 +71,7 @@
 							required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Ce champ doit comporter au moins une lettre, et aucun caractère spécial">
-							<f:validateRegex pattern="(^[A-Za-z -]{2,})"></f:validateRegex>
+							<f:validateRegex pattern="(^[A-Za-z]{2,})"></f:validateRegex>
 						</p:inputText>
 						<p:message for="city"></p:message>
 
@@ -104,7 +104,7 @@
 
 
 							<p:commandButton value="Annuler" icon="ui-icon-close"
-								action="#{customerController.resetCustomer}" />
+								action="listeClients.xhmtl?faces-redirect=true" />
 							<p:commandButton value="Valider" icon="ui-icon-check"
 								validateClient="true" style="margin-right:10px"
 								action="#{customerController.modifyCustomer}" />

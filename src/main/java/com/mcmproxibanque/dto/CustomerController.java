@@ -199,7 +199,8 @@ public class CustomerController {
 
 	// Méthode pour retourner à l'accueil
 	public String goAccueil() {
-		return "accueil.xhtml";
+		customer = new Customer();
+		return "listeClients";
 	}
 
 	// // Remettre à 0 le formulaire d'ajout du client
