@@ -8,8 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Manager extends Employee {
+public class Manager extends Employee{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@OneToMany(cascade={CascadeType.ALL})
 	Collection<Advisor> advisors = new ArrayList<>();
 

@@ -1,10 +1,16 @@
 package com.mcmproxibanque.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class TransferDate {
+public class TransferDate implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long day;
 	private long week;
 	private long month;

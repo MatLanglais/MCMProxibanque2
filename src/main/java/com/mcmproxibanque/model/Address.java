@@ -1,10 +1,16 @@
 package com.mcmproxibanque.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Address {
+public class Address implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String street;
 	String city;
 	String zipCode;
@@ -43,9 +49,5 @@ public class Address {
 		this.zipCode = zipCode;
 	}
 
-	@Override
-	public String toString() {
-		return "Address [street=" + street + ", city=" + city + ", zipCode=" + zipCode + "]";
-	}
-
+	
 }

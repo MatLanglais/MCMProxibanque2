@@ -9,11 +9,16 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Advisor extends Employee {
-	
-	@OneToMany(cascade={CascadeType.ALL})
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@OneToMany(cascade = { CascadeType.ALL })
 	Collection<Customer> customers = new ArrayList<>();
-	
-	public Advisor(){}
+
+	public Advisor() {
+	}
 
 	public Collection<Customer> getCustomers() {
 		return customers;
@@ -22,14 +27,4 @@ public class Advisor extends Employee {
 	public void setCustomers(Collection<Customer> customers) {
 		this.customers = customers;
 	}
-
-	@Override
-	public String toString() {
-		return "Advisor id=" + id + ", login=" + login + ", password=" + password
-				+ ", name=" + name + ", forename=" + forename + "]";
-	}
-	
-	
-
-
 }
