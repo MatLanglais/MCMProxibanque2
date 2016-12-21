@@ -8,6 +8,7 @@
 	<ui:define name="content">
 
 		<h1>Virement</h1>
+		<p:messages autoUpdate="true" />
 		<h:form>
 			<!-- Affichage du compte à débiter si le client est stocké dans le controller customer -->
 			<c:if test="#{customerController.isCustomerExist()}">
@@ -96,8 +97,8 @@
 					<p:inputText id="amount" value="#{transferController.amount}"
 						required="true"
 						requiredMessage="Vous devez entrer le montant du virement"
-						converterMessage="Le montant du virment doit être un nombre positif">
-						<f:validateDoubleRange minimum="0" maximum="5000" />
+						converterMessage="Vous devez entrer un montant positif et inférieur à 10 000 €">
+						<f:validateDoubleRange minimum="0.0" maximum="10000.0" />
 					</p:inputText>
 					<p:message for="amount"></p:message>
 				</div>
