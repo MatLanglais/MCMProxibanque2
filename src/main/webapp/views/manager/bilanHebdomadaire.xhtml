@@ -9,16 +9,25 @@
 
 		<h1>Bilan hebdomadaires sur les transactions</h1>
 		<!--   -->
-		<br/>
-		<br/>
-		
-		<p:chart type="bar" model="#{transferChartWeek.barModelWeek}" style="height:300px"/>
+		<br />
+		<br />
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+		<p:chart type="bar" model="#{transferChartWeek.barModelWeek}"
+			style="height:300px" />
+
+		<br />
+		<br />
+		<h:form>
+			<div class="row">
+				<div class="col-md-12 text-right">
+					<p:commandButton value="Retour" icon="ui-icon-close"
+						action="/views/manager/listeConseillers.xhtml" immediate="true" />
+				</div>
+			</div>
+		</h:form>
+		<br />
+		<br />
+		<br />
 
 	</ui:define>
 </ui:composition>
