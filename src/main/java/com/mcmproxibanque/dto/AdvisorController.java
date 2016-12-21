@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,10 @@ public class AdvisorController {
 
 	// Méthode de connexion
 	public String loginVerif() {
+		boolean testvar = false;
 		List<Advisor> advisorList = new ArrayList<>();
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
 		try {
 			advisorList = advisorService.findAll();
 			for (Advisor advisorl : advisorList) {
@@ -42,15 +47,18 @@ public class AdvisorController {
 					HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
 							.getSession(true);
 					session.setAttribute("advisorsession", advisor);
+					testvar = true;
 					return "/views/advisor/listeClients.xhtml";
 				}
 			}
+			if (!testvar) {
+				return "/erreurlogin.xhtml";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "/home.xhtml?error=bad";
+			return "/erreurlogin.xhtml";
 		}
-
-		return "error_to_home";
+		return "/erreurlogin.xhtml";
 	}
 
 	// Méthode de déconnexion

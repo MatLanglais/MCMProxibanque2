@@ -6,6 +6,25 @@ import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+/**
+ * <b>Modèle Advisor.</b>
+ * <p>
+ * Modèle de base de l'advisor. Elle hérite de la classe {@link Employee}.
+ * <br />
+ * Ce modèle est caractérisé par :
+ * <ul>
+ * <li>customers : {@link Collection} des {@link Customer} de l'advisor. </li>
+ * </ul>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ * @See {@link Employee}
+ * 
+ */
 
 @Entity
 public class Advisor extends Employee {
