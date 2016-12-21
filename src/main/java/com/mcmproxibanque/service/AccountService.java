@@ -2,12 +2,25 @@ package com.mcmproxibanque.service;
 
 import java.util.List;
 
+import org.primefaces.model.chart.BarChartModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.dao.interfaces.IAccountDao;
 import com.mcmproxibanque.model.Account;
-
+/**
+ * <b>Service AccountService</b>
+ * <p>
+ * Implémentation de l'interface {@link IService} pour {@link Account} .
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ */
 @Component
 public class AccountService implements IService<Account> {
 	

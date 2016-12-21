@@ -7,9 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.dao.interfaces.IAdvisorDao;
+import com.mcmproxibanque.model.Account;
 import com.mcmproxibanque.model.Advisor;
 import com.mcmproxibanque.model.Customer;
-
+/**
+ * <b>Service AdvisorService</b>
+ * <p>
+ * Implémentation de l'interface {@link IService} pour {@link Advisor} .
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ */
 @Component
 public class AdvisorService implements IService<Advisor> {
 

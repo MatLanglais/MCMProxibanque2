@@ -4,6 +4,20 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.mcmproxibanque.model.Account;
+/**
+ * <b>Service IService</b>
+ * <p>
+ * Interface générale des services .
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ */
 @Component
 public interface IService<E> {
 	

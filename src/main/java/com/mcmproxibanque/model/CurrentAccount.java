@@ -1,16 +1,15 @@
 package com.mcmproxibanque.model;
 
 import javax.persistence.Entity;
+
 /**
  * <b>Modèle CurrentAccount.</b>
  * <p>
- * Modèle utilisé pour définir le compte courant d'un {@link Customer}. Hérite de {@link Account}.
- * <br />
+ * Modèle utilisé pour définir le compte courant d'un {@link Customer}. Hérite
+ * de {@link Account}. <br />
  * Ce modèle est caractérisé par :
  * <ul>
- * <li>street : numéro et rue du {@link Customer} </li>
- * <li>zipCode : code postal du {@link Customer}</li>
- * <li>city : ville du {@link Customer}</li>
+ * <li>overdraft : autorisation de découvert</li>
  * </ul>
  * 
  * @author Claire Steinmacher
@@ -24,14 +23,15 @@ import javax.persistence.Entity;
  */
 @Entity
 public class CurrentAccount extends Account {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	double overdraft = 1000;
-	
-	public CurrentAccount(){}
+
+	public CurrentAccount() {
+	}
 
 	// Getters & Setters
 	public Double getOverdraft() {
@@ -41,7 +41,5 @@ public class CurrentAccount extends Account {
 	public void setOverdraft(Double overdraft) {
 		this.overdraft = overdraft;
 	}
-	
-	
 
 }

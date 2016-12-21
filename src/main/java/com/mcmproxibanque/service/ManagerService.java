@@ -6,8 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.dao.interfaces.IManagerDao;
+import com.mcmproxibanque.model.Account;
 import com.mcmproxibanque.model.Manager;
-
+/**
+ * <b>Service ManagerService</b>
+ * <p>
+ * Implémentation de l'interface {@link IService} pour {@link Manager}. Elle étend la classe {@link ServiceImpl}.
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ */
 @Component
 public class ManagerService extends ServiceImpl<Manager> implements IService<Manager> {
 

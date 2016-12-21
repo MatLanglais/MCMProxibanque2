@@ -11,9 +11,30 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mcmproxibanque.model.Advisor;
+import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.Manager;
 import com.mcmproxibanque.service.ManagerService;
-
+/**
+ * <b>ManagedBean ManagerController</b>
+ * <p>
+ * Controller JSF du {@link Manager} .<br />
+ * Il est définit par :
+ * <ul>
+ * <li>manager : {@link Manager} stocké dans le controller</li>
+ * </ul>
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ * 
+ * @see {@link Manager}
+ * 
+ */
 @ManagedBean
 @Component
 @SessionScoped
@@ -23,7 +44,30 @@ public class ManagerController {
 
 	@Autowired
 	ManagerService managerService;
+	
+	// Constructor
+	public ManagerController() {
+	}
 
+	// Getters & Setters
+	public Manager getManager() {
+		return manager;
+	}
+
+	public void setManager(Manager manager) {
+		manager.setName(manager.getName().trim());
+		manager.setForename(manager.getForename().trim());
+		manager.setLogin(manager.getLogin().trim());
+		manager.setPassword(manager.getPassword().trim());
+
+		this.manager = manager;
+	}
+
+
+	// Méthode de connexion du manager
+	/**
+	 * @return redirection après login
+	 */
 	public String loginManagerVerif() {
 		boolean testvar = false;
 		List<Manager> managers = new ArrayList<>();
@@ -52,20 +96,6 @@ public class ManagerController {
 		return "/erreurlogin.xhtml";
 	}
 
-	public Manager getManager() {
-		return manager;
-	}
 
-	public void setManager(Manager manager) {
-		manager.setName(manager.getName().trim());
-		manager.setForename(manager.getForename().trim());
-		manager.setLogin(manager.getLogin().trim());
-		manager.setPassword(manager.getPassword().trim());
-
-		this.manager = manager;
-	}
-
-	public ManagerController() {
-	}
 
 }

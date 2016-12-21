@@ -1,0 +1,9 @@
+com.mcmproxibanque.aspect
+com.mcmproxibanque.config
+com.mcmproxibanque.dao.impl
+com.mcmproxibanque.dao.interfaces
+com.mcmproxibanque.dto
+com.mcmproxibanque.model
+com.mcmproxibanque.service
+com.mcmproxibanque.test
+com.mcmproxibanque.testUnit
