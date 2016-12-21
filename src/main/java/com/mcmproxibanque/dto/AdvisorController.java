@@ -45,7 +45,7 @@ public class AdvisorController {
 		try {
 			 advisorService.merge(getAdvisor());
 			customerService.remove(customer.getId());
-			return "accueil.xhtml";
+			return "/views/advisor/listeClients.xhtml";
 		} catch (Exception e) {
 			return "Echec de la suppression";
 			// TODO afficher un message au conseiller lui indiquant que la
