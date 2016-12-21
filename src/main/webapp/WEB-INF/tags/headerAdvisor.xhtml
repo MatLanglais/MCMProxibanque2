@@ -13,9 +13,9 @@
 		<h:graphicImage library="img" name="logo.png" />
 		<br />
 
-		<div class="welcome_user">Bienvenue
-			#{advisorController.advisor.name}
-			#{advisorController.advisor.forename}</div>
+<!-- 		<div class="welcome_user">Bienvenue -->
+<!-- 			#{advisorController.advisor.name} -->
+<!-- 			#{advisorController.advisor.forename}</div> -->
 
 		<div class="navbar">
 			<h:form>
@@ -31,8 +31,13 @@
 					<p:menuitem value="Ajouter un client" icon="ui-icon-plus"
 						action="#{customerController.customerCreationPage()}" />
 
-					<p:menuitem value="Déconnexion" url="#" icon="ui-icon-close" />
-
+					<f:facet name="options">
+					<p:commandButton value="Déconnexion"
+							action="#{advisorController.disconnect()}" icon="ui-icon-close" />
+<!-- 						<p:menuitem value="Déconnexion" -->
+<!-- 							action="#{advisorController.disconnect()}" icon="ui-icon-close" -->
+<!-- 							class="text-right" /> -->
+					</f:facet>
 
 				</p:megaMenu>
 			</h:form>

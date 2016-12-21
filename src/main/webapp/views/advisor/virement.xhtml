@@ -50,7 +50,7 @@
 								items="#{customerController.getAllCustomers()}">
 								<c:if test="#{not empty customer.savingAccount}">
 									<f:selectItem
-										itemLabel="#{customer.name} #{ccustomer.forename} | Compte Epargne N° #{customer.savingAccount.id} | Solde : #{customer.savingAccount.amount}"
+										itemLabel="#{customer.name} #{ customer.forename} | Compte Epargne N° #{customer.savingAccount.id} | Solde : #{customer.savingAccount.amount}"
 										itemValue="#{customer.savingAccount.id}" />
 								</c:if>
 								<c:if test="#{not empty customer.currentAccount}">
