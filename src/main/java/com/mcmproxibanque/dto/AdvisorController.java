@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mcmproxibanque.model.Address;
 import com.mcmproxibanque.model.Advisor;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.service.AdvisorService;
@@ -49,14 +50,20 @@ public class AdvisorController {
 		return "error";
 	}
 
-	public void addCustomer(Customer customer) {
+	public String addCustomer(Customer customer) {
+		customer.setName(customer.getName().trim());
+		customer.setForename(customer.getForename().trim());
+		customer.setEmail(customer.getEmail().trim());
+		customer.setAddress(new Address(customer.getAddress().getStreet().trim(),
+				customer.getAddress().getCity().trim(), customer.getAddress().getZipCode()));
 		getCustomersOfAdvisor(advisor.getId()).add(customer);
 		try {
 			advisorService.merge(getAdvisor());
-
+			customerService.persist(customer);
+			return "listeClients";
 		} catch (Exception e) {
-			// TODO afficher un message au conseiller lui indiquant que l'ajout
-			// n'a pas fonctionné
+			e.printStackTrace();
+			return "error.xhtml";
 		}
 	}
 
