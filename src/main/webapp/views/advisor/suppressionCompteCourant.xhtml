@@ -21,7 +21,7 @@
 					ID: #{customerController.customer.currentAccount.id} -- Solde : 
 					#{customerController.customer.currentAccount.amount}</h3>
 				<p:commandButton value="Oui" icon="ui-icon-validate"
-					action="#{advisorController.removeAccount(customerController.customer.currentAccount)}"></p:commandButton>
+					action="#{customerController.removeCurrentAccount}"></p:commandButton>
 				<p:commandButton value="Non" icon="ui-icon-close"
 					action="#{customerController.goAccueil()}"></p:commandButton>
 

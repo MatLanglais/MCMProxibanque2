@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -52,22 +54,35 @@ public class CustomerController {
 		}
 	}
 
-	public void removeAccount(Account account) {
-		if (account.equals(getCustomer().getCurrentAccount())) {
-			getCustomer().setCurrentAccount(null);
-		} else if (account.equals(getCustomer().getSavingAccount())) {
-			getCustomer().setSavingAccount(null);
-		} else {
-			// TODO renvoyer message: ce compte n'appartient pas a ce client
-			// (hum?)
-		}
+	public String removeCurrentAccount() {
+		long id = getCustomer().getCurrentAccount().getId();
+		getCustomer().setCurrentAccount(null);
+		System.out.println(id);
 		try {
+			accountService.remove(id);
 			customerService.merge(getCustomer());
-			accountService.remove(account.getId());
+			return "listeClients";
 		} catch (Exception e) {
 			// TODO Afficher message d'erreur la suppression n'a pas fonctionné
+			return "error";
 		}
 	}
+	
+	public String removeSavingAccount() {
+		long id = getCustomer().getSavingAccount().getId();
+		getCustomer().setSavingAccount(null);
+		System.out.println(id);
+		try {
+			accountService.remove(getCustomer().getSavingAccount().getId());
+			customerService.merge(getCustomer());
+			return "listeClients";
+		} catch (Exception e) {
+			// TODO Afficher message d'erreur la suppression n'a pas fonctionné
+			return "error";
+
+		}
+	}
+	
 
 	public void addAccount(Account account, String type) {
 		if (type.equalsIgnoreCase("current")) {
@@ -148,6 +163,18 @@ public class CustomerController {
 		customer = new Customer();
 		return "creationClient.xhtml";
 	}
+	
+	public String customerAddAccountPage(String id) {
+		Long idCustomer = Long.parseLong(id);
+		try {
+			customer = customerService.findById(idCustomer);
+			return "creationCompte.xhtml";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error.xhtml";
+		}
+}
+
 
 	// Methode pour rediriger l'utilisateur vers la page d'édition d'un client
 	public String customerEditionPage(String id) {
@@ -192,6 +219,7 @@ public class CustomerController {
 		customer.setEmail(getCustomer().getEmail().trim());
 		customer.setAddress(new Address(getCustomer().getAddress().getStreet().trim(),
 				getCustomer().getAddress().getCity().trim(), getCustomer().getAddress().getZipCode()));
+		
 		try {
 			customerService.persist(customer);
 			return "listeClients";
@@ -271,10 +299,10 @@ public class CustomerController {
 	}
 
 	// Méthode de suppression d'un client
-	public String removeCustomer(String id) {
-		Long customerId = Long.parseLong(id);
+	public String removeCustomer() {
 		try {
-			customerService.remove(customerId);
+			customerService.remove(getCustomer().getId());
+			customer = null;
 			return "listeClients.xhtml";
 		} catch (Exception e) {
 			e.printStackTrace();
