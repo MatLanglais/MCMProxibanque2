@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 @Entity
 public class CurrentAccount extends Account {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	double overdraft = 1000;
 	
 	public CurrentAccount(){}

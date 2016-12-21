@@ -14,19 +14,19 @@
 				<div class="row">
 					<div class="col-md-6 text-right">Date du virement :</div>
 					<div class="col-md-6">
-						<h:outputText value="#{transferController.transfer.date}" />
+						<h:outputText value="#{transferController.histoTransfer.date.day} / #{transferController.histoTransfer.date.month} /  #{transferController.histoTransfer.date.year}" />
 					</div>
 					<div class="col-md-6 text-right">Compte à débiter :</div>
 					<div class="col-md-6">
-						<h:outputText value="#{transferController.transfer.fromAccount}" />
+						<h:outputText value="#{transferController.histoTransfer.fromAccount}" />
 					</div>
 					<div class="col-md-6 text-right">Compte à créditer :</div>
 					<div class="col-md-6">
-						<h:outputText value="#{transferController.transfer.toAccount}" />
+						<h:outputText value="#{transferController.histoTransfer.toAccount}" />
 					</div>
 					<div class="col-md-6 text-right">Montant du virement :</div>
 					<div class="col-md-6">
-						<h:outputText value="#{transferController.transfer.amount}" />
+						<h:outputText value="#{transferController.histoTransfer.amount}" />
 					</div>
 
 					<div class="col-md-10 col-md-offset-1">
@@ -36,7 +36,7 @@
 								class="col-md-6 col-sm-6 col-xs-6">
 								<p:fieldset legend="Compte débité">
 									<c:set var="compte"
-										value="#{accountController.getAccountById(transferController.transfer.fromAccount)}">
+										value="#{accountController.getAccountById(transferController.histoTransfer.fromAccount)}">
 									</c:set>
 									<div class="row">
 										<div class="col-md-6 text-right">N° compte :</div>
@@ -55,7 +55,7 @@
 								class="col-md-6 col-sm-6 col-xs-6">
 								<p:fieldset legend="Compte credité">
 									<c:set var="compte"
-										value="#{accountController.getAccountById(transferController.transfer.toAccount)}">
+										value="#{accountController.getAccountById(transferController.histoTransfer.toAccount)}">
 									</c:set>
 									<div class="row">
 										<div class="col-md-6 text-right">N° compte :</div>
