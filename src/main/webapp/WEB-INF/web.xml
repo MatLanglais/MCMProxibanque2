@@ -5,7 +5,28 @@
 	id="WebApp_ID" version="2.5">
 
 
-
+	<!-- Security -->
+<!-- 	<security-constraint> -->
+<!-- 		<web-resource-collection> -->
+<!-- 			<web-resource-name>Auth manager</web-resource-name> -->
+<!-- 			<url-pattern>/*</url-pattern> -->
+<!-- 			<http-method>GET</http-method> -->
+<!-- 			<http-method>POST</http-method> -->
+<!-- 			<http-method>PUT</http-method> -->
+<!-- 			<http-method>DELETE</http-method> -->
+<!-- 		</web-resource-collection> -->
+<!-- 		<auth-constraint> -->
+<!-- 			<role-name>advisor</role-name> -->
+<!-- 			<role-name>manager</role-name> -->
+<!-- 		</auth-constraint> -->
+<!-- 	</security-constraint> -->
+<!-- 	<login-config> -->
+<!-- 		<auth-method>FORM</auth-method> -->
+<!-- 		<form-login-config> -->
+<!-- 			<form-login-page>/hometest.xhtml</form-login-page> -->
+<!-- 			<form-error-page>/hometest.xhtml</form-error-page> -->
+<!-- 		</form-login-config> -->
+<!-- 	</login-config> -->
 
 	<!-- Prime FACES -->
 	<context-param>
