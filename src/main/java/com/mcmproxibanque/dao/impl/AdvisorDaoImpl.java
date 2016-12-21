@@ -6,9 +6,25 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mcmproxibanque.dao.interfaces.IAccountDao;
 import com.mcmproxibanque.dao.interfaces.IAdvisorDao;
 import com.mcmproxibanque.model.Advisor;
+/**
+ * <b>Implémentation AdvisorDaoImpl</b>
+ * <p>
+ * Implémentation de l'interface {@link IAdvisorDao}.
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
 
+ * @see {@link IAdvisorDao}
+ * 
+ */
 @Component
 @Transactional
 public class AdvisorDaoImpl extends DaoImpl<Advisor> implements IAdvisorDao {

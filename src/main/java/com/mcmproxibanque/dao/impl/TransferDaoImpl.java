@@ -9,9 +9,25 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mcmproxibanque.dao.interfaces.IAccountDao;
 import com.mcmproxibanque.dao.interfaces.ITransferDao;
 import com.mcmproxibanque.model.Transfer;
+/**
+ * <b>Implémentation TransferDaoImpl</b>
+ * <p>
+ * Implémentation de l'interface {@link ITransferDao}.
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
 
+ * @see {@link ITransferDao}
+ * 
+ */
 @Component
 @Transactional
 public class TransferDaoImpl extends DaoImpl<Transfer> implements ITransferDao {

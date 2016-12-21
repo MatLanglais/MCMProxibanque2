@@ -6,8 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.dao.interfaces.ICustomerDao;
+import com.mcmproxibanque.model.Account;
 import com.mcmproxibanque.model.Customer;
-
+/**
+ * <b>Service CustomerService</b>
+ * <p>
+ * Implémentation de l'interface {@link IService} pour {@link Customer}. Elle étend la classe {@link ServiceImpl}.
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ */
 @Component
 public class CustomerService extends ServiceImpl<Customer> implements IService<Customer> {
 

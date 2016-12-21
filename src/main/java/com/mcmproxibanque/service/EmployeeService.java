@@ -6,8 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mcmproxibanque.dao.interfaces.IEmployeeDao;
+import com.mcmproxibanque.model.Account;
 import com.mcmproxibanque.model.Employee;
-
+/**
+ * <b>Service EmployeeService</b>
+ * <p>
+ * Implémentation de l'interface {@link IService} pour {@link Employee} .
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ */
 @Component
 public class EmployeeService implements IService<Employee> {
 

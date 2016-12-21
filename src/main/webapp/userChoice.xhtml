@@ -8,16 +8,16 @@
 	<ui:define name="content">
 		<h:form>
 
-			<h3 align="center">Se connecter en tant que :</h3>
+			<h3 align="center">#{trad['info.cnx']} :</h3>
 			<br />
 			<br />
 
 			<div class="row">
 				<div class="col-md-6 text-right">
-					<p:commandButton value="Manager" action="/homeManager.xhtml"></p:commandButton>
+					<p:commandButton value="#{trad['label.managerChoice']}" action="/homeManager.xhtml"></p:commandButton>
 				</div>
 				<div class="col-md-6 text-left">
-					<p:commandButton value="Conseiller" action="/home.xhtml"></p:commandButton>
+					<p:commandButton value="#{trad['label.advisorChoice']}" action="/home.xhtml"></p:commandButton>
 				</div>
 
 			</div>

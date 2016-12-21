@@ -4,14 +4,38 @@ import java.util.Calendar;
 
 import javax.faces.bean.ManagedBean;
 
+import org.primefaces.model.chart.BarChartModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mcmproxibanque.model.Account;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.Transfer;
 import com.mcmproxibanque.model.TransferDate;
 import com.mcmproxibanque.service.ITransferService;
-
+/**
+ * <b>ManagedBean TransferController</b>
+ * <p>
+ * Controller JSF des {@link Transfer} .<br />
+ * Il est définit par :
+ * <ul>
+ * <li>transfer : {@link Transfer}</li>
+ * <li>histoTransfer : {@link Transfer} dans l'historique</li>
+ * <li>toCustomer : {@link Customer} débité</li>
+ * <li>fromCustomer : {@link Customer} crédité</li>
+ * <li>toAccountId : id du {@link Account} débité</li>
+ * <li>fromAccountId : id du {@link Account} crédité</li>
+ * <li>amout : montant du {@link Transfer}</li>
+ * </ul>
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ */
 @ManagedBean
 @Component
 public class TransferController {

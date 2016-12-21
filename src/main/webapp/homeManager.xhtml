@@ -7,8 +7,7 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	<ui:define name="content">
 
-		<h3 align="center">Vous êtes sur le point de vous connecter en
-			tant que manager.</h3>
+		<h3 align="center">#{trad['info.managerCnx']}</h3>
 		<br />
 		<br />
 		<br />
@@ -17,7 +16,7 @@
 		<h:form>
 			<div class="row">
 				<div class="col-md-6 text-right">
-					<h:outputText value="Login :" />
+					<h:outputText value="#{trad['home.login']} :" />
 				</div>
 				<div class="col-md-6 text-left">
 					<p:inputText value="#{managerController.manager.login}" />
@@ -25,14 +24,14 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6 text-right">
-					<h:outputText value="Mot de Passe :" />
+					<h:outputText value="#{trad['home.password']} :" />
 				</div>
 				<div class="col-md-6 text-left">
 					<p:password value="#{managerController.manager.password}" />
 				</div>
 				<br /> <br />
 				<div class="col-md-2 col-md-offset-5">
-					<p:commandButton value="Connexion"
+					<p:commandButton value="#{trad['home.connect']}"
 						action="#{managerController.loginManagerVerif}" />
 				</div>
 			</div>
@@ -41,7 +40,7 @@
 			<br />
 
 			<div class="col-md-2 col-md-offset-5">
-				<p:commandButton value="Retour" action="/userChoice.xhtml"></p:commandButton>
+				<p:commandButton value="#{trad['action.retour']}" action="/userChoice.xhtml"></p:commandButton>
 			</div>
 
 

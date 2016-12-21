@@ -7,13 +7,12 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	<ui:define name="content">
 
-		<h3>Erreur de connexion</h3>
-		<p>Le login et le mot de passe ne correspondent pas à un
-			utilisateur enregistré</p>
+		<h3>#{trad['error.wrongConnection']}</h3>
+		<p>#{trad['error.wrongConnection2']}</p>
 		<p>
-			Merci de vous reconnecter en retournant à l'accueil :
+			#{trad['error.wrongConnection3']}
 			<h:form>
-				<p:commandButton value="Accueil" action="/userChoice.xhtml" immediate="true"/>
+				<p:commandButton value="#{trad['label.accueil']}" action="/userChoice.xhtml" immediate="true"/>
 			</h:form>
 		</p>
 	</ui:define>
