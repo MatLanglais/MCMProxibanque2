@@ -118,6 +118,14 @@ public class AdvisorController {
 		Collection<Customer> customers = advisorService.getCustomersOfAdvisor(id);
 		return customers;
 	}
+	
+	public Collection<Customer> getCustomersOfAdvisorInSession() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
+				.getSession(true);
+		Advisor advisor = (Advisor) session.getAttribute("advisorsession");
+		Collection<Customer> customers = advisorService.getCustomersOfAdvisor(advisor.getId());
+		return customers;
+	}
 
 	public Advisor getAdvisor() {
 		return advisor;

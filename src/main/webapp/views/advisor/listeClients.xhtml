@@ -10,7 +10,7 @@
 
 		<h1>Vos Clients</h1>
 		<!--   -->
-		<p:accordionPanel value="#{customerController.getAllCustomers()}"
+		<p:accordionPanel value="#{advisorController.customersOfAdvisorInSession}"
 			var="customer" activeIndex="null">
 			<p:tab>
 				<f:facet name="title">
@@ -75,7 +75,7 @@
 					<div class="col-md-3 text-right">
 						<h:form>
 							<p:commandButton icon="ui-icon-closethick" value="Supprimer"
-								action="#{advisorController.removeCustomer(customer)}" style="width:200px;margin-top:1px;margin-bottom:1px">
+								action="#{customerController.removeCustomer(customer.id)}" style="width:200px;margin-top:1px;margin-bottom:1px">
 								<p:confirm header="Confirmation"
 									message="Etes-vous sûr de vouloir supprimer le client #{customer.name} #{customer.forename}?
 									Cette suppression est définitive"

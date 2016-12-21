@@ -41,8 +41,8 @@ public class DaoImpl<E> implements IDao<E> {
 	@Transactional(readOnly = true)
 	@Override
 	public void remove(Object id) throws Exception {
-		getEntityManager().remove(findById(id));
-		LOGGER.info("modification de la base de donnée sur la table " + id.getClass().getCanonicalName());
+		getEntityManager().createQuery("Delete from "+ getEntityClass().getSimpleName() +" t where t.id = "+id).executeUpdate();
+		LOGGER.info("suppression d'une entité");
 	}
 
 	@Transactional(readOnly = true)
