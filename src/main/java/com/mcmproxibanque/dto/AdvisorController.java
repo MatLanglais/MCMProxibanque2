@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,24 +35,32 @@ public class AdvisorController {
 	// Méthode de connexion
 	public String loginVerif() {
 		List<Advisor> advisorList = new ArrayList<>();
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
 		try {
 			advisorList = advisorService.findAll();
 			for (Advisor advisorl : advisorList) {
-				if (advisor.getLogin().equals(advisorl.getLogin())
-						&& advisor.getPassword().equals(advisorl.getPassword())) {
+				if (advisor.getLogin().trim().equals(advisorl.getLogin())
+						&& advisor.getPassword().trim().equals(advisorl.getPassword())) {
 					advisor = advisorl;
 					HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
 							.getSession(true);
 					session.setAttribute("advisorsession", advisor);
 					return "/views/advisor/listeClients.xhtml";
+				} else {
+					System.out.println("Hahaha, erreur ici!");
+					FacesContext.getCurrentInstance().addMessage("loginform",
+							new FacesMessage("Mauvais login/password", "Mauvais login/password"));
+					return "/home.xhtml";
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "/home.xhtml?error=bad";
+			request.setAttribute("errorco", "Mauvais Login/Password");
+			return "/home.xhtml?error=b";
 		}
-
-		return "error_to_home";
+		request.setAttribute("errorco", "Mauvais Login/Password");
+		return "/home.xhtml?error=b";
 	}
 
 	// Méthode de déconnexion

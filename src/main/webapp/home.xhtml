@@ -9,9 +9,10 @@
 
 		<h3 align="center">Vous êtes sur le point de vous connecter en
 			tant que conseiller.</h3>
-		<br /><h:outputText value="#{param['error']}" />
 		<br />
-		<h:form>
+		<h:message for="loginform" class="error" id="loginformerror"></h:message>
+		<br />
+		<h:form id="loginform">
 			<div class="row">
 				<div class="col-md-6 text-right">
 					<h:outputText value="Login :" />
@@ -32,8 +33,10 @@
 					<p:commandButton value="Connexion"
 						action="#{advisorController.loginVerif}" />
 				</div>
-				<br /> <br /> <br />
-
+			</div>
+		</h:form>
+		<h:form>
+			<div class="row" style="margin-top: 10px;">
 				<div class="col-md-2 col-md-offset-5">
 					<p:commandButton value="Retour" action="/userChoice.xhtml"></p:commandButton>
 				</div>

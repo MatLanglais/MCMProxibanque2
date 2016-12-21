@@ -31,21 +31,21 @@ public class ManagerController {
 		try {
 			managers = managerService.findAll();
 			for (Manager managerl : managers) {
-				if ((manager.getLogin()).equals(managerl.getLogin())
-						&& (manager.getPassword()).equals(managerl.getPassword()))
+				if ((manager.getLogin()).trim().equals(managerl.getLogin())
+						&& (manager.getPassword()).trim().equals(managerl.getPassword())) {
 					manager = managerl;
-				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
-						.getSession(true);
-				session.setAttribute("managersession", manager);
-				return "/views/manager/listeConseillers.xhtml";
+					HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
+							.getSession(true);
+					session.setAttribute("managersession", manager);
+					return "/views/manager/listeConseillers.xhtml";
+				}
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "error.xhtml";
+			return "/homeManager.xhtml";
 		}
-		return "error.xhtml";
-
+		return "/homeManager.xhtml";
 	}
 
 	public Manager getManager() {
