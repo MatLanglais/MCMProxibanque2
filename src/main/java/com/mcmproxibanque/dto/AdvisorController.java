@@ -30,6 +30,7 @@ public class AdvisorController {
 	@Autowired
 	private CustomerService customerService;
 
+	// Méthode de connexion
 	public String loginVerif() {
 		List<Advisor> advisorList = new ArrayList<>();
 		try {
@@ -37,7 +38,6 @@ public class AdvisorController {
 			for (Advisor advisorl : advisorList) {
 				if (advisor.getLogin().equals(advisorl.getLogin()) && advisor.getPassword().equals(advisorl.getPassword()))
 					advisor = advisorl;
-				System.out.println(advisor);
 				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 				session.setAttribute("advisorsession", advisor);
 				return "/views/advisor/listeClients.xhtml";
@@ -48,6 +48,13 @@ public class AdvisorController {
 		}
 		
 		return "error";
+	}
+	
+	// Méthode de déconnexion
+	public String disconnect() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		session.invalidate();
+		return "/home.xhtml";
 	}
 
 	public String addCustomer(Customer customer) {

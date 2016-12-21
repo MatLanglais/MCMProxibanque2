@@ -75,7 +75,14 @@ public class TransferController {
 		transferService.doTransfer(transfer);
 		
 		histoTransfer = transfer;
+//		histoTransfer.setAmount(transfer.getAmount());
+//		histoTransfer.setFromAccount(transfer.getFromAccount());
+//		histoTransfer.setToAccount(transfer.getToAccount());
+//		histoTransfer.setDate(transfer.getDate());
+		
 		transfer = new Transfer();
+		
+		System.out.println(transfer);
 
 		return "cvir";
 	}

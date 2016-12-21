@@ -53,7 +53,7 @@
 
 	<!-- Welcome Page -->
 	<welcome-file-list>
-		<welcome-file>home.xhtml</welcome-file>
+		<welcome-file>userChoice.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<!-- JSF Servlet is defined to container -->
