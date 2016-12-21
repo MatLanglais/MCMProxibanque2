@@ -97,8 +97,10 @@ public class CustomerController {
 	// Methode pour afficher la liste des comptes d'un client
 	public String listAccountByCustomer(String id) {
 		Long idCustomer = Long.parseLong(id);
+		System.out.println(idCustomer);
 		try {
 			customer = customerService.findById(Long.valueOf(idCustomer));
+			System.out.println(customer);
 			return "listeComptes";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -137,7 +139,6 @@ public class CustomerController {
 
 	// Methode pour vérifier si l'attribut customer est rempli
 	public boolean isCustomerExist() {
-		System.out.println(customer);
 		if (customer != null && customer.getId() != 0)
 			return true;
 		return false;
@@ -169,6 +170,29 @@ public class CustomerController {
 			e.printStackTrace();
 			return "error";
 		}
+
+	}
+
+	// Méthode pour rediriger l'utilisateur vers la page de virement (avec un
+	// utilisateur stocké)
+	public String customerTransferPage(String id) {
+		Long idCustomer = Long.parseLong(id);
+		try {
+			customer = customerService.findById(idCustomer);
+			System.out.println(customer);
+			return "/views/advisor/virement.xhtml";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+	}
+
+	// Méthode pour rediriger l'utilisateur vers la page de virement (sans
+	// utilisateur stocké)
+	public String customerTransferPage() {
+		customer = null;
+		return "/views/advisor/virement.xhtml";
 
 	}
 

@@ -116,12 +116,12 @@ public class MainTest {
 		m.getAdvisors().add(a);
 		m.getAdvisors().add(a2);
 
-//		ManagerService service = context.getBean("managerService", ManagerService.class);
-//		service.persist(m);
+		ManagerService service = context.getBean("managerService", ManagerService.class);
+		service.persist(m);
 //
 //		AdvisorService aservice = context.getBean("advisorService", AdvisorService.class);
-		AdvisorController adContr = new AdvisorController();
-		adContr.removeCustomer(c6);
+//		AdvisorController adContr = new AdvisorController();
+//		adContr.removeCustomer(c6);
 
 //		TransferService tservice = context.getBean("transferService", TransferService.class);
 //		Transfer t = new Transfer();
