@@ -21,6 +21,7 @@ import com.mcmproxibanque.service.IService;
 @Component
 public class CustomerController {
 	Customer customer;
+	
 
 	@Autowired
 	private IService<Customer> customerService;
@@ -96,8 +97,6 @@ public class CustomerController {
 			// TODO Afficher message d'erreur l'ajout n'a pas fonctionné
 		}
 	}
-
-	
 
 	// Methode pour afficher la liste des comptes d'un client
 	public String listAccountByCustomer(String id) {
@@ -251,7 +250,7 @@ public class CustomerController {
 	// Verifier si un client est a decouvert
 	public boolean isOverdraft(Customer c) {
 		if (c != null) {
-			//TODO utiliser les methodes subalternes
+			// TODO utiliser les methodes subalternes
 			if (c.getSavingAccount() != null && c.getSavingAccount().getAmount() < 0)
 				return true;
 			if (c.getCurrentAccount() != null
@@ -288,12 +287,13 @@ public class CustomerController {
 			e.printStackTrace();
 		}
 	}
+
 	public Customer getCustomer() {
 		return customer;
 	}
 
 	public void setCustomer(Customer customer) {
-		
+
 		this.customer = customer;
 
 	}

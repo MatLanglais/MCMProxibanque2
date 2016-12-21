@@ -35,7 +35,13 @@
 						</p:column>
 					</p:submenu>
 
-					<p:menuitem value="Déconnexion" url="#" icon="ui-icon-close" />
+										<f:facet name="options">
+					<p:commandButton value="Déconnexion"
+							action="#{advisorController.disconnect()}" icon="ui-icon-close" />
+<!-- 						<p:menuitem value="Déconnexion" -->
+<!-- 							action="#{advisorController.disconnect()}" icon="ui-icon-close" -->
+<!-- 							class="text-right" /> -->
+					</f:facet>
 				</p:megaMenu>
 			</h:form>
 		</div>

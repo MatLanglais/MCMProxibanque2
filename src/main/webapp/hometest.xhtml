@@ -7,17 +7,14 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	<ui:define name="content">
 
-		<h3 align="center">Vous êtes sur le point de vous connecter en
-			tant que conseiller.</h3>
-		<br /><h:outputText value="#{param['error']}" />
-		<br />
-		<h:form>
+
+		<form action="j_security_check" method="post">
 			<div class="row">
 				<div class="col-md-6 text-right">
 					<h:outputText value="Login :" />
 				</div>
 				<div class="col-md-6 text-left">
-					<p:inputText value="#{advisorController.advisor.login}" />
+					<input type="text" name="j_username" />
 				</div>
 			</div>
 			<div class="row">
@@ -25,20 +22,13 @@
 					<h:outputText value="Mot de Passe :" />
 				</div>
 				<div class="col-md-6 text-left">
-					<p:password value="#{advisorController.advisor.password}" />
+					<input type="password" name="j_password" />
 				</div>
-				<br /> <br />
 				<div class="col-md-2 col-md-offset-5">
-					<p:commandButton value="Connexion"
-						action="#{advisorController.loginVerif}" />
-				</div>
-				<br /> <br /> <br />
-
-				<div class="col-md-2 col-md-offset-5">
-					<p:commandButton value="Retour" action="/userChoice.xhtml"></p:commandButton>
+					<input type="submit" value="Se Connecter" />
 				</div>
 			</div>
-		</h:form>
+		</form>
 
 	</ui:define>
 </ui:composition>

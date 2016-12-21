@@ -36,25 +36,28 @@ public class AdvisorController {
 		try {
 			advisorList = advisorService.findAll();
 			for (Advisor advisorl : advisorList) {
-				if (advisor.getLogin().equals(advisorl.getLogin()) && advisor.getPassword().equals(advisorl.getPassword()))
+				if (advisor.getLogin().equals(advisorl.getLogin())
+						&& advisor.getPassword().equals(advisorl.getPassword())) {
 					advisor = advisorl;
-				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-				session.setAttribute("advisorsession", advisor);
-				return "/views/advisor/listeClients.xhtml";
+					HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
+							.getSession(true);
+					session.setAttribute("advisorsession", advisor);
+					return "/views/advisor/listeClients.xhtml";
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "error";
+			return "/home.xhtml?error=bad";
 		}
-		
-		return "error";
+
+		return "error_to_home";
 	}
-	
+
 	// Méthode de déconnexion
 	public String disconnect() {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		session.invalidate();
-		return "/home.xhtml";
+		return "/userChoice.xhtml";
 	}
 
 	public String addCustomer(Customer customer) {
@@ -77,7 +80,7 @@ public class AdvisorController {
 	public String removeCustomer(Customer customer) {
 		getCustomersOfAdvisor(advisor.getId()).remove(customer);
 		try {
-			 advisorService.merge(getAdvisor());
+			advisorService.merge(getAdvisor());
 			customerService.remove(customer.getId());
 			return "/views/advisor/listeClients.xhtml";
 		} catch (Exception e) {
@@ -120,9 +123,7 @@ public class AdvisorController {
 		this.advisor = advisor;
 	}
 
-
 	public AdvisorController() {
 	}
-	
 
 }
