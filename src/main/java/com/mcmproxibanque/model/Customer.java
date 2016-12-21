@@ -16,12 +16,15 @@ public class Customer implements Serializable {
 	/**
 	 * <b>Modèle Customer.</b>
 	 * <p>
-	 * Ce modèle est utilisé par le {@link Customer} (embedded). <br />
+	 * Modèle de base du Customer. <br />
 	 * Ce modèle est caractérisé par :
 	 * <ul>
-	 * <li>street : numéro et rue du {@link Customer}</li>
-	 * <li>zipCode : code postal du {@link Customer}</li>
-	 * <li>city : ville du {@link Customer}</li>
+	 * <li>id : id générée pour la base de donnée</li>
+	 * <li>name : nom du customer</li>
+	 * <li>forename : prénom du customer</li>
+	 * <li>address : {@link Address} du customer</li>
+	 * <li>email : email du customer</li>
+	 * <li>phone : téléphone du customer</li>
 	 * </ul>
 	 * 
 	 * @author Claire Steinmacher

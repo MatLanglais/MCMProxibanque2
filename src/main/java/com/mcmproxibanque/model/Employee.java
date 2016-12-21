@@ -8,7 +8,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-
+/**
+ * <b>Modèle Employee</b>
+ * <p>
+ * Modèle de base des employés de la banque. Ce modèle est hérité par {@link Advisor} et {@link Manager}.
+ * <br />
+ * Ce modèle est caractérisé par :
+ * <ul>
+ * <li>login : login de l'employee </li>
+ * <li>password : password de l'employee</li>
+ * <li>name : nom de l'employee</li>
+ * <li>forename : prénom de l'employee
+ * </ul>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Employee implements Serializable{

@@ -8,7 +8,19 @@ import org.springframework.stereotype.Component;
 import com.mcmproxibanque.dao.interfaces.ITransferDao;
 import com.mcmproxibanque.model.Account;
 import com.mcmproxibanque.model.Transfer;
-
+/**
+ * <b>Service TransferService</b>
+ * <p>
+ * Implémentation de l'interface {@link IService} pour {@link Transfer} .
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ */
 @Component
 public class TransferService extends ServiceImpl<Transfer> implements ITransferService {
 

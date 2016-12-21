@@ -2,6 +2,20 @@ package com.mcmproxibanque.service;
 
 import java.util.List;
 
+import com.mcmproxibanque.model.Account;
+/**
+ * <b>Service ServiceImpl</b>
+ * <p>
+ * Implémentation générale de l'interface {@link IService}.
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ */
 
 public class ServiceImpl<E> implements IService<E> {
 

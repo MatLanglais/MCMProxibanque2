@@ -9,10 +9,26 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mcmproxibanque.dao.interfaces.IAccountDao;
 import com.mcmproxibanque.dao.interfaces.IDao;
 
 import javassist.bytecode.SignatureAttribute.TypeVariable;
+/**
+ * <b>Implémentation DaoImpl</b>
+ * <p>
+ * Implémentation générale de l'interface {@link IDao}.
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
 
+ * @see {@link IDao}
+ * 
+ */
 public class DaoImpl<E> implements IDao<E> {
 
 	@PersistenceContext(unitName = "persistenceUnit")

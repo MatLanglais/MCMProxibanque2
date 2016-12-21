@@ -13,9 +13,26 @@ import org.primefaces.model.chart.ChartSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mcmproxibanque.model.Manager;
 import com.mcmproxibanque.model.Transfer;
 import com.mcmproxibanque.service.ITransferService;
-
+/**
+ * <b>ManagedBean TransferChartWeek</b>
+ * <p>
+ * Controller JSF des histogrammes .<br />
+ * Il est définit par :
+ * <ul>
+ * <li>barChartWeek : {@link BarChartModel}</li>
+ * </ul>
+ * </p>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ */
 @ManagedBean
 @Component
 public class TransferChartWeek implements Serializable {
@@ -48,7 +65,7 @@ public class TransferChartWeek implements Serializable {
 		for (Transfer transfer : transfersOfCurrentWeek) {
 			if (transfer.getAmount() < 100) {
 				transfersRange1++;
-			} else if (transfer.getAmount() < 10000 && transfer.getAmount() > 100) {
+			} else if (transfer.getAmount() < 10000 && transfer.getAmount() >= 100) {
 				transfersRange2++;
 			} else if (transfer.getAmount() > 10000) {
 				transfersRange3++;
