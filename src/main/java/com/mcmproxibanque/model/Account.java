@@ -1,5 +1,7 @@
 package com.mcmproxibanque.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,8 +11,12 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Account {
+public class Account implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
@@ -32,12 +38,6 @@ public class Account {
 	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
-
-	@Override
-	public String toString() {
-		return "Account [id=" + id + ", amount=" + amount + "]";
-	}
-	
 	
 
 }

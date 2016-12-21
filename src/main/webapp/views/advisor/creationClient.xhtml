@@ -15,11 +15,11 @@
 
 
 				<p:panel id="panel" header="Ajouter un nouveau client">
-					<p:growl id="messages" showDetail="true" />
-					<p:messages autoUpdate="true" />
+					<!-- 					<p:growl id="messages" showDetail="true" /> -->
+					<!-- 					<p:messages autoUpdate="true" /> -->
 					<br />
 
-					<h:panelGrid id="display" columns="3" cellpadding="4">
+					<h:panelGrid id="display" columns="3" cellpadding="6">
 
 
 						<h:outputText for="name" value="Nom* :" style="font-weight:bold"></h:outputText>
@@ -27,7 +27,7 @@
 							required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Attention : ce champ doit comporter au moins 2 lettres, et ne pas contenir de chiffres ou de caractères spéciaux">
-							<f:validateRegex pattern="(^[A-Za-z -]{2,})"></f:validateRegex>
+							<f:validateRegex pattern="(^[A-Za-z\\s -]{2,})"></f:validateRegex>
 						</p:inputText>
 						<p:message for="name"></p:message>
 
@@ -39,7 +39,7 @@
 							value="#{customerController.customer.forename}" required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Attention : ce champ doit comporter au moins 2 lettres, et ne pas contenir de chiffres ou de caractères spéciaux">
-							<f:validateRegex pattern="(^[A-Za-z -]{2,})"></f:validateRegex>
+							<f:validateRegex pattern="((^[A-Za-z\\s -]{2,}))"></f:validateRegex>
 						</p:inputText>
 						<p:message for="forename"></p:message>
 
@@ -72,7 +72,7 @@
 							required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Ce champ doit comporter au moins une lettre, et aucun caractère spécial">
-							<f:validateRegex pattern="(^[A-Za-z -]{2,})"></f:validateRegex>
+							<f:validateRegex pattern="((^[A-Za-z\\s -]{1,}))"></f:validateRegex>
 						</p:inputText>
 						<p:message for="city"></p:message>
 
@@ -80,7 +80,8 @@
 							style="font-weight:bold"></h:outputText>
 						<p:inputText id="phone"
 							value="#{customerController.customer.phone}" required="true"
-							requiredMessage="La saisie de ce champ est obligatoire" placeholder="0123456789"
+							requiredMessage="La saisie de ce champ est obligatoire"
+							placeholder="0123456789"
 							validatorMessage="Le numéro de téléphone doit être au format 0123456789">
 							<f:validateRegex pattern="^[0-9]{10}"></f:validateRegex>
 						</p:inputText>
@@ -105,11 +106,11 @@
 							<br />
 
 
-							<p:commandButton value="Annuler" icon="ui-icon-close"
-								  />
+							<p:commandButton value="Annuler" icon = "ui-icon-close"
+								action="/views/advisor/listeClients.xhtml" immediate="true" />
 							<p:commandButton value="Valider" icon="ui-icon-check"
 								validateClient="true" style="margin-right:10px"
-								action="#{advisorController.addCustomer}" />
+								action="#{customerController.addCustomer}" />
 						</p:outputPanel>
 
 
