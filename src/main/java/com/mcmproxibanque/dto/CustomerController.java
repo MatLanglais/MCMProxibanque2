@@ -201,32 +201,6 @@ public class CustomerController {
 		return "listeClients.xhtml";
 	}
 
-	// // Remettre à 0 le formulaire d'ajout du client
-	// public void refreshCustomerForm() {
-	// this.customer = new Customer();
-	// this.customer.setAddress(new Address());
-	// }
-	//
-	// public void resetCustomer() {
-	// refreshCustomerForm();
-	// RequestContext.getCurrentInstance().reset("formAjoutClient:panel");
-	// }
-	//
-	// // Remettre à 0 le formulaire de création de compte
-	// public void refreshAccountForm() {
-	//
-	// if ((this.customer.getCurrentAccount() != null) &
-	// (this.customer.getSavingAccount() != null)) {
-	//
-	// } else {
-	// if (this.customer.getCurrentAccount() != null) {
-	//
-	// this.customer.setSavingAccount(new SavingAccount());
-	//
-	// } else {
-	// this.customer.setCurrentAccount(new CurrentAccount());
-	// }
-
 	// Verifier si un client est a decouvert
 	public boolean isOverdraft(Customer c) {
 		System.out.println("Customer : " + c);
@@ -267,6 +241,18 @@ public class CustomerController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+
+	// Méthode de suppression d'un client
+	public String removeCustomer(String id) {
+		Long customerId = Long.parseLong(id);
+		try {
+			customerService.remove(customerId);
+			return "listeClients.xhtml";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error.xhtml";
 		}
 	}
 
