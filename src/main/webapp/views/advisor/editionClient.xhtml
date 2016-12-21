@@ -15,8 +15,6 @@
 
 
 				<p:panel id="panel" header="Modifier un client">
-					<p:growl id="messages" showDetail="true" />
-					<p:messages autoUpdate="true" />
 					<br />
 
 					<h:panelGrid id="display" columns="3" cellpadding="5">
@@ -60,7 +58,7 @@
 							required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Attention : ce champ doit comporter exactement 5 chiffres">
-							<f:validateRegex pattern="((^[A-Za-z\\s -]{2,}))"></f:validateRegex>
+							<f:validateRegex pattern="((^[0-9]{5}))"></f:validateRegex>
 						</p:inputText>
 						<p:message for="zipCode"></p:message>
 

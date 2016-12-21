@@ -37,7 +37,7 @@ public class CustomerController {
 
 	}
 
-	public void modifyCustomer() {
+	public String modifyCustomer() {
 		customer.setName(getCustomer().getName().trim());
 		customer.setForename(getCustomer().getForename().trim());
 		customer.setEmail(getCustomer().getEmail().trim());
@@ -45,8 +45,10 @@ public class CustomerController {
 				getCustomer().getAddress().getCity().trim(), getCustomer().getAddress().getZipCode()));
 		try {
 			customerService.merge(getCustomer());
+			return "listeClients";
 		} catch (Exception e) {
 			// TODO Afficher message d'erreur
+			return "error";
 		}
 	}
 

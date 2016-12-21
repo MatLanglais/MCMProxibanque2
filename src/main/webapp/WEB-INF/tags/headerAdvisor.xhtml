@@ -25,27 +25,8 @@
 					<p:menuitem value="Vos Clients" icon="ui-icon-contact"
 						url="/views/advisor/listeClients.xhtml" />
 
-
-					<p:submenu label="Opérations Bancaires"
-						icon="ui-icon-triangle-2-e-w">
-						<p:column>
-							<p:submenu label="Virement" url="#">
-
-								<p:menuitem value="Effectuer un virement"
-									icon="ui-icon-arrowthick-1-e"
-									action="#{customerController.customerTransferPage()}"></p:menuitem>
-
-
-							</p:submenu>
-
-							<p:submenu label="Administration des comptes">
-								<p:menuitem value="Ajouter un compte" icon="ui-icon-plus"
-									url="#" />
-								<p:menuitem value="Supprimer un compte"
-									icon="ui-icon-closethick" url="#" />
-							</p:submenu>
-						</p:column>
-					</p:submenu>
+					<p:menuitem value="Virement" icon="ui-icon-arrowthick-1-e"
+						action="#{customerController.customerTransferPage()}" />
 
 					<p:menuitem value="Ajouter un client" icon="ui-icon-plus"
 						action="#{customerController.customerCreationPage()}" />
