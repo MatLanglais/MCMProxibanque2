@@ -82,6 +82,8 @@
 						<h:form>
 							<p:commandButton value="Créer un compte Epargne"
 								action="#{customerController.customerAccountCreationPage(customerController.customer.id)}" />
+
+
 						</h:form>
 					</c:otherwise>
 				</c:choose>
@@ -90,6 +92,16 @@
 				<!-- 				</c:if> -->
 			</div>
 		</div>
+
+		<h:form>
+			<div class="row">
+				<div class="col-md-12 text-right">
+					<p:commandButton value="Retour" icon="ui-icon-close"
+						action="/views/advisor/listeClients.xhtml" immediate="true" />
+				</div>
+			</div>
+		</h:form>
+
 
 	</ui:define>
 </ui:composition>
