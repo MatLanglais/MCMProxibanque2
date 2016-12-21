@@ -69,7 +69,7 @@ public class TransferChartWeek implements Serializable {
 	private void createBarModelWeek() {
 		barModelWeek = initBarModelWeek();
 
-		barModelWeek.setTitle("Rapport hebdomadaire sur les transactions");
+		barModelWeek.setTitle("Rapport hebdomadaire sur les transactions (semaine en cours)");
 		barModelWeek.setLegendPosition("ne");
 
 		Axis xAxis = barModelWeek.getAxis(AxisType.X);

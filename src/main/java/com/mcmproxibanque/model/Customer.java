@@ -23,7 +23,7 @@ public class Customer implements Serializable {
 	String name;
 	String forename;
 	@Embedded
-	Address address =new Address();
+	Address address = new Address();
 	String email;
 	String phone;
 

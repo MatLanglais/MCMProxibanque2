@@ -59,7 +59,13 @@
 
 					<h:panelGrid columns="2" class="table">
 						<h:outputText value="Solde Initial" />
-						<p:inputText value="#{accountController.amount}" />
+						<p:inputText value="#{accountController.amount}" id="amount"
+							validatorMessage="Vous devez entrer un solde initial positif"
+							required="true"
+							requiredMessage="Vous devez entrer le solde initial du compte">
+							<f:validateRegex pattern="^[0-9]"></f:validateRegex>
+						</p:inputText>
+						<p:message for="amount"></p:message>
 					</h:panelGrid>
 
 					<p:commandButton
