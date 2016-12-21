@@ -165,9 +165,8 @@ public class CustomerController {
 			customer = customerService.findById(idCustomer);
 			return "editionClient.xhtml";
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "error";
+			return "error.xhtml";
 		}
 
 	}
@@ -199,8 +198,7 @@ public class CustomerController {
 
 	// Méthode pour retourner à l'accueil
 	public String goAccueil() {
-		customer = new Customer();
-		return "listeClients";
+		return "listeClients.xhtml";
 	}
 
 	// // Remettre à 0 le formulaire d'ajout du client
