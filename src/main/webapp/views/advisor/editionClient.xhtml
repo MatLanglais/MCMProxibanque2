@@ -27,7 +27,7 @@
 							required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Attention : ce champ doit comporter au moins 2 lettres, et ne pas contenir de chiffres ou de caractères spéciaux">
-							<f:validateRegex pattern="(^[A-Za-z]{2,})"></f:validateRegex>
+							<f:validateRegex pattern="(^[A-Za-z -]{2,})"></f:validateRegex>
 						</p:inputText>
 						<p:message for="name"></p:message>
 
@@ -39,7 +39,7 @@
 							value="#{customerController.customer.forename}" required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Attention : ce champ doit comporter au moins 2 lettres, et ne pas contenir de chiffres ou de caractères spéciaux">
-							<f:validateRegex pattern="(^[A-Za-z]{2,})"></f:validateRegex>
+							<f:validateRegex pattern="(^[A-Za-z -]{2,})"></f:validateRegex>
 						</p:inputText>
 						<p:message for="forename"></p:message>
 
@@ -71,7 +71,7 @@
 							required="true"
 							requiredMessage="La saisie de ce champ est obligatoire"
 							validatorMessage="Ce champ doit comporter au moins une lettre, et aucun caractère spécial">
-							<f:validateRegex pattern="(^[A-Za-z]{2,})"></f:validateRegex>
+							<f:validateRegex pattern="(^[A-Za-z -]{2,})"></f:validateRegex>
 						</p:inputText>
 						<p:message for="city"></p:message>
 

@@ -17,6 +17,7 @@ import com.mcmproxibanque.service.ITransferService;
 public class TransferController {
 
 	private Transfer transfer;
+	private Transfer histoTransfer;
 	private Customer toCustomer;
 	private Customer fromCustomer;
 	private Long toAccountId;
@@ -86,6 +87,14 @@ public class TransferController {
 	public void setTransferService(ITransferService transferService) {
 		this.transferService = transferService;
 	}
+	
+	public Transfer getHistoTransfer() {
+		return histoTransfer;
+	}
+
+	public void setHistoTransfer(Transfer histoTransfer) {
+		this.histoTransfer = histoTransfer;
+	}
 
 	// Methode pour vérifier si le compte épargne du client existe
 	public boolean isFromSavingAccountExist() {
@@ -134,8 +143,11 @@ public class TransferController {
 
 		transferService.doTransfer(transfer);
 		
+		histoTransfer = transfer;
 		transfer = new Transfer();
 
 		return "cvir";
 	}
+
+
 }
