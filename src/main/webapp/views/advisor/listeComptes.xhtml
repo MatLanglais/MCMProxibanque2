@@ -10,39 +10,39 @@
 		<h1>Client : #{customerController.customer.id} -
 			#{customerController.customer.name}
 			#{customerController.customer.forename}</h1>
-		<h2>Liste des Comptes</h2>
+		<h2>#{trad['label.account']}</h2>
 
 		<div class="row">
 			<div class="col-md-4 col-md-offset-1">
 				<c:choose>
 					<c:when test="#{customerController.isCurrentAccountExist()}">
-						<p:fieldset legend="Compte Courant" style="margin-bottom:20px">
+						<p:fieldset legend="#{trad['label.accountCurrent']}" style="margin-bottom:20px">
 							<div class="row">
-								<div class="col-md-6 text-right">Numéro de Compte :</div>
+								<div class="col-md-6 text-right">#{trad['account.idLong']} :</div>
 								<div class="col-md-6">
 									<h:outputText
 										value="#{customerController.customer.currentAccount.id}" />
 								</div>
-								<div class="col-md-6 text-right">Solde :</div>
+								<div class="col-md-6 text-right">#{trad['account.amount']} :</div>
 								<div class="col-md-6">
 									<h:outputText
 										value="#{customerController.customer.currentAccount.amount}" />
 								</div>
-								<div class="col-md-6 text-right">Découvert autorisé :</div>
+								<div class="col-md-6 text-right">#{trad['account.overdraft']} :</div>
 								<div class="col-md-6">
 									<h:outputText
 										value="#{customerController.customer.currentAccount.overdraft}" />
 								</div>
 							</div>
 							<div class="text-center">
-								<p:commandButton value="Supprimer ce compte"
+								<p:commandButton value="#{trad['action.deleteThisAccount']}"
 									action="#{customerController.removeCurrentAccount}" />
 							</div>
 						</p:fieldset>
 					</c:when>
 					<c:otherwise>
 						<h:form>
-							<p:commandButton value="Créer un compte Courant"
+							<p:commandButton value="#{trad['action.createCurrentAccount']}"
 								action="#{customerController.customerAccountCreationPage(customerController.customer.id)}" />
 						</h:form>
 					</c:otherwise>
@@ -56,31 +56,31 @@
 					<c:when test="#{customerController.isSavingAccountExist()}">
 						<p:fieldset legend="Compte Epargne" style="margin-bottom:20px">
 							<div class="row">
-								<div class="col-md-6 text-right">Numéro de compte :</div>
+								<div class="col-md-6 text-right">#{trad['account.idLong']} :</div>
 								<div class="col-md-6">
 									<h:outputText
 										value="#{customerController.customer.savingAccount.id}" />
 								</div>
-								<div class="col-md-6 text-right">Solde :</div>
+								<div class="col-md-6 text-right">#{trad['account.amount']} :</div>
 								<div class="col-md-6">
 									<h:outputText
 										value="#{customerController.customer.savingAccount.amount}" />
 								</div>
-								<div class="col-md-6 text-right">Taux d'épargne :</div>
+								<div class="col-md-6 text-right">#{trad['account.rate']} :</div>
 								<div class="col-md-6">
 									<h:outputText
 										value="#{customerController.customer.savingAccount.rate}" />
 								</div>
 							</div>
 							<div class="text-center">
-								<p:commandButton value="Supprimer ce compte"
+								<p:commandButton value="#{trad['action.deleteThisAccount']}"
 									action="#{customerController.removeSavingAccount}" />
 							</div>
 						</p:fieldset>
 					</c:when>
 					<c:otherwise>
 						<h:form>
-							<p:commandButton value="Créer un compte Epargne"
+							<p:commandButton value="#{trad['action.createSavingAccount']}"
 								action="#{customerController.customerAccountCreationPage(customerController.customer.id)}" />
 
 
@@ -96,7 +96,7 @@
 		<h:form>
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<p:commandButton value="Retour" icon="ui-icon-close"
+					<p:commandButton value="#{trad['action.retour']}" icon="ui-icon-close"
 						action="/views/advisor/listeClients.xhtml" immediate="true" />
 				</div>
 			</div>

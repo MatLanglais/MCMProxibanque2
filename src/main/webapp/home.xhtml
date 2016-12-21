@@ -7,15 +7,14 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	<ui:define name="content">
 
-		<h3 align="center">Vous êtes sur le point de vous connecter en
-			tant que conseiller.</h3>
+		<h3 align="center">#{trad['info.advisorCnx']}</h3>
 		<br />
 		<h:message for="loginform" class="error" id="loginformerror" />
 		<br />
 		<h:form id="loginform">
 			<div class="row">
 				<div class="col-md-6 text-right">
-					<h:outputText value="Login :" />
+					<h:outputText value="#{trad['home.login']} :" />
 				</div>
 				<div class="col-md-6 text-left">
 					<p:inputText id="login" value="#{advisorController.advisor.login}" />
@@ -23,14 +22,14 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6 text-right">
-					<h:outputText value="Mot de Passe :" />
+					<h:outputText value="#{trad['home.password']} :" />
 				</div>
 				<div class="col-md-6 text-left">
 					<p:password id="password" value="#{advisorController.advisor.password}" />
 				</div>
 				<br /> <br />
 				<div class="col-md-2 col-md-offset-5">
-					<p:commandButton value="Connexion"
+					<p:commandButton value="#{trad['home.connect']}"
 						action="#{advisorController.loginVerif}" />
 				</div>
 			</div>
@@ -38,7 +37,7 @@
 		<h:form>
 			<div class="row" style="margin-top: 10px;">
 				<div class="col-md-2 col-md-offset-5">
-					<p:commandButton value="Retour" action="/userChoice.xhtml"></p:commandButton>
+					<p:commandButton value="#{trad['action.retour']}" action="/userChoice.xhtml"></p:commandButton>
 				</div>
 			</div>
 		</h:form>

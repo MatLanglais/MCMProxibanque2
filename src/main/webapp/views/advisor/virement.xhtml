@@ -7,26 +7,26 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	<ui:define name="content">
 
-		<h1>Virement</h1>
+		<h1>#{trad['label.transfer']}</h1>
 		<p:messages autoUpdate="true" />
 		<h:form>
 			<!-- Affichage du compte à débiter si le client est stocké dans le controller customer -->
 			<c:if test="#{customerController.isCustomerExist()}">
 				<div class="row">
-					<div class="col-md-offset-1 col-md-8">Compte à débiter :</div>
+					<div class="col-md-offset-1 col-md-8">#{trad['transfer.fromAccount']} :</div>
 					<div class="col-md-offset-1 col-md-8">
 						<p:selectOneMenu id="fromAccount"
 							value="#{transferController.fromAccountId}" style="width:500px;">
-							<f:selectItem itemLabel="Choisir un compte à débiter"
+							<f:selectItem itemLabel="#{trad['action.chooseFromAccount']}"
 								itemValue="" noSelectionOption="true" />
 							<c:if test="#{customerController.isSavingAccountExist()}">
 								<f:selectItem
-									itemLabel="#{customerController.customer.name} #{customerController.customer.forename} | Compte Epargne N° #{customerController.customer.savingAccount.id} | Solde : #{customerController.customer.savingAccount.amount}"
+									itemLabel="#{customerController.customer.name} #{customerController.customer.forename} | #{trad['account.savingId']} #{customerController.customer.savingAccount.id} | #{trad['account.amount']} : #{customerController.customer.savingAccount.amount}"
 									itemValue="#{customerController.customer.savingAccount.id}" />
 							</c:if>
 							<c:if test="#{customerController.isCurrentAccountExist()}">
 								<f:selectItem
-									itemLabel="#{customerController.customer.name} #{customerController.customer.forename} | Compte Courant N° #{customerController.customer.currentAccount.id} | Solde : #{customerController.customer.currentAccount.amount}"
+									itemLabel="#{customerController.customer.name} #{customerController.customer.forename} | #{trad['account.currentId']} #{customerController.customer.currentAccount.id} | #{trad['account.amount']} : #{customerController.customer.currentAccount.amount}"
 									itemValue="#{customerController.customer.currentAccount.id}" />
 							</c:if>
 						</p:selectOneMenu>
@@ -38,24 +38,24 @@
 			<!--  Affichage du compte a débiter si le client n'est pas stocké dans le controller customer -->
 			<c:if test="#{customerController.isCustomerNotExist()}">
 				<div class="row">
-					<div class="col-md-offset-1 col-md-8">Compte à débiter :</div>
+					<div class="col-md-offset-1 col-md-8">#{trad['transfer.fromAccount']} :</div>
 					<div class="col-md-offset-1 col-md-8">
 						<p:selectOneMenu id="fromAccount"
 							value="#{transferController.fromAccountId}" style="width:500px;"
 							filter="true" filterMatchMode="contains">
 
-							<f:selectItem itemLabel="Choisir un compte à débiter"
+							<f:selectItem itemLabel="#{trad['action.chooseFromAccount']}"
 								itemValue="" noSelectionOption="true" />
 							<c:forEach var="customer"
 								items="#{customerController.getAllCustomers()}">
 								<c:if test="#{not empty customer.savingAccount}">
 									<f:selectItem
-										itemLabel="#{customer.name} #{ customer.forename} | Compte Epargne N° #{customer.savingAccount.id} | Solde : #{customer.savingAccount.amount}"
+										itemLabel="#{customer.name} #{ customer.forename} | #{trad['account.savingId']} #{customer.savingAccount.id} | #{trad['account.amount']} : #{customer.savingAccount.amount}"
 										itemValue="#{customer.savingAccount.id}" />
 								</c:if>
 								<c:if test="#{not empty customer.currentAccount}">
 									<f:selectItem
-										itemLabel="#{customer.name} #{customer.forename} | Compte Courant N° #{customer.currentAccount.id} | Solde : #{customer.currentAccount.amount}"
+										itemLabel="#{customer.name} #{customer.forename} | #{trad['account.currentId']} #{customer.currentAccount.id} | #{trad['account.amount']} : #{customer.currentAccount.amount}"
 										itemValue="#{customer.currentAccount.id}" />
 								</c:if>>
 							</c:forEach>
@@ -66,23 +66,23 @@
 
 			<!--  Affichage du compte a créditer. -->
 			<div class="row">
-				<div class="col-md-offset-1 col-md-8">Compte à créditer :</div>
+				<div class="col-md-offset-1 col-md-8">#{trad['transfer.toAccount']} :</div>
 				<div class="col-md-offset-1 col-md-8">
 					<p:selectOneMenu id="toAccount"
 						value="#{transferController.toAccountId}" style="width:500px;"
 						filter="true" filterMatchMode="contains">
-						<f:selectItem itemLabel="Choisir un compte à créditer"
+						<f:selectItem itemLabel="#{trad['action.chooseToAccount']}"
 							itemValue="" noSelectionOption="true" />
 						<c:forEach var="customer"
 							items="#{customerController.getAllCustomers()}">
 							<c:if test="#{not empty customer.savingAccount}">
 								<f:selectItem
-									itemLabel="#{customer.name} #{ccustomer.forename} | Compte Epargne N° #{customer.savingAccount.id} | Solde : #{customer.savingAccount.amount}"
+									itemLabel="#{customer.name} #{ccustomer.forename} | #{trad['account.savingId']} #{customer.savingAccount.id} | #{trad['account.amount']} : #{customer.savingAccount.amount}"
 									itemValue="#{customer.savingAccount.id}" />
 							</c:if>
 							<c:if test="#{not empty customer.currentAccount}">
 								<f:selectItem
-									itemLabel="#{customer.name} #{customer.forename} | Compte Courant N° #{customer.currentAccount.id} | Solde : #{customer.currentAccount.amount}"
+									itemLabel="#{customer.name} #{customer.forename} | #{trad['account.currentId']} #{customer.currentAccount.id} | #{trad['account.amount']} : #{customer.currentAccount.amount}"
 									itemValue="#{customer.currentAccount.id}" />
 							</c:if>
 						</c:forEach>
@@ -92,12 +92,12 @@
 
 			<!-- Affichage et Entrée du montant a transferer -->
 			<div class="row">
-				<div class="col-md-offset-1 col-md-8">Montant :</div>
+				<div class="col-md-offset-1 col-md-8">#{trad['transfer.amount']} :</div>
 				<div class="col-md-offset-1 col-md-8">
 					<p:inputText id="amount" value="#{transferController.amount}"
 						required="true"
-						requiredMessage="Vous devez entrer le montant du virement"
-						converterMessage="Vous devez entrer un montant positif et inférieur à 10 000 €">
+						requiredMessage="#{trad['error.requiredTransferAmount']}"
+						converterMessage="#{trad['error.transferAmountValidator']}">
 						<f:validateDoubleRange minimum="0.0" maximum="10000.0" />
 					</p:inputText>
 					<p:message for="amount" showDetail="false"></p:message>
@@ -107,15 +107,15 @@
 			<!-- Bouton pour soumettre le virement -->
 			<div class="row">
 				<div class="col-md-offset-1 col-md-8">
-					<p:commandButton value="Effectuer le virement"
+					<p:commandButton value="#{trad['action.thisTransfer']}"
 						action="#{transferController.doTransfer()}">
-						<p:confirm header="Confirmation" message="Confirmer le virement?"
+						<p:confirm header="#{trad['label.confirmation']}" message="#{trad['action.transferValidation']}"
 							icon="ui-icon-alert" />
 					</p:commandButton>
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-						<p:commandButton value="Oui" type="button"
+						<p:commandButton value="#{trad['action.yes']}" type="button"
 							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-						<p:commandButton value="Non" type="button"
+						<p:commandButton value="#{trad['action.no']}" type="button"
 							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 					</p:confirmDialog>
 				</div>
@@ -126,7 +126,7 @@
 		<h:form>
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<p:commandButton value="Retour" icon="ui-icon-close"
+					<p:commandButton value="#{trad['action.retour']}" icon="ui-icon-close"
 						action="/views/advisor/listeClients.xhtml" immediate="true" />
 				</div>
 			</div>
