@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mcmproxibanque.dao.interfaces.IAccountDao;
@@ -30,7 +32,8 @@ import javassist.bytecode.SignatureAttribute.TypeVariable;
  * 
  */
 public class DaoImpl<E> implements IDao<E> {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(DaoImpl.class);
+	
 	@PersistenceContext(unitName = "persistenceUnit")
 	protected EntityManager entityManager;
 	
@@ -41,18 +44,21 @@ public class DaoImpl<E> implements IDao<E> {
 	@Override
 	public void persist(E e) throws Exception {
 		getEntityManager().persist(e);
+		LOGGER.info("insertion en base de donnée d'un " + e.getClass().getCanonicalName());
 	}
 
 	@Transactional
 	@Override
 	public void merge(E e) throws Exception {
 		getEntityManager().merge(e);
+		LOGGER.info("modification de la base de donnée sur la table " + e.getClass().getCanonicalName());
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public void remove(Object id) throws Exception {
-		getEntityManager().remove(findById(id));
+		getEntityManager().createQuery("Delete from "+ getEntityClass().getSimpleName() +" t where t.id = "+id).executeUpdate();
+		LOGGER.info("suppression d'une entité");
 	}
 
 	@Transactional(readOnly = true)

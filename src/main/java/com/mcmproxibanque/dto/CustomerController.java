@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import com.mcmproxibanque.model.Advisor;
 import com.mcmproxibanque.model.CurrentAccount;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.SavingAccount;
+import com.mcmproxibanque.service.AdvisorService;
 import com.mcmproxibanque.service.IService;
 
 /**
@@ -47,6 +49,8 @@ public class CustomerController {
 	private IService<Customer> customerService;
 	@Autowired
 	private IService<Account> accountService;
+	@Autowired
+	private AdvisorService advisorService;
 
 	// Getters & Setters
 	public Customer getCustomer() {
@@ -101,10 +105,9 @@ public class CustomerController {
 	public String removeCurrentAccount() {
 		long id = getCustomer().getCurrentAccount().getId();
 		getCustomer().setCurrentAccount(null);
-		System.out.println(id);
 		try {
-			accountService.remove(id);
 			customerService.merge(getCustomer());
+			accountService.remove(id);
 			return "listeClients";
 		} catch (Exception e) {
 			// TODO Afficher message d'erreur la suppression n'a pas fonctionné
@@ -119,10 +122,9 @@ public class CustomerController {
 	public String removeSavingAccount() {
 		long id = getCustomer().getSavingAccount().getId();
 		getCustomer().setSavingAccount(null);
-		System.out.println(id);
 		try {
-			accountService.remove(getCustomer().getSavingAccount().getId());
 			customerService.merge(getCustomer());
+			accountService.remove(id);
 			return "listeClients";
 		} catch (Exception e) {
 			// TODO Afficher message d'erreur la suppression n'a pas fonctionné
@@ -368,10 +370,17 @@ public class CustomerController {
 	}
 
 	// Méthode de suppression d'un client
-	public String removeCustomer() {
+	public String removeCustomer(long idCustomer) {
 		try {
-			customerService.remove(getCustomer().getId());
-			customer = null;
+			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
+					.getSession(true);
+			Advisor advisor = (Advisor) session.getAttribute("advisorsession");
+			customer = customerService.findById(idCustomer);
+			System.out.println(customer);
+			advisorService.getCustomersOfAdvisor(advisor.getId()).remove(customer);
+			advisorService.merge(advisor);
+		//	customerService.remove(customer.getId());
+			this.customer = null;
 			return "listeClients.xhtml";
 		} catch (Exception e) {
 			e.printStackTrace();

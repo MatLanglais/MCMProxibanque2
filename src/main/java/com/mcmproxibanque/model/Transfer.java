@@ -91,4 +91,10 @@ public class Transfer implements Serializable{
 		this.toAccount = toAccount;
 	}
 
+	@Override
+	public String toString() {
+		return "Transfer [date=" + date + ", fromAccount=" + fromAccount + ", toAccount=" + toAccount + ", amount="
+				+ amount + "]";
+	}
+
 }

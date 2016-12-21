@@ -8,9 +8,10 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	<ui:define name="content">
 
-		<h1>Vos Clients</h1>
+		<h1>#{trad['label.customer']}</h1>
 		<!--   -->
-		<p:accordionPanel value="#{customerController.getAllCustomers()}"
+		<p:accordionPanel
+			value="#{advisorController.customersOfAdvisorInSession}"
 			var="customer" activeIndex="null">
 			<p:tab>
 				<f:facet name="title">
@@ -27,32 +28,34 @@
 					</c:choose>
 				</f:facet>
 				<div class="row">
-					<div class="col-md-offset-1 col-md-8">Adresse :
-						#{customer.address.street} #{customer.address.zipCode}
+					<div class="col-md-offset-1 col-md-8">#{trad['entity.address']}
+						: #{customer.address.street} #{customer.address.zipCode}
 						#{customer.address.city}</div>
 					<div class="col-md-3 text-right">
 						<h:form>
-							<p:commandButton icon="ui-icon-pencil" value="Editer"
+							<p:commandButton icon="ui-icon-pencil"
+								value="#{trad['action.edit']}"
 								action="#{customerController.customerEditionPage(customer.id)}"
-								style="width:200px;margin-top:1px;margin-bottom:1px"/>
+								style="width:200px;margin-top:1px;margin-bottom:1px" />
 						</h:form>
 					</div>
-					<div class="col-md-offset-1 col-md-8">Télephone :
-						#{customer.phone}</div>
+					<div class="col-md-offset-1 col-md-8">#{trad['entity.phone']}
+						: #{customer.phone}</div>
 					<div class="col-md-3 text-right">
 						<h:form>
-							<p:commandButton value="Liste des Comptes"
+							<p:commandButton value="#{trad['label.account']}"
 								icon="ui-icon-document-b"
 								action="#{customerController.listAccountByCustomer(customer.id)}"
 								style="width:200px;margin-top:1px;margin-bottom:1px" />
 						</h:form>
 
 					</div>
-					<div class="col-md-offset-1 col-md-8">E-Mail :
-						#{customer.email}</div>
+					<div class="col-md-offset-1 col-md-8">#{trad['entity.email']}
+						: #{customer.email}</div>
 					<div class="col-md-3 text-right">
 						<h:form>
-							<p:commandButton icon="ui-icon-plus" value="Ajouter un compte"
+							<p:commandButton icon="ui-icon-plus"
+								value="#{trad['advisor.createAccount']}"
 								action="#{customerController.customerAddAccountPage(customer.id)}"
 								style="width:200px;margin-top:1px;margin-bottom:1px" />
 						</h:form>
@@ -63,7 +66,7 @@
 					</div>
 					<div class="col-md-3 text-right">
 						<p:commandButton icon="ui-icon-arrowthick-1-e"
-							value="Effectuer un virement"
+							value="#{trad['action.transfer']}"
 							action="#{customerController.customerTransferPage(customer.id)}"
 							style="width:200px;margin-top:1px;margin-bottom:1px" />
 
@@ -74,18 +77,22 @@
 					</div>
 					<div class="col-md-3 text-right">
 						<h:form>
-							<p:commandButton icon="ui-icon-closethick" value="Supprimer"
-								action="#{advisorController.removeCustomer(customer)}" style="width:200px;margin-top:1px;margin-bottom:1px">
-								<p:confirm header="Confirmation"
-									message="Etes-vous sûr de vouloir supprimer le client #{customer.name} #{customer.forename}?
-									Cette suppression est définitive"
+
+							<p:commandButton icon="ui-icon-closethick"
+								value="#{trad['action.delete']}"
+								action="#{customerController.removeCustomer(customer.id)}"
+								style="width:200px;margin-top:1px;margin-bottom:1px">
+								<p:confirm header="#{trad['label.confirmation']}"
+									message="#{trad['label.confirmationCustomerDeletion']} #{customer.name} #{customer.forename}?
+									#{trad['label.confirmationDefDeletion']}"
 									icon="ui-icon-alert" />
+
 							</p:commandButton>
 							<p:confirmDialog global="true" showEffect="fade"
 								hideEffect="fade">
-								<p:commandButton value="Oui" type="button"
+								<p:commandButton value="#{trad['action.yes']}" type="button"
 									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-								<p:commandButton value="Non" type="button"
+								<p:commandButton value="#{trad['action.no']}" type="button"
 									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 							</p:confirmDialog>
 						</h:form>

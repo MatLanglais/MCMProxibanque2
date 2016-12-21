@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -44,7 +45,7 @@ public class Customer implements Serializable {
 	Address address = new Address();
 	String email;
 	String phone;
-
+	
 	@OneToOne(cascade = { CascadeType.ALL })
 	SavingAccount savingAccount;
 	@OneToOne(cascade = { CascadeType.ALL })
