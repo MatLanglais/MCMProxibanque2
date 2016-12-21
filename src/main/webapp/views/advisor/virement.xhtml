@@ -47,27 +47,16 @@
 								itemValue="" noSelectionOption="true" />
 							<c:forEach var="customer"
 								items="#{customerController.getAllCustomers()}">
-								<c:if
-									test="#{not empty customer.savingAccount or not empty customer.currentAccount}">
-									<f:selectItem style="font-weight:bold;"
-										itemLabel="#{customer.id} - #{customer.name} #{customer.forename}"
-										itemValue="" noSelectionOption="true" />
-								</c:if>
 								<c:if test="#{not empty customer.savingAccount}">
 									<f:selectItem
-										itemLabel="Compte Epargne N° #{customer.savingAccount.id} | Solde : #{customer.savingAccount.amount}"
+										itemLabel="#{customer.name} #{ccustomer.forename} | Compte Epargne N° #{customer.savingAccount.id} | Solde : #{customer.savingAccount.amount}"
 										itemValue="#{customer.savingAccount.id}" />
 								</c:if>
 								<c:if test="#{not empty customer.currentAccount}">
 									<f:selectItem
-										itemLabel="Compte Courant N° #{customer.currentAccount.id} | Solde : #{customer.currentAccount.amount}"
+										itemLabel="#{customer.name} #{customer.forename} | Compte Courant N° #{customer.currentAccount.id} | Solde : #{customer.currentAccount.amount}"
 										itemValue="#{customer.currentAccount.id}" />
-								</c:if>
-								<c:if
-									test="#{not empty customer.savingAccount or not empty customer.currentAccount}">
-									<f:selectItem itemLabel="----------------------------------"
-										itemValue="" noSelectionOption="true" />
-								</c:if>
+								</c:if>>
 							</c:forEach>
 						</p:selectOneMenu>
 					</div>
@@ -79,31 +68,21 @@
 				<div class="col-md-offset-1 col-md-8">Compte à créditer :</div>
 				<div class="col-md-offset-1 col-md-8">
 					<p:selectOneMenu id="toAccount"
-						value="#{transferController.toAccountId}" style="width:500px;">
+						value="#{transferController.toAccountId}" style="width:500px;"
+						filter="true" filterMatchMode="contains">
 						<f:selectItem itemLabel="Choisir un compte à créditer"
 							itemValue="" noSelectionOption="true" />
 						<c:forEach var="customer"
 							items="#{customerController.getAllCustomers()}">
-							<c:if
-								test="#{not empty customer.savingAccount or not empty customer.currentAccount}">
-								<f:selectItem style="font-weight:bold;"
-									itemLabel="#{customer.id} - #{customer.name} #{customer.forename}"
-									itemValue="" noSelectionOption="true" />
-							</c:if>
 							<c:if test="#{not empty customer.savingAccount}">
 								<f:selectItem
-									itemLabel="Compte Epargne N° #{customer.savingAccount.id} | Solde : #{customer.savingAccount.amount}"
+									itemLabel="#{customer.name} #{ccustomer.forename} | Compte Epargne N° #{customer.savingAccount.id} | Solde : #{customer.savingAccount.amount}"
 									itemValue="#{customer.savingAccount.id}" />
 							</c:if>
 							<c:if test="#{not empty customer.currentAccount}">
 								<f:selectItem
-									itemLabel="Compte Courant N° #{customer.currentAccount.id} | Solde : #{customer.currentAccount.amount}"
+									itemLabel="#{customer.name} #{customer.forename} | Compte Courant N° #{customer.currentAccount.id} | Solde : #{customer.currentAccount.amount}"
 									itemValue="#{customer.currentAccount.id}" />
-							</c:if>
-							<c:if
-								test="#{not empty customer.savingAccount or not empty customer.currentAccount}">
-								<f:selectItem itemLabel="----------------------------------"
-									itemValue="" noSelectionOption="true" />
 							</c:if>
 						</c:forEach>
 					</p:selectOneMenu>
@@ -117,8 +96,8 @@
 					<p:inputText id="amount" value="#{transferController.amount}"
 						required="true"
 						requiredMessage="Vous devez entrer le montant du virement"
-						validatorMessage="Le montant du virment doit être un nombre positif">
-						<f:validateRegex pattern="^[0-9]}"></f:validateRegex>
+						converterMessage="Le montant du virment doit être un nombre positif">
+						<f:validateDoubleRange minimum="0" maximum="5000" />
 					</p:inputText>
 					<p:message for="amount"></p:message>
 				</div>
