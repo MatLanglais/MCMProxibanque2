@@ -3,19 +3,14 @@ package com.mcmproxibanque.test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.mcmproxibanque.dto.AdvisorController;
 import com.mcmproxibanque.model.Address;
 import com.mcmproxibanque.model.Advisor;
 import com.mcmproxibanque.model.CurrentAccount;
 import com.mcmproxibanque.model.Customer;
 import com.mcmproxibanque.model.Manager;
 import com.mcmproxibanque.model.SavingAccount;
-import com.mcmproxibanque.model.Transfer;
-import com.mcmproxibanque.model.TransferDate;
-import com.mcmproxibanque.service.AdvisorService;
 import com.mcmproxibanque.service.CustomerService;
 import com.mcmproxibanque.service.ManagerService;
-import com.mcmproxibanque.service.TransferService;
 
 public class MainTest {
 
@@ -40,18 +35,10 @@ public class MainTest {
 		c.setEmail(email);
 		c.setPhone(phone);
 
-		Customer c6 = new Customer();
-		c6.setForename("JE NE SUIS PLUS LA2");
+	
 
 		
-		SavingAccount savingAccount6 = new SavingAccount();
-		savingAccount6.setAmount(savingAmount);
-		c6.setSavingAccount(savingAccount6);
-
-		c6.setAddress(new Address(street, city, zipCode));
-		c6.setEmail(email);
-		c6.setPhone(phone);
-
+		
 		CustomerService custService = new CustomerService();
 		// custService.remove(c6.getId());
 		SavingAccount savingAccount = new SavingAccount();
@@ -83,7 +70,7 @@ public class MainTest {
 
 		Customer c3 = new Customer();
 		c3.setForename("Claire");
-		c3.setName("blablablabla");
+		c3.setName("Steinmacher");
 		c3.setAddress(new Address(street, city, zipCode));
 		c3.setEmail(email);
 		c3.setPhone(phone);
@@ -93,7 +80,7 @@ public class MainTest {
 
 		Customer c4 = new Customer();
 		c4.setForename("Mathieu");
-		c4.setName("hhhe");
+		c4.setName("Langlais");
 		c4.setAddress(new Address(street, city, zipCode));
 		c4.setEmail(email);
 		c4.setPhone(phone);
@@ -107,7 +94,7 @@ public class MainTest {
 		a2.setPassword("123");
 		a2.getCustomers().add(c3);
 		a2.getCustomers().add(c4);
-		a2.getCustomers().add(c6);
+	
 
 		Manager m = new Manager();
 		m.setForename("Yann");
@@ -116,12 +103,13 @@ public class MainTest {
 		m.getAdvisors().add(a);
 		m.getAdvisors().add(a2);
 
-//		ManagerService service = context.getBean("managerService", ManagerService.class);
-//		service.persist(m);
+		ManagerService service = context.getBean("managerService", ManagerService.class);
+		service.persist(m);
+
 //
 //		AdvisorService aservice = context.getBean("advisorService", AdvisorService.class);
-		AdvisorController adContr = new AdvisorController();
-		adContr.removeCustomer(c6);
+//		AdvisorController adContr = new AdvisorController();
+//		adContr.removeCustomer(c6);
 
 //		TransferService tservice = context.getBean("transferService", TransferService.class);
 //		Transfer t = new Transfer();
@@ -148,6 +136,7 @@ public class MainTest {
 //		t6.setAmount(20000);
 //		t6.setDate(new TransferDate(2, 5, 12, 2016));
 //		tservice.persist(t6);
+
 
 	}
 

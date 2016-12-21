@@ -10,7 +10,7 @@
 
 		<h1>Vos Clients</h1>
 		<!--   -->
-		<p:accordionPanel value="#{customerController.getAllCustomers()}"	
+		<p:accordionPanel value="#{customerController.getAllCustomers()}"
 			var="customer" activeIndex="null">
 			<p:tab>
 				<f:facet name="title">
@@ -34,42 +34,64 @@
 						<h:form>
 							<p:commandButton icon="ui-icon-pencil" value="Editer"
 								action="#{customerController.customerEditionPage(customer.id)}"
-								style="width:200px;margin-top:1px;margin-bottom:1px" />
+								style="width:200px;margin-top:1px;margin-bottom:1px"/>
 						</h:form>
 					</div>
 					<div class="col-md-offset-1 col-md-8">Télephone :
 						#{customer.phone}</div>
 					<div class="col-md-3 text-right">
-						<p:commandButton icon="ui-icon-plus" value="Ajouter un compte"
-							action="e" style="width:200px;margin-top:1px;margin-bottom:1px" />
+						<h:form>
+							<p:commandButton value="Liste des Comptes"
+								icon="ui-icon-document-b"
+								action="#{customerController.listAccountByCustomer(customer.id)}"
+								style="width:200px;margin-top:1px;margin-bottom:1px" />
+						</h:form>
+
 					</div>
 					<div class="col-md-offset-1 col-md-8">E-Mail :
 						#{customer.email}</div>
 					<div class="col-md-3 text-right">
-						<p:commandButton icon="ui-icon-arrowthick-1-e"
-							value="Effectuer un virement" action="e"
-							style="width:200px;margin-top:1px;margin-bottom:1px" />
+						<h:form>
+							<p:commandButton icon="ui-icon-plus" value="Ajouter un compte"
+								action="/views/advisor/creationCompte.xhtml"
+								style="width:200px;margin-top:1px;margin-bottom:1px" />
+						</h:form>
 					</div>
 					<div class="col-md-offset-1 col-md-8">
-						<c:if test="not empty #{customer.savingAccount}">
+						<c:if test="#{not empty customer.savingAccount}">
 						Compte Epargne : #{customer.savingAccount.id}</c:if>
 					</div>
 					<div class="col-md-3 text-right">
-						<p:commandButton icon="ui-icon-closethick" value="Supprimer"
-							action="#{customerController.customerDeletionPage(customer.id)}"
+						<p:commandButton icon="ui-icon-arrowthick-1-e"
+							value="Effectuer un virement"
+							action="#{customerController.customerTransferPage(customer.id)}"
 							style="width:200px;margin-top:1px;margin-bottom:1px" />
+
 					</div>
 					<div class="col-md-offset-1 col-md-8">
-						<c:if test="not empty #{customer.currentAccount}">
+						<c:if test="#{not empty customer.currentAccount}">
  						Compte Courant : #{customer.currentAccount.id}</c:if>
 					</div>
-					<div class="col-md-3 text-right"></div>
-					<div class="col-md-12">
+					<div class="col-md-3 text-right">
 						<h:form>
-							<h:commandLink value="Liste des Comptes"
-								action="#{customerController.listAccountByCustomer(customer.id)}"
-								style="width:200px;margin-top:1px;margin-bottom:1px"></h:commandLink>
+							<p:commandButton icon="ui-icon-closethick" value="Supprimer"
+								action="#{advisorController.removeCustomer(customer)}" style="width:200px;margin-top:1px;margin-bottom:1px">
+								<p:confirm header="Confirmation"
+									message="Etes-vous sûr de vouloir supprimer le client #{customer.name} #{customer.forename}?
+									Cette suppression est définitive"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="Oui" type="button"
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								<p:commandButton value="Non" type="button"
+									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
 						</h:form>
+
+
+
 					</div>
 				</div>
 			</p:tab>
