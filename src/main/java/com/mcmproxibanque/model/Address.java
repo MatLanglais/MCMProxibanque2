@@ -3,6 +3,25 @@ package com.mcmproxibanque.model;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
+/**
+ * <b>Modèle address.</b>
+ * <p>
+ * Ce modèle est utilisé par le {@link Customer} (embedded).
+ * <br />
+ * Ce modèle est caractérisé par :
+ * <ul>
+ * <li>street : numéro et rue du {@link Customer} </li>
+ * <li>zipCode : code postal du {@link Customer}</li>
+ * <li>city : ville du {@link Customer}</li>
+ * </ul>
+ * 
+ * @author Claire Steinmacher
+ * @author Mathilde Terrioux
+ * @author Mathieu Langlais
+ * 
+ * @version 1
+ * 
+ */
 
 @Embeddable
 public class Address implements Serializable{

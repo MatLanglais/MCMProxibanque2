@@ -14,6 +14,21 @@ import javax.persistence.OneToOne;
 public class Customer implements Serializable {
 
 	/**
+	 * <b>Modèle Customer.</b>
+	 * <p>
+	 * Ce modèle est utilisé par le {@link Customer} (embedded). <br />
+	 * Ce modèle est caractérisé par :
+	 * <ul>
+	 * <li>street : numéro et rue du {@link Customer}</li>
+	 * <li>zipCode : code postal du {@link Customer}</li>
+	 * <li>city : ville du {@link Customer}</li>
+	 * </ul>
+	 * 
+	 * @author Claire Steinmacher
+	 * @author Mathilde Terrioux
+	 * @author Mathieu Langlais
+	 * 
+	 * @version 1
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -101,5 +116,4 @@ public class Customer implements Serializable {
 		this.phone = phone;
 	}
 
-	
 }
