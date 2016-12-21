@@ -14,7 +14,7 @@
 			<h:form id="formAjoutClient">
 
 
-				<p:panel id="panel" header="Ajouter un nouveau client">
+				<p:panel id="panel" header="#{trad['advisor.createCustomer']}">
 					<!-- 					<p:growl id="messages" showDetail="true" /> -->
 					<!-- 					<p:messages autoUpdate="true" /> -->
 					<br />
@@ -22,83 +22,85 @@
 					<h:panelGrid id="display" columns="3" cellpadding="6">
 
 
-						<h:outputText for="name" value="Nom* :" style="font-weight:bold"></h:outputText>
+						<h:outputText for="name" value="#{trad['entity.name']}* :"
+							style="font-weight:bold"></h:outputText>
 						<p:inputText id="name" value="#{customerController.customer.name}"
-							required="true"
-							requiredMessage="La saisie de ce champ est obligatoire"
-							validatorMessage="Attention : ce champ doit comporter au moins 2 lettres, et ne pas contenir de chiffres ou de caractères spéciaux">
+							required="true" requiredMessage="#{trad['error.required']}"
+							validatorMessage="#{trad['error.textValidator']}">
 							<f:validateRegex pattern="(^[A-Za-z\\s -]{2,})"></f:validateRegex>
 						</p:inputText>
 						<p:message for="name"></p:message>
 
 
 
-						<h:outputText for="forename" value="Prénom* :"
+						<h:outputText for="forename" value="#{trad['entity.forename']}* :"
 							style="font-weight:bold"></h:outputText>
 						<p:inputText id="forename"
 							value="#{customerController.customer.forename}" required="true"
-							requiredMessage="La saisie de ce champ est obligatoire"
-							validatorMessage="Attention : ce champ doit comporter au moins 2 lettres, et ne pas contenir de chiffres ou de caractères spéciaux">
+							requiredMessage="#{trad['error.required']}"
+							validatorMessage="#{trad['error.textValidator']}">
 							<f:validateRegex pattern="((^[A-Za-z\\s -]{2,}))"></f:validateRegex>
 						</p:inputText>
 						<p:message for="forename"></p:message>
 
-						<h:outputText for="street" value="Rue* :" style="font-weight:bold"></h:outputText>
+						<h:outputText for="street" value="#{trad['entity.street']}* :"
+							style="font-weight:bold"></h:outputText>
 						<p:inputText id="street"
 							value="#{customerController.customer.address.street}"
-							required="true"
-							requiredMessage="La saisie de ce champ est obligatoire">
+							required="true" requiredMessage="#{trad['error.required']}">
 
 						</p:inputText>
 						<p:message for="street"></p:message>
 
 
 
-						<h:outputText for="zipCode" value="Code Postal* :"
+						<h:outputText for="zipCode" value="#{trad['entity.zipcode']}* :"
 							style="font-weight:bold"></h:outputText>
 						<p:inputText id="zipCode"
 							value="#{customerController.customer.address.zipCode}"
-							required="true"
-							requiredMessage="La saisie de ce champ est obligatoire"
-							validatorMessage="Attention : ce champ doit comporter exactement 5 chiffres">
+							required="true" requiredMessage="#{trad['error.required']}"
+							validatorMessage="#{trad['error.zipcodeValidator']}">
 							<f:validateRegex pattern="(^[0-9]{5})"></f:validateRegex>
 						</p:inputText>
 						<p:message for="zipCode"></p:message>
 
 
-						<h:outputText for="city" value="Ville* :" style="font-weight:bold"></h:outputText>
+						<h:outputText for="city" value="#{trad['entity.city']}* :"
+							style="font-weight:bold"></h:outputText>
 						<p:inputText id="city"
 							value="#{customerController.customer.address.city}"
-							required="true"
-							requiredMessage="La saisie de ce champ est obligatoire"
-							validatorMessage="Ce champ doit comporter au moins une lettre, et aucun caractère spécial">
-							<f:validateRegex pattern="((^[A-Za-z\\s -]{1,}))"></f:validateRegex>
+							required="true" requiredMessage="#{trad['error.required']}"
+							validatorMessage="#{trad['error.cityValidator']}">
+							<f:validateRegex pattern="((^[A-Za-z -]{1,}))"></f:validateRegex>
 						</p:inputText>
 						<p:message for="city"></p:message>
 
-						<h:outputText for="phone" value="Numéro de téléphone* :"
+						<h:outputText for="phone" value="#{trad['entity.phone']}* :"
 							style="font-weight:bold"></h:outputText>
 						<p:inputText id="phone"
 							value="#{customerController.customer.phone}" required="true"
-							requiredMessage="La saisie de ce champ est obligatoire"
+							requiredMessage="#{trad['error.required']}"
 							placeholder="0123456789"
-							validatorMessage="Le numéro de téléphone doit être au format 0123456789">
+							validatorMessage="#{trad['error.phoneValidator']}">
 							<f:validateRegex pattern="^[0-9]{10}"></f:validateRegex>
 						</p:inputText>
 						<p:message for="phone"></p:message>
 
-						<h:outputText for="email" value="Adresse mail :"
+						<h:outputText for="email" value="#{trad['entity.email']} :"
 							style="font-weight:bold"></h:outputText>
 						<p:inputText id="email"
 							value="#{customerController.customer.email}"
-							validatorMessage="L'adresse mail doit être au format exemple@exemple.com">
+							validatorMessage="#{trad['error.mailValidator']}">
 							<f:validateRegex
 								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})"></f:validateRegex>
 						</p:inputText>
 						<p:message for="email"></p:message>
 
 
-						<div class="notaBene">* Champ obligatoire</div>
+						<div class="notaBene">
+
+							<h:outputText value="#{trad['info.mandatory']}"></h:outputText>
+						</div>
 
 
 						<p:outputPanel layout="block" style="text-align:center">
@@ -106,9 +108,9 @@
 							<br />
 
 
-							<p:commandButton value="Annuler" icon = "ui-icon-close"
+							<p:commandButton value="#{trad['action.cancel']}" icon="ui-icon-close"
 								action="/views/advisor/listeClients.xhtml" immediate="true" />
-							<p:commandButton value="Valider" icon="ui-icon-check"
+							<p:commandButton value="#{trad['action.submit']}" icon="ui-icon-check"
 								validateClient="true" style="margin-right:10px"
 								action="#{customerController.addCustomer}" />
 						</p:outputPanel>

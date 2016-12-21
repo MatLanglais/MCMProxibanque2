@@ -22,17 +22,17 @@
 				<p:megaMenu orientation="horizontal" style="margin-top:20px">
 
 
-					<p:menuitem value="Vos Clients" icon="ui-icon-contact"
+					<p:menuitem value="#{trad['label.customer']}" icon="ui-icon-contact"
 						url="/views/advisor/listeClients.xhtml" />
 
-					<p:menuitem value="Virement" icon="ui-icon-arrowthick-1-e"
+					<p:menuitem value="#{trad['label.transfer']}" icon="ui-icon-arrowthick-1-e"
 						action="#{customerController.customerTransferPage()}" />
 
-					<p:menuitem value="Ajouter un client" icon="ui-icon-plus"
+					<p:menuitem value="#{trad['advisor.createCustomer']}" icon="ui-icon-plus"
 						action="#{customerController.customerCreationPage()}" />
 
 					<f:facet name="options">
-					<p:commandButton value="Déconnexion"
+					<p:commandButton value="#{trad['action.deconnect']}"
 							action="#{advisorController.disconnect()}" icon="ui-icon-close" />
 <!-- 						<p:menuitem value="Déconnexion" -->
 <!-- 							action="#{advisorController.disconnect()}" icon="ui-icon-close" -->

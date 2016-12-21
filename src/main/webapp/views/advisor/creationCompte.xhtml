@@ -15,23 +15,25 @@
 			<p:messages autoUpdate="true" />
 
 
-			<h1>Ajouter un compte</h1>
+			<h1>
+			<h:outputText value = "#{trad['advisor.createAccount']}"></h:outputText>
+			</h1>
 
 			<c:choose>
 				<c:when
 					test="#{not empty customerController.customer.currentAccount and not empty customerController.customer.savingAccount}">
 					<p>
-						Erreur : Le client possède déjà un compte courant et un compte
-						épargne.
+					<h:outputText value="#{trad['error.alreadyTwoAccounts']}"></h:outputText>
+						
 						<h:form>
-							<p:commandLink value="Retour vers la page d'accueil"
+							<p:commandLink value="#{trad['action.accueilPage']}"
 								action="/views/advisor/listeClients.xhtml" />
 						</h:form>
 					</p>
 				</c:when>
 				<c:otherwise>
 					<p:panel
-						header="Client : #{customerController.customer.name} #{customerController.customer.forename}">
+						header="#{trad['label.cust']} : #{customerController.customer.name} #{customerController.customer.forename}">
 						<h:form>
 							<h:panelGrid columns="1" style="margin-bottom:10px"
 								cellpadding="5">
@@ -39,20 +41,20 @@
 									value="#{accountController.accountType}" layout="grid"
 									columns="3">
 									<c:if test="#{not customerController.isCurrentAccountExist()}">
-										<f:selectItem itemLabel="Compte Courant" itemValue="ca" />
+										<f:selectItem itemLabel="#{trad['label.accountCurrent']}" itemValue="ca" />
 									</c:if>
 									<c:if test="#{not customerController.isSavingAccountExist()}">
-										<f:selectItem itemLabel="Compte Epargne" itemValue="sa" />
+										<f:selectItem itemLabel="#{trad['label.accountSavings']}" itemValue="sa" />
 									</c:if>
 								</p:selectOneRadio>
 							</h:panelGrid>
 
 							<h:panelGrid columns="2" class="table">
-								<h:outputText value="Solde Initial" />
+								<h:outputText value="#{trad['label.initialAmount']}" />
 								<p:inputText id="amount" value="#{accountController.amount}"
-									converterMessage="Vous devez entrer un solde initial positif"
+									converterMessage="#{trad['error.initialAmountValidator']}"
 									required="true"
-									requiredMessage="Vous devez entrer le solde initial du compte">
+									requiredMessage="#{trad['error.requiredInitialAmount']}">
 									<f:validateDoubleRange minimum="0.0" />
 								</p:inputText>
 								<p:message for="amount"></p:message>
@@ -60,10 +62,10 @@
 
 							<p:commandButton
 								action="#{accountController.createAccount(customerController.customer.id)}"
-								value="Créer un nouveau compte" />
+								value="#{trad['action.createAccount']}" />
 							<div class="row">
 								<div class="col-md-12 text-right">
-									<p:commandButton value="Retour" icon="ui-icon-close"
+									<p:commandButton value="#{trad['action.retour']}" icon="ui-icon-close"
 										action="/views/advisor/listeClients.xhtml" immediate="true" />
 								</div>
 							</div>
@@ -72,32 +74,6 @@
 					</p:panel>
 				</c:otherwise>
 			</c:choose>
-
-
-
-			<!-- 					<h:panelGrid id="display" columns="2" cellpadding="4"> -->
-			<!-- 						<h:form> -->
-			<!-- 							<h3>Sélection du client</h3> -->
-			<!-- 							<br /> -->
-			<!-- 							<br /> -->
-			<!-- 							<h:outputText for="customers" value=" " /> -->
-			<!-- 							<p:outputLabel for="customers" value="Sélection du client : " /> -->
-			<!-- 							<p:selectOneListbox id="customers" filter="true" -->
-			<!-- 								filterMatchMode="contains" required="true" -->
-			<!-- 								requiredMessage="La sélection du client est obligatoire"> -->
-			<!-- 								<f:selectItems value="#{customerController.allCustomers}" -->
-			<!-- 									var="customer" -->
-			<!-- 									itemLabel="#{customer.name} #{customer.forename}" -->
-			<!-- 									itemValue="#{customer}"> -->
-			<!-- 								</f:selectItems> -->
-
-			<!-- 							</p:selectOneListbox> -->
-
-			<!-- 							<p:commandButton value="Sélectionner ce client" -->
-			<!-- 								icon="ui-icon-check" validateClient="true" -->
-			<!-- 								action="#{customerController.customer}"></p:commandButton> -->
-			<!-- 						</h:form> -->
-
 
 		</ui:define>
 	</ui:composition>
